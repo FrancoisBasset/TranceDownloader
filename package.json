@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/FrancoisBasset/TranceDownloader/issues"
   },
-  "homepage": "https://github.com/FrancoisBasset/TranceDownloader#readme"
+  "homepage": "https://github.com/FrancoisBasset/TranceDownloader#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

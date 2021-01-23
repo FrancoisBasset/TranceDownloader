@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TranceDownloader | Téléchargement</title>
+		<style>
+			body {
+				background-color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		SCROLL 2
+	</body>
+</html>
+
+<script>
+	document.addEventListener('wheel', function(e) {
+		if (e.deltaY < 0) {
+			fetch('/scroll1.html').then(function(res) {
+				res.text().then(function(html) {
+					document.open();
+					document.write(html);
+					document.close();
+				});
+			});
+		} else {
+			fetch('/scroll3.html').then(function(res) {
+				res.text().then(function(html) {
+					document.open();
+					document.write(html);
+					document.close();
+				});
+			});
+		}
+	});
+</script>

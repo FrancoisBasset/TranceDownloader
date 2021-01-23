@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TranceDownloader | Mes artistes</title>
+		<style>
+			body {
+				background-color: blue;
+			}
+		</style>
+	</head>
+
+	<body>
+		SCROLL 1
+	</body>
+</html>
+
+<script>
+	var body;
+	document.addEventListener('wheel', function(e) {
+		if (e.deltaY > 0) {
+			fetch('/scroll2.html').then(function(res) {
+				res.text().then(function(html) {
+					document.open();
+					document.write(html);
+					document.close();
+				});
+			});
+		}
+	});
+</script>
