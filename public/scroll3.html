@@ -9,21 +9,9 @@
 		</style>
 	</head>
 
-	<body>
+	<body id="scroll3">
 		SCROLL 3
 	</body>
 </html>
 
-<script>
-	document.addEventListener('wheel', function(e) {
-		if (e.deltaY < 0) {
-			fetch('/scroll2.html').then(function(res) {
-				res.text().then(function(html) {
-					document.open();
-					document.write(html);
-					document.close();
-				});
-			});
-		}
-	});
-</script>
+<script src="/scroll.js"></script>

@@ -1,0 +1,1 @@
+module.exports.WishesController = require('./WishesController');
