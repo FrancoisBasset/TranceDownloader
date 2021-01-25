@@ -4,7 +4,7 @@ const router = express.Router();
 const WishesController = require('../classes').WishesController;
 
 router.get('/', function(req, res) {
-	const wishes = WishesController.getWishes(req.query.withDone == 'true');
+	const wishes = WishesController.getWishes();
 
 	res.json({
 		success: true,

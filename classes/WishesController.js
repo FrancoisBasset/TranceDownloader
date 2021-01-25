@@ -11,24 +11,18 @@ function writeWishes(wishes) {
 	fs.writeFileSync('D:/Musique/wishes.csv', text);
 }
 
-module.exports.getWishes = function(withDone) {
+module.exports.getWishes = function() {
 	const csv = fs.readFileSync('D:/Musique/wishes.csv').toString();
 	const lines = csv.split('\r\n');
 
 	var wishes = [];
 
 	for (const line of lines) {
-		const done = line.split(';')[3] == 'true';
-
-		if (withDone == false && done) {
-			continue;
-		}
-
 		wishes.push({
 			id: line.split(';')[0],
 			artist: line.split(';')[1],
 			track: line.split(';')[2],
-			done: done
+			done: line.split(';')[3] == 'true'
 		})
 	}
 
