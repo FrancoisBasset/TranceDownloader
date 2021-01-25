@@ -11,7 +11,6 @@
 			<thead>
 				<td>Artiste</td>
 				<td>Track</td>
-				<td>Fait ?</td>
 			</thead>
 			<tbody>
 			</tbody>
@@ -22,11 +21,11 @@
 		<h1>Ajouter</h1>
 
 		<label>Artiste : </label>
-		<input type="text" id="artistInput" />
+		<input type="text" id="artistInputAdd" />
 		<br>
 
 		<label>Track : </label>
-		<input type="text" id="trackInput" />
+		<input type="text" id="trackInputAdd" />
 		<br>
 
 		<button onclick="addWish()">Ajouter</button>
@@ -34,9 +33,13 @@
 		<hr>
 
 		<h1>Modifier</h1>
-		<select id="wishesToModify">
+		<select onchange="updateForm()" id="wishesSelect"></select>
+		<br>
 
-		</select>
+		<input type="text" id="artistInputUpdate" />
+		<input type="text" id="trackInputUpdate" />
+		<button onclick="updateWish()">Modifier</button>
+		<button id="backButton">Back</button>
 
 	</body>
 </html>
