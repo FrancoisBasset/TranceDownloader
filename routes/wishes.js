@@ -4,7 +4,7 @@ const router = express.Router();
 const WishesController = require('../classes').WishesController;
 
 router.get('/', function(req, res) {
-	const wishes = WishesController.getWishes();
+	const wishes = WishesController.getWishes(req.query.withDone == 'true');
 
 	res.json({
 		success: true,
@@ -13,10 +13,11 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-	WishesController.addWish(req.body.artist, req.body.track);
+	const wish = WishesController.addWish(req.body.artist, req.body.track);
 
 	res.json({
-		success: true
+		success: true,
+		response: wish
 	});
 });
 
