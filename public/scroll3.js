@@ -106,8 +106,7 @@ function updateWish() {
 		})
 	}).then(function(response) {
 		response.json().then(function(json) {
-			//console.log(json.response);
-			updateRow(wish.id, artistInputUpdate.value, trackInputUpdate.value);
+			updateRow(json.response.id, json.response.artist, json.response.track);
 		});
 	});
 }

@@ -51,7 +51,7 @@ module.exports.doneWish = function(id) {
 
 	writeWishes(wishes);
 
-	return wishes.filter(w => w.id == id);
+	return wishes.filter(w => w.id == id)[0];
 };
 
 module.exports.backWish = function(id) {
@@ -61,7 +61,7 @@ module.exports.backWish = function(id) {
 
 	writeWishes(wishes);
 
-	return wishes.filter(w => w.id == id);
+	return wishes.filter(w => w.id == id)[0];
 }
 
 module.exports.updateWish = function(id, artist, track) {
@@ -74,5 +74,5 @@ module.exports.updateWish = function(id, artist, track) {
 
 	writeWishes(wishes);
 
-	return wishes.filter(w => w.id == id);
+	return wishes.filter(w => w.id == id)[0];
 }
