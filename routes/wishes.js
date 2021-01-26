@@ -35,7 +35,7 @@ router.put('/back/:id', function(req, res) {
 
 	res.json({
 		success: true,
-		wish: wish
+		response: wish
 	});
 });
 
@@ -44,7 +44,7 @@ router.put('/:id', function(req, res) {
 
 	res.json({
 		success: true,
-		wish: wish
+		response: wish
 	});
 });
 

@@ -14,6 +14,8 @@ fetch('/wishes').then(function(response) {
 
 			addOption(wish.id, wish.artist, wish.track, wish.done);
 		}
+
+		updateForm();
 	});
 });
 
@@ -24,6 +26,15 @@ function addRow(id, artist, track) {
 	row.insertCell().innerText = track;
 	row.insertCell().innerHTML = `<button onclick="searchWish('${artist}', '${track}')">Rechercher</button>`;
 	row.insertCell().innerHTML = `<button onclick="doneWish(${id})">Done</button>`;
+}
+
+function updateRow(id, artist, track) {
+	document.getElementById('wish-' + id).cells[0].textContent = artist;
+	document.getElementById('wish-' + id).cells[1].textContent = track;
+}
+
+function deleteRow(id) {
+	document.getElementById('wish-' + id).remove();
 }
 
 function addOption(id, artist, track, done) {
@@ -48,7 +59,7 @@ function doneWish(id) {
 	fetch('/wishes/done/' + id, {
 		method: 'PUT'
 	}).then(function(response) {
-		document.getElementById('wish-' + id).remove();
+		deleteRow(id);
 	});
 }
 
@@ -95,7 +106,8 @@ function updateWish() {
 		})
 	}).then(function(response) {
 		response.json().then(function(json) {
-
+			//console.log(json.response);
+			updateRow(wish.id, artistInputUpdate.value, trackInputUpdate.value);
 		});
 	});
 }
