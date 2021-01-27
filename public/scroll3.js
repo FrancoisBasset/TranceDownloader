@@ -4,6 +4,7 @@ var trackInputAdd = document.getElementById('trackInputAdd');
 var wishesSelect = document.getElementById('wishesSelect');
 var artistInputUpdate = document.getElementById('artistInputUpdate');
 var trackInputUpdate = document.getElementById('trackInputUpdate');
+var backButton = document.getElementById('backButton');
 
 fetch('/wishes').then(function(response) {
 	response.json().then(function(json) {
@@ -51,6 +52,11 @@ function addOption(id, artist, track, done) {
 	);
 }
 
+function updateOption(id, artist, track, done)
+{
+	
+}
+
 function searchWish(artist, track) {
 	console.log('Search ' + artist + ' ' + track + ' on youtube');
 }
@@ -89,6 +95,12 @@ function updateForm() {
 
 	artistInputUpdate.value = wish.artist;
 	trackInputUpdate.value = wish.track;
+
+	if (wish.done) {
+		backButton.style.display = '';
+	} else {
+		backButton.style.display = 'none';
+	}
 }
 
 function updateWish() {
@@ -107,6 +119,28 @@ function updateWish() {
 	}).then(function(response) {
 		response.json().then(function(json) {
 			updateRow(json.response.id, json.response.artist, json.response.track);
+		});
+	});
+}
+
+function backWish() {
+	const wish = JSON.parse(wishesSelect.value);
+
+	fetch('/wishes/back/' + wish.id, {
+		method: 'PUT'
+	}).then(function(response) {
+		response.json().then(function(json) {
+			addRow(json.response.id, json.response.artist, json.response.track);
+			for (var i = 0; i < wishesSelect.options.length; i++) {
+				const toModify = JSON.parse(wishesSelect.options[i].value);
+				
+				if (toModify.id = wish.id) {
+					toModify.done = false;
+					wishesSelect.options[i].value = JSON.stringify(toModify);
+					updateForm();
+					break;
+				}
+			}
 		});
 	});
 }
