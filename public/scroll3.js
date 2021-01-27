@@ -31,8 +31,11 @@ function doneWish(id) {
 	fetch('/wishes/done/' + id, {
 		method: 'PUT'
 	}).then(function(response) {
-		wishesTable.deleteRow(id);
-		updateForm();
+		response.json().then(function(json) {
+			wishesTable.deleteRow(id);
+			wishesSelect.updateOption(json.response.id, json.response.artist, json.response.track, json.response.done);
+			updateForm();
+		});
 	});
 }
 
@@ -100,16 +103,8 @@ function backWish() {
 	}).then(function(response) {
 		response.json().then(function(json) {
 			wishesTable.addRow(json.response.id, json.response.artist, json.response.track);
-			for (var i = 0; i < wishesSelect.options.length; i++) {
-				const toModify = JSON.parse(wishesSelect.options[i].value);
-				
-				if (toModify.id = wish.id) {
-					toModify.done = false;
-					wishesSelect.options[i].value = JSON.stringify(toModify);
-					updateForm();
-					break;
-				}
-			}
+			wishesSelect.updateOption(json.response.id, json.response.artist, json.response.track, json.response.done);
+			updateForm();
 		});
 	});
 }
