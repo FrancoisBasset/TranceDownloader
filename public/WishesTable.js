@@ -18,6 +18,9 @@ class WishesTable {
 		if (document.getElementById('wish-' + id) != null) {
 			document.getElementById('wish-' + id).cells[0].textContent = artist;
 			document.getElementById('wish-' + id).cells[1].textContent = track;
+			document.getElementById('wish-' + id).cells[2].firstChild.onclick = function() {
+				searchWish(artist, track);
+			}
 		}
 	}
 
