@@ -45,4 +45,20 @@
 </html>
 
 <script src="/scroll.js"></script>
-<script src="/scroll3.js"></script>
+<script>
+	if (script == undefined) {
+		var script;
+
+		script = document.createElement('script');
+		script.src = '/WishesTable.js';
+		document.body.appendChild(script);
+
+		script = document.createElement('script');
+		script.src = '/WishesSelect.js';
+		document.body.appendChild(script);
+	}
+
+	script = document.createElement('script');
+	script.src = '/scroll3.js';
+	document.body.appendChild(script);
+</script>
