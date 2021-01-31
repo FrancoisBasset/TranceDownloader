@@ -4,9 +4,12 @@ const router = express.Router();
 const jsdom = require('jsdom').JSDOM;
 const fs =require('fs');
 
+const ytdl = require('ytdl-core');
+const ffmpeg = require('fluent-ffmpeg');
+const NodeID3 = require('node-id3');
+
 router.get('/', function(req, res) {
 	const url = 'https://www.youtube.com/results?search_query=' + req.query.search.split(' ').join('+');
-	console.log(url);
 	
 	jsdom.fromURL(url).then(function(response) {
 		const scripts = response.window.document.getElementsByTagName('script');
@@ -42,7 +45,23 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-	
+	const filename = req.body.artist.split(' ').join('_') + '_' + req.body.track.split(' ').join('_') + '.mp3';
+	const stream = ytdl(req.body.url);
+
+	const proc = new ffmpeg({source:stream})
+	proc.setFfmpegPath('D:/Dev/TranceDownloader/ffmpeg/ffmpeg.exe')
+	proc.saveToFile(filename);
+	proc.on('end', function() {
+		NodeID3.write({
+			artist: req.body.artist,
+			title: req.body.track,
+			genre: 'Trance'
+		}, filename);
+
+		res.json({
+			success: true
+		});
+	});
 });
 
 module.exports = router;
