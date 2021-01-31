@@ -1,4 +1,7 @@
 const jsdom = require('jsdom').JSDOM;
+const ytdl = require('ytdl-core');
+const ffmpeg = require('fluent-ffmpeg');
+const NodeID3 = require('node-id3');
 
 module.exports.getResults = function(search) {
 	const url = 'https://www.youtube.com/results?search_query=' + search.split(' ').join('+');
@@ -30,5 +33,21 @@ module.exports.getResults = function(search) {
 		}
 
 		return videos;
+	});
+}
+
+module.exports.download = function(url, artist, track) {
+	const filename = artist.split(' ').join('_') + '_' + track.split(' ').join('_') + '.mp3';
+	const stream = ytdl(url);
+
+	const proc = new ffmpeg({source:stream})
+	proc.setFfmpegPath('D:/Dev/TranceDownloader/ffmpeg/ffmpeg.exe')
+	proc.saveToFile(filename);
+	proc.on('end', function() {
+		NodeID3.write({
+			artist: artist,
+			title: track,
+			genre: 'Trance'
+		}, filename);
 	});
 }
