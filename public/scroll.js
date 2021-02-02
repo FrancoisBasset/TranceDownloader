@@ -14,6 +14,10 @@ switch (document.body.id) {
 		break;
 	case 'scroll2':
 		document.addEventListener('wheel', function(e) {
+			if (e.target.className == 'scroll' || e.target.parentNode.clasName == 'scroll') {
+				return;
+			}
+
 			if (e.deltaY < 0) {
 				fetch('/scroll1.html').then(function(res) {
 					res.text().then(function(html) {

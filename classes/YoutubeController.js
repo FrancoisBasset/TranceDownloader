@@ -27,7 +27,7 @@ module.exports.getResults = function(search) {
 					image: content.videoRenderer.thumbnail.thumbnails[0].url,
 					channel: content.videoRenderer.ownerText.runs[0].text,
 					views: content.videoRenderer.viewCountText.simpleText,
-					url: content.videoRenderer.navigationEndpoint.commandMetadata.webCommandMetadata.url
+					url: 'https://www.youtube.com/' + content.videoRenderer.navigationEndpoint.commandMetadata.webCommandMetadata.url
 				});
 			}
 		}
@@ -37,7 +37,7 @@ module.exports.getResults = function(search) {
 }
 
 module.exports.download = function(url, artist, track) {
-	const filename = artist.split(' ').join('_') + '_' + track.split(' ').join('_') + '.mp3';
+	const filename = 'D:/Musique/TranceDownloader/' + artist.split(' ').join('_') + '_' + track.split(' ').join('_') + '.mp3';
 	const stream = ytdl(url);
 
 	const proc = new ffmpeg({source:stream})
