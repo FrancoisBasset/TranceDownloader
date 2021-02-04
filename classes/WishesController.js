@@ -1,5 +1,9 @@
 const fs = require('fs');
 
+if (!fs.existsSync('D:/Musique/wishes.csv')) {
+	fs.writeFileSync('D:/Musique/wishes.csv', '');
+}
+
 function writeWishes(wishes) {
 	var text = '';
 	for (const wish of wishes) {
@@ -13,6 +17,10 @@ function writeWishes(wishes) {
 
 module.exports.getWishes = function() {
 	const csv = fs.readFileSync('D:/Musique/wishes.csv').toString();
+	if (csv == '') {
+		return [];
+	}
+
 	const lines = csv.split('\r\n');
 
 	var wishes = [];

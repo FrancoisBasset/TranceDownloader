@@ -62,6 +62,10 @@ function addWish() {
 }
 
 function updateForm() {
+	if (wishesSelect.getValue() == '') {
+		return;
+	}
+
 	const wish = JSON.parse(wishesSelect.getValue());
 
 	artistInputUpdate.value = wish.artist;
