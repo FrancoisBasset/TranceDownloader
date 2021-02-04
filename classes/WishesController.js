@@ -40,9 +40,17 @@ module.exports.getWishes = function() {
 module.exports.addWish = function(artist, track) {
 	const wishes = this.getWishes();
 
-	const id = parseInt(wishes[wishes.length - 1].id) + 1;
+	var id = 1;
+	if (wishes.length != 0) {
+		id = parseInt(wishes[wishes.length - 1].id) + 1;
+	}
 
-	fs.appendFileSync('D:/Musique/wishes.csv', `\r\n${id};${artist};${track};false`);
+	var line = `\r\n${id};${artist};${track};false`;
+	if (wishes.length == 0) {
+		line = line.substring(2);
+	}
+
+	fs.appendFileSync('D:/Musique/wishes.csv', line);
 
 	return {
 		id: id,
