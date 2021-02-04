@@ -73,6 +73,13 @@ class VideosTable {
 		this.#index++;
 	}
 
+	clear() {
+		var length = this.#element.rows.length
+		for (var i = 0; i < length; i++) {
+			this.#element.deleteRow(0);
+		}
+	}
+
 	#transformToIframe(args, event) {
 		const row = args[0];
 		const url = args[1];
