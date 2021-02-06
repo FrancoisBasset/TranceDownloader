@@ -12,4 +12,13 @@ router.get('/', function(req, res) {
 	});
 });
 
+router.get('/definitions', function(req, res) {
+	const definitions = LibraryController.getID3Definitions();
+
+	res.json({
+		success: true,
+		response: definitions
+	});
+});
+
 module.exports = router;
