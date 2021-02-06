@@ -21,4 +21,13 @@ router.get('/definitions', function(req, res) {
 	});
 });
 
+router.put('/', function(req, res) {
+	LibraryController.update(req.body);
+
+	res.json({
+		success: true,
+		response: req.body
+	});
+});
+
 module.exports = router;

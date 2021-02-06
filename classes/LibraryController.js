@@ -31,3 +31,7 @@ module.exports.getID3Definitions = function() {
 
 	return Object.keys(ID3Definitions).sort();
 }
+
+module.exports.update = function(track) {
+	NodeId3.update(track, 'D:/Musique' + track.url);
+}
