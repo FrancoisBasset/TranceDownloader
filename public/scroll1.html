@@ -13,4 +13,14 @@
 </html>
 
 <script src="/js/scroll.js"></script>
-<script src="/js/scroll1.js"></script>
+<script>
+	if (script1 == undefined) {
+		var script1 = document.createElement('script');
+		script1.src = '/js/GenresList.js';
+		document.body.appendChild(script1);
+	}
+	
+	script1 = document.createElement('script');
+	script1.src = '/js/scroll1.js';
+	document.body.appendChild(script1);
+</script>
