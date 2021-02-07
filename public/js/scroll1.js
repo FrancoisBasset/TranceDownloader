@@ -6,47 +6,59 @@ fetch('/library').then(function(response) {
 
 		for (const track of tracks) {
 			if (document.getElementById('genre-' + track.genre) == null) {
-				const genre = document.createElement('li');
-				genre.id = 'genre-' + track.genre;
-				genre.innerText = track.genre;
-				genre.className = 'scroll';
-				genre.onclick = showHide;
-
-				genre.appendChild(document.createElement('ul'));
-				genresList.appendChild(genre);
+				addGenre(track.genre);
 			}
 
 			if (document.getElementById('genre-' + track.genre + '_artist' + track.artist) == null) {
-				const genre = document.getElementById('genre-' + track.genre);
-
-				const artist = document.createElement('li');
-				artist.id = 'genre-' + track.genre + '_artist' + track.artist;
-				artist.innerText = track.artist;
-				artist.className = 'scroll';
-				artist.onclick = showHide;
-
-				artist.appendChild(document.createElement('ul'));
-				genre.children[0].appendChild(artist);
+				addArtist(track.genre, track.artist);
 			}
 
-			const artist = document.getElementById('genre-' + track.genre + '_artist' + track.artist);
-			
-			const trackElement = document.createElement('li');
-			trackElement.id = 'artist_' + track.artist + '-track-' + track.title;
-			trackElement.innerText = track.title;
-			trackElement.dataset.track = JSON.stringify(track);
-			trackElement.className = 'scroll';
-
-			const audio = document.createElement('audio');
-			audio.src = track.url;
-			audio.controls = true;
-			audio.className = 'scroll';
-
-			artist.children[0].appendChild(trackElement);
-			artist.children[0].appendChild(audio);
+			addTrack(track.genre, track.artist, track.title, track.url);
 		}
 	});
 });
+
+function addGenre(genre) {
+	const li = document.createElement('li');
+	li.id = 'genre-' + genre;
+	li.innerText = genre;
+	li.className = 'scroll';
+	li.onclick = showHide;
+
+	li.appendChild(document.createElement('ul'));
+	genresList.appendChild(li);
+}
+
+function addArtist(genre, artist) {
+	const liParent = document.getElementById('genre-' + genre);
+
+	const li = document.createElement('li');
+	li.id = 'genre-' + genre + '_artist' + artist;
+	li.innerText = artist;
+	li.className = 'scroll';
+	li.onclick = showHide;
+
+	li.appendChild(document.createElement('ul'));
+	liParent.children[0].appendChild(li);
+}
+
+function addTrack(genre, artist, track, url) {
+	const liParent = document.getElementById('genre-' + genre + '_artist' + artist);
+			
+	const li = document.createElement('li');
+	li.id = 'artist_' + artist + '-track-' + track;
+	li.innerText = track;
+	li.dataset.track = JSON.stringify(track);
+	li.className = 'scroll';
+
+	const audio = document.createElement('audio');
+	audio.src = url;
+	audio.controls = true;
+	audio.className = 'scroll';
+
+	liParent.children[0].appendChild(li);
+	liParent.children[0].appendChild(audio);
+}
 
 var clicked = false;
 
