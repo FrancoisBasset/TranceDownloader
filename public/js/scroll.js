@@ -1,6 +1,10 @@
 switch (document.body.id) {
 	case 'scroll1':
 		document.addEventListener('wheel', function(e) {
+			if (e.target.className == 'scroll' || e.target.parentNode.className == 'scroll') {
+				return;
+			}
+			
 			if (e.deltaY > 0) {
 				fetch('/scroll2.html').then(function(res) {
 					res.text().then(function(html) {
@@ -14,7 +18,7 @@ switch (document.body.id) {
 		break;
 	case 'scroll2':
 		document.addEventListener('wheel', function(e) {
-			if (e.target.className == 'scroll' || e.target.parentNode.clasName == 'scroll') {
+			if (e.target.className == 'scroll' || e.target.parentNode.className == 'scroll') {
 				return;
 			}
 
