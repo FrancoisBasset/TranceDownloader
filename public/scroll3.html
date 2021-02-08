@@ -2,44 +2,68 @@
 <html>
 	<head>
 		<title>TranceDownloader | Mes envies</title>
+		<style>
+			#wishesDiv {
+				border: 1px solid black;
+				width: 30%;
+				position: absolute;
+				left: 10%;
+			}
+
+			#addDiv {
+				border: 1px solid black;
+				width: 30%;
+				position: absolute;
+				right: 10%;
+			}
+
+			#updateDiv {
+				border: 1px solid black;
+				width: 30%;
+				position: absolute;
+				right: 10%;
+				top: 40%;
+			}
+		</style>
 	</head>
 
 	<body id="scroll3">
-		<h1>Mes envies</h1>
+		<div id="wishesDiv">
+			<h1>Mes envies</h1>
 
-		<table id="wishesTable">
-			<thead>
-				<td>Artiste</td>
-				<td>Track</td>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+			<table id="wishesTable">
+				<thead>
+					<td>Artiste</td>
+					<td>Track</td>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
 
-		<hr>
+		<div id="addDiv">
+			<h1>Ajouter</h1>
 
-		<h1>Ajouter</h1>
+			<label>Artiste : </label>
+			<input type="text" id="artistInputAdd" />
+			<br>
 
-		<label>Artiste : </label>
-		<input type="text" id="artistInputAdd" />
-		<br>
+			<label>Track : </label>
+			<input type="text" id="trackInputAdd" />
+			<br>
 
-		<label>Track : </label>
-		<input type="text" id="trackInputAdd" />
-		<br>
+			<button onclick="addWish()">Ajouter</button>
+		</div>
 
-		<button onclick="addWish()">Ajouter</button>
+		<div id="updateDiv">
+			<h1>Modifier</h1>
+			<select onchange="updateForm()" id="wishesSelect"></select>
+			<br>
 
-		<hr>
-
-		<h1>Modifier</h1>
-		<select onchange="updateForm()" id="wishesSelect"></select>
-		<br>
-
-		<input type="text" id="artistInputUpdate" />
-		<input type="text" id="trackInputUpdate" />
-		<button onclick="updateWish()">Modifier</button>
-		<button onclick="backWish()" id="backButton">Back</button>
+			<input type="text" id="artistInputUpdate" />
+			<input type="text" id="trackInputUpdate" />
+			<button onclick="updateWish()">Modifier</button>
+			<button onclick="backWish()" id="backButton">Back</button>
+		</div>
 
 	</body>
 </html>
