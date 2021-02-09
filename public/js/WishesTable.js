@@ -7,11 +7,24 @@ class WishesTable {
 
 	addRow(id, artist, track) {
 		const row = this.#element.insertRow();
+		row.className = 'scroll';
 		row.id = 'wish-' + id;
-		row.insertCell().innerText = artist;
-		row.insertCell().innerText = track;
-		row.insertCell().innerHTML = `<button onclick="searchWish('${artist}', '${track}')">Rechercher</button>`;
-		row.insertCell().innerHTML = `<button onclick="doneWish(${id})">Done</button>`;
+		
+		var cell = row.insertCell();
+		cell.className = 'scroll';
+		cell.innerText = artist;
+		
+		cell = row.insertCell();
+		cell.className = 'scroll';
+		cell.innerText = track;
+		
+		cell = row.insertCell();
+		cell.className = 'scroll';
+		cell.innerHTML = `<button onclick="searchWish('${artist}', '${track}')">Rechercher</button>`;
+		
+		cell = row.insertCell();
+		cell.className = 'scroll';
+		cell.innerHTML = `<button onclick="doneWish(${id})">Done</button>`;
 	}
 
 	updateRow(id, artist, track) {

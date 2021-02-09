@@ -3,6 +3,10 @@
 	<head>
 		<title>TranceDownloader | Mes envies</title>
 		<style>
+			* {
+				font-family: monospace;
+			}
+
 			body {
 				margin: 0px;
 			}
@@ -13,6 +17,8 @@
 				height: 100%;
 
 				background-color: rgb(66, 19, 19);
+				padding-left: 10%;
+				overflow: scroll;
 			}
 
 			#addDiv {
@@ -22,6 +28,7 @@
 				right: 0;
 
 				background-color: rgb(13, 54, 23);
+				text-align: center;
 			}
 
 			#updateDiv {
@@ -32,32 +39,53 @@
 				right: 0;
 
 				background-color: rgb(80, 46, 8);
+				text-align: center;
+			}
+
+			input[type="text"] {
+				width: 300px;
+				height: 30px;
+				border-radius: 10px;
+				border: none;
+				margin: 2px;
+			}
+
+			label, h1, table {
+				color: white;
+			}
+
+			button {
+				width: 150px;
+				height: 30px;
+				border: none;
+				border-radius: 5px;
+				font-size: 16px;
+				margin: 2px;
+				cursor: pointer;
 			}
 		</style>
 	</head>
 
 	<body id="scroll3">
-		<div id="wishesDiv">
+		<div id="wishesDiv" class="scroll">
 			<h1>Mes envies</h1>
 
-			<table id="wishesTable">
-				<thead>
-					<td>Artiste</td>
-					<td>Track</td>
+			<table id="wishesTable" class="scroll">
+				<thead class="scroll">
+					<td class="scroll">Artiste</td>
+					<td class="scroll">Track</td>
 				</thead>
-				<tbody></tbody>
+				<tbody class="scroll"></tbody>
 			</table>
 		</div>
 
 		<div id="addDiv">
 			<h1>Ajouter</h1>
 
-			<label>Artiste : </label>
-			<input type="text" id="artistInputAdd" />
+			<label>Artiste : </label><input type="text" id="artistInputAdd" />
 			<br>
 
-			<label>Track : </label>
-			<input type="text" id="trackInputAdd" />
+			<label>Track : </label><input type="text" id="trackInputAdd" />
 			<br>
 
 			<button onclick="addWish()">Ajouter</button>
@@ -66,11 +94,11 @@
 		<div id="updateDiv">
 			<h1>Modifier</h1>
 			<select onchange="updateForm()" id="wishesSelect"></select>
-			<br>
+			<br><br>
 
-			<input type="text" id="artistInputUpdate" />
-			<input type="text" id="trackInputUpdate" />
-			<button onclick="updateWish()">Modifier</button>
+			<label>Artiste : </label><input type="text" id="artistInputUpdate" /><br>
+			<label>Track : </label><input type="text" id="trackInputUpdate" /><br>
+			<button onclick="updateWish()">Modifier</button><br>
 			<button onclick="backWish()" id="backButton">Back</button>
 		</div>
 

@@ -43,6 +43,10 @@ switch (document.body.id) {
 		break;
 	case 'scroll3':
 		document.addEventListener('wheel', function(e) {
+			if (e.target.className == 'scroll' || e.target.parentNode.className == 'scroll') {
+				return;
+			}
+			
 			if (e.deltaY < 0) {
 				fetch('/scroll2.html').then(function(res) {
 					res.text().then(function(html) {
