@@ -2,15 +2,66 @@
 <html>
 	<head>
 		<title>TranceDownloader | Téléchargement</title>
+		<style>
+			* {
+				font-family: monospace;
+				border: none;
+				outline: none;
+			}
+
+			body {
+				margin: 0px;
+			}
+
+			table {
+				color: white;
+				font-size: 16px;
+			}
+
+			#searchDiv {
+				position: absolute;
+				width: 100%;
+				height: 15%;
+
+				background-color: rgb(66, 9, 62);
+				text-align: center;
+				padding-top: 35px;
+			}
+
+			#resultsDiv {
+				position: absolute;
+				width: 100%;
+				height: 85%;
+				top: 15%;
+				
+				background-color: rgb(4, 14, 71);
+			}
+
+			#searchInput {
+				width: 700px;
+				height: 50px;
+				font-size: 20px;
+			}
+
+			#searchButton {
+				width: 200px;
+				height: 55px;
+				font-size: 20px;
+			}
+		</style>
 	</head>
 
 	<body id="scroll2">
-		<input type="text" id="searchInput" />
-		<button onclick="search()">Rechercher</button>
+		<div id="searchDiv">
+			<input type="text" id="searchInput" autocomplete="off" autofocus />
+			<button id="searchButton" onclick="search()">Rechercher</button>
+		</div>
 
-		<table class="scroll" id="videosTable" style="overflow: scroll;width: 50%; border: 1px solid black;">
-			<tbody class="scroll"></tbody>
-		</table>
+		<div id="resultsDiv">
+			<table class="scroll" id="videosTable" style="overflow: scroll;width: 50%;">
+				<tbody class="scroll"></tbody>
+			</table>
+		</div>
 	</body>
 
 	<script src="/js/scroll.js"></script>
