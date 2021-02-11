@@ -1,4 +1,6 @@
 var searchInput = document.getElementById('searchInput');
+var artistInput = document.getElementById('artistInput');
+var trackInput = document.getElementById('trackInput');
 var videosTable = new VideosTable();
 
 function search() {
@@ -13,7 +15,15 @@ function search() {
 	});
 }
 
-function download(url, artist, track) {
+function download() {
+	const url = videosTable.getSelectedUrl();
+	const artist = artistInput.value;
+	const track = trackInput.value;
+
+	if (url == undefined || artist == '' || track == '') {
+		return;
+	}
+
 	fetch('/youtube', {
 		method: 'POST',
 		headers: {

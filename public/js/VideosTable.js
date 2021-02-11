@@ -1,10 +1,9 @@
 class VideosTable {
 	#element
-	#index
+	#selectedUrl
 
 	constructor() {
 		this.#element = document.getElementById('videosTable').getElementsByTagName('tbody')[0];
-		this.#index = 0;
 	}
 
 	addVideo(title, image, channel, views, url) {
@@ -34,43 +33,9 @@ class VideosTable {
 		cell.innerText = views;
 		cell.className = 'scroll';
 
-		var cell = row.insertCell();
-		cell.className = 'scroll';
-
-		const artistLabel = document.createElement('label');
-		artistLabel.className = 'scroll';
-		artistLabel.innerText = 'Artiste : ';
-
-		const artistInput = document.createElement('input');
-		artistInput.className = 'scroll';
-		artistInput.id = 'artistInput-' + this.#index;
-
-		const br = document.createElement('br');
-		
-		const trackLabel = document.createElement('label');
-		trackLabel.className = 'scroll';
-		trackLabel.innerText = 'Track : ';
-
-		const trackInput = document.createElement('input');
-		trackInput.className = 'scroll';
-		trackInput.id = 'trackInput-' + this.#index;
-
-		const downloadButton = document.createElement('button');
-		downloadButton.className = 'scroll';
-		downloadButton.id = 'downloadButton-' + this.#index;
-		downloadButton.onclick = function() {
-			download(url, artistInput.value, trackInput.value);
+		row.onclick = () => {
+			this.#selectedUrl = url;
 		};
-		downloadButton.innerText = 'Télécharger';
-
-		cell.appendChild(artistLabel);
-		cell.appendChild(artistInput);
-		cell.appendChild(br);
-		cell.appendChild(trackLabel);
-		cell.appendChild(trackInput);
-		cell.appendChild(downloadButton);
-
-		this.#index++;
 	}
 
 	clear() {
@@ -94,5 +59,9 @@ class VideosTable {
 		iframe.src = 'https://www.youtube.com/embed/' + url.split('v=')[1];
 	
 		cell.append(iframe);
+	}
+
+	getSelectedUrl() {
+		return this.#selectedUrl;
 	}
 }

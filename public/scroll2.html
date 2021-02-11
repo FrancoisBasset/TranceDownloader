@@ -30,11 +30,21 @@
 
 			#resultsDiv {
 				position: absolute;
-				width: 100%;
+				width: 50%;
 				height: 85%;
 				top: 15%;
 				
 				background-color: rgb(4, 14, 71);
+			}
+
+			#downloadDiv {
+				position: absolute;
+				width: 50%;
+				height: 85%;
+				top: 15%;
+				right: 0;
+
+				background-color: red;
 			}
 
 			#searchInput {
@@ -61,6 +71,20 @@
 			<table class="scroll" id="videosTable" style="overflow: scroll;width: 50%;">
 				<tbody class="scroll"></tbody>
 			</table>
+		</div>
+
+		<div id="downloadDiv">
+			<label>Artiste :</label>
+			<br>
+			<input type="text" id="artistInput" />
+			<br>
+
+			<label>Track :</label>
+			<br>
+			<input type="text" id="trackInput" />
+			<br>
+
+			<button onclick="download()">Télécharger</button>
 		</div>
 	</body>
 
