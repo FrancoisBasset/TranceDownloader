@@ -35,6 +35,11 @@ class VideosTable {
 
 		row.onclick = () => {
 			this.#selectedUrl = url;
+
+			for (const tr of this.#element.children) {
+				tr.style.backgroundColor = '';
+			}
+			row.style.backgroundColor = 'rgb(10, 30, 140)';
 		};
 	}
 
