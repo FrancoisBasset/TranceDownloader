@@ -49,7 +49,8 @@
 				top: 15%;
 				right: 0;
 
-				background-color: red;
+				background-color: rgb(75, 17, 36);
+				text-align: center;
 			}
 
 			#searchInput {
@@ -62,6 +63,28 @@
 				width: 200px;
 				height: 55px;
 				font-size: 20px;
+			}
+
+			input[type="text"] {
+				width: 300px;
+				height: 30px;
+				border-radius: 10px;
+				border: none;
+				margin: 2px;
+			}
+
+			label, h1, table {
+				color: white;
+			}
+
+			button {
+				width: 150px;
+				height: 30px;
+				border: none;
+				border-radius: 5px;
+				font-size: 16px;
+				margin: 2px;
+				cursor: pointer;
 			}
 		</style>
 	</head>
@@ -79,13 +102,13 @@
 		</div>
 
 		<div id="downloadDiv">
+			<h1>Télécharger</h1>
+
 			<label>Artiste :</label>
-			<br>
 			<input type="text" id="artistInput" />
 			<br>
 
 			<label>Track :</label>
-			<br>
 			<input type="text" id="trackInput" />
 			<br>
 
