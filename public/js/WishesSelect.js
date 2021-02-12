@@ -6,17 +6,21 @@ class WishesSelect {
 	}
 
 	addOption(id, artist, track, done) {
-		this.#element.add(
-			new Option(
-				artist + ' ' + track,
-				JSON.stringify({
-					id: id,
-					artist: artist,
-					track: track,
-					done: done
-				})
-			)
+		const option = new Option(
+			artist + ' ' + track,
+			JSON.stringify({
+				id: id,
+				artist: artist,
+				track: track,
+				done: done
+			})
 		);
+		
+		if (done) {
+			option.style.color = 'red';
+		}
+
+		this.#element.add(option);
 	}
 
 	updateOption(id, artist, track, done) {
@@ -30,7 +34,18 @@ class WishesSelect {
 
 				this.#element.options[i].text = artist + ' ' + track;
 				this.#element.options[i].value = JSON.stringify(wish);
+				if (done) {
+					this.#element.options[i].style.color = 'red';
+				} else {
+					this.#element.options[i].style.color = '';
+				}
 				break;
+			}
+
+			if (wish.done) {
+				this.#element.options[i].style.color = 'red';
+			} else {
+				this.#element.options[i].style.color = '';
 			}
 		}
 	}
