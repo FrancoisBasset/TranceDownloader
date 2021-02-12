@@ -41,12 +41,6 @@ class WishesSelect {
 				}
 				break;
 			}
-
-			if (wish.done) {
-				this.#element.options[i].style.color = 'red';
-			} else {
-				this.#element.options[i].style.color = '';
-			}
 		}
 	}
 
