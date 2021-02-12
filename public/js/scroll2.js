@@ -3,6 +3,18 @@ var artistInput = document.getElementById('artistInput');
 var trackInput = document.getElementById('trackInput');
 var videosTable = new VideosTable();
 
+document.addEventListener('keydown', function(e) {
+	if (document.activeElement != artistInput && document.activeElement != trackInput && e.key != 'Control' && e.key != 'Alt' && e.key != 'Shift') {
+		if (e.key == 'Backspace') {
+			searchInput.value = searchInput.value.substring(0, searchInput.value.length - 1);
+		} else if (e.key == 'Enter') {
+			search();
+		} else {
+			searchInput.value += e.key;
+		}
+	}
+});
+
 function search() {
 	fetch('/youtube?search=' + searchInput.value).then(function(response) {
 		response.json().then(function(json) {
