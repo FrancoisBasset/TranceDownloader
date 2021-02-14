@@ -36,7 +36,7 @@ module.exports.getResults = function(search) {
 	});
 }
 
-module.exports.download = function(url, artist, track) {
+module.exports.download = function(url, artist, track, genre) {
 	const filename = 'D:/Musique/TranceDownloader/' + artist.split(' ').join('_') + '_' + track.split(' ').join('_') + '.mp3';
 	const stream = ytdl(url);
 
@@ -47,7 +47,7 @@ module.exports.download = function(url, artist, track) {
 		NodeID3.write({
 			artist: artist,
 			title: track,
-			genre: 'Trance'
+			genre: genre
 		}, filename);
 	});
 }

@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-	YoutubeController.download(req.body.url, req.body.artist, req.body.track);
+	YoutubeController.download(req.body.url, req.body.artist, req.body.track, req.body.genre);
 	
 	res.json({
 		success: true

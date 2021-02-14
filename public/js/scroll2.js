@@ -1,6 +1,7 @@
 var searchInput = document.getElementById('searchInput');
 var artistInput = document.getElementById('artistInput');
 var trackInput = document.getElementById('trackInput');
+var genreSelect = document.getElementById('genreSelect');
 var videosTable = new VideosTable();
 
 document.addEventListener('keydown', function(e) {
@@ -31,6 +32,7 @@ function download() {
 	const url = videosTable.getSelectedUrl();
 	const artist = artistInput.value;
 	const track = trackInput.value;
+	const genre = genreSelect.value;
 
 	if (url == undefined || artist == '' || track == '') {
 		return;
@@ -45,7 +47,8 @@ function download() {
 		body: JSON.stringify({
 			url: url,
 			artist: artist,
-			track: track
+			track: track,
+			genre: genre
 		})
 	});
 }
