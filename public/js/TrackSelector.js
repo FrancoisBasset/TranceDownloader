@@ -2,15 +2,12 @@ class TrackSelector {
 	#backButton = document.getElementById('backButton');
 	#headLabel = document.getElementById('headLabel');
 	#genresDiv = document.getElementById('genresDiv');
-	#genres = []
 	#currentGenre = null
 	#currentArtist = null
 	#currentTrack = null
 
 	constructor(genres) {
-		this.#genres = genres;
-
-		this.#showGenres();
+		this.#showGenres(genres);
 	}
 
 	#showGenres() {
@@ -83,12 +80,8 @@ class TrackSelector {
 			trackDiv.onclick = () => {
 				this.#currentTrack = track;
 				
-				const audio = document.createElement('audio');
+				const audio = document.getElementById('audio');
 				audio.src = this.#currentTrack.url;
-				audio.controls = true;
-				audio.className = 'scroll';
-	
-				this.#genresDiv.appendChild(audio);
 			}
 	
 			this.#genresDiv.appendChild(trackDiv);
@@ -101,5 +94,9 @@ class TrackSelector {
 		const b = Math.floor(Math.random() * 75);
 	
 		return `rgb(${r}, ${g}, ${b})`;
+	}
+
+	getCurrentTrack() {
+		return this.#currentTrack;
 	}
 }

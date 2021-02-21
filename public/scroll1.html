@@ -53,6 +53,23 @@
 				font-size: 20px;
 				vertical-align: middle;
 			}
+
+			#trackDiv {
+				position: absolute;
+				width: 50%;
+				right: 0;
+				height: 100%;
+
+				background-color: white;
+			}
+
+			#audioDiv {
+				height: 50%;
+			}
+
+			#definitionsDiv {
+				height: 50%;
+			}
 		</style>
 	</head>
 
@@ -63,6 +80,18 @@
 				<label id="headLabel" class="scroll">Genres</label>
 			</div>
 			<div id="genresDiv" class="scroll"></div>
+		</div>
+
+		<div id="trackDiv">
+			<div id="audioDiv">
+				<audio id="audio" controls></audio>
+			</div>
+			<div id="definitionsDiv" style="text-align: center;">
+				<label>Définitions :</label><br>
+				<select id="definitionsSelect" class="scroll" size="20" style="width: 40%" onclick="showTagValue()"></select><br>
+				<input type="text" id="valueInput" /><br>
+				<button id="updateButton" onclick="updateTrack()">Enregistrer</button>
+			</div>
 		</div>
 	</body>
 </html>

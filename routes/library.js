@@ -22,11 +22,11 @@ router.get('/definitions', function(req, res) {
 });
 
 router.put('/', function(req, res) {
-	LibraryController.update(req.body);
+	const track = LibraryController.update(req.body.url, req.body.tag, req.body.value);
 
 	res.json({
 		success: true,
-		response: req.body
+		response: track
 	});
 });
 
