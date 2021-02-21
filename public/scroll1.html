@@ -15,12 +15,16 @@
 				width: 0;
 			}
 
+			label {
+				color: white;
+			}
+
 			#gridDiv {
 				position: absolute;
 				width: 50%;
 				height: 100%;
 
-				background-color: black;
+				background-color: rgb(61, 25, 8);
 
 				cursor: pointer;
 				overflow: scroll;
@@ -36,7 +40,6 @@
 			#backButton {
 				width: 20%;
 				height: 100%;
-
 				color: white;
 				border: none;
 				outline: none;
@@ -49,7 +52,6 @@
 				padding-top: 12px;
 				text-align: center;
 
-				color: white;
 				font-size: 20px;
 				vertical-align: middle;
 			}
@@ -60,15 +62,46 @@
 				right: 0;
 				height: 100%;
 
-				background-color: white;
+				text-align: center;
 			}
 
 			#audioDiv {
-				height: 50%;
+				height: 40%;
+				background-color: rgb(42, 6, 63);
+			}
+
+			#audio {
+				outline: none;
+				color:rgb(5, 51, 39);
 			}
 
 			#definitionsDiv {
-				height: 50%;
+				height: 60%;
+				background-color: rgb(5, 51, 39);
+				padding-top: 10px;
+			}
+
+			#definitionsSelect {
+				width: 40%;
+				color: white;
+				background-color: rgb(40, 40, 40);
+				border: none;
+				border-radius: 20px;
+				outline: none;
+				padding: 10px;
+			}
+
+			#valueInput {
+				width: 200px;
+				height: 40px;
+				outline: none;
+			}
+
+			#updateButton {
+				width: 150px;
+				height: 40px;
+				font-size: 20px;
+				cursor: pointer;
 			}
 		</style>
 	</head>
@@ -86,10 +119,10 @@
 			<div id="audioDiv">
 				<audio id="audio" controls></audio>
 			</div>
-			<div id="definitionsDiv" style="text-align: center;">
-				<label>Définitions :</label><br>
-				<select id="definitionsSelect" class="scroll" size="20" style="width: 40%" onclick="showTagValue()"></select><br>
-				<input type="text" id="valueInput" /><br>
+			<div id="definitionsDiv">
+				<label style="font-size: 20px;">Définitions :</label><br>
+				<select id="definitionsSelect" class="scroll" size="20" onclick="showTagValue()"></select><br><br>
+				<input type="text" id="valueInput" /><br><br>
 				<button id="updateButton" onclick="updateTrack()">Enregistrer</button>
 			</div>
 		</div>
