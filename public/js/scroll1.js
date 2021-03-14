@@ -77,7 +77,15 @@ function updateTrack() {
 		})
 	}).then(function(response) {
 		response.json().then(function(json) {
-			console.log(json);
+			trackSelector.setCurrentTrack(json.response);
+
+			for (const option of definitionsSelect.options) {
+				if (Object.keys(json.response).includes(option.value)) {
+					option.style.color = 'red';
+				} else {
+					option.style.color = 'white';
+				}
+			}
 		})
 	})
 }

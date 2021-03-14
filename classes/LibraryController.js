@@ -43,14 +43,14 @@ module.exports.update = function(url, tag, value) {
 
 		const folder = url.split('/')[1];
 
-		const newUrl = 'D:/Musique/' + folder + '/' + tags.artist.split(' ').join('_') + '_' + tags.title.split(' ').join('_') + '.mp3';
+		const newUrl = folder + '/' + tags.artist.split(' ').join('_') + '_' + tags.title.split(' ').join('_') + '.mp3';
 		
-		fs.renameSync('D:/Musique' + url, newUrl);
+		fs.renameSync('D:/Musique/' + url, 'D:/Musique/' + newUrl);
 
 		url = newUrl;
 	}
-
-	tags = NodeId3.read('D:/Musique' + url);
+	
+	tags = NodeId3.read('D:/Musique/' + url);
 	tags.url = url;
 
 	return tags;

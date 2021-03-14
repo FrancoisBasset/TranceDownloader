@@ -82,6 +82,12 @@ class TrackSelector {
 				
 				const audio = document.getElementById('audio');
 				audio.src = this.#currentTrack.url;
+
+				for (const option of definitionsSelect.options) {
+					if (Object.keys(this.#currentTrack).includes(option.value)) {
+						option.style.color = 'red';
+					}
+				}
 			}
 	
 			this.#genresDiv.appendChild(trackDiv);
@@ -98,5 +104,9 @@ class TrackSelector {
 
 	getCurrentTrack() {
 		return this.#currentTrack;
+	}
+
+	setCurrentTrack(track) {
+		this.#currentTrack = track;
 	}
 }
