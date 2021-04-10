@@ -1,5 +1,5 @@
 switch (document.body.id) {
-	case 'home':
+	case 'index':
 		document.addEventListener('wheel', function(e) {
 			if (e.target.className == 'scroll' || e.target.parentNode.className == 'scroll') {
 				return;
@@ -23,7 +23,7 @@ switch (document.body.id) {
 			}
 
 			if (e.deltaY < 0) {
-				fetch('home.html').then(function(res) {
+				fetch('index.html').then(function(res) {
 					res.text().then(function(html) {
 						document.open();
 						document.write(html);
