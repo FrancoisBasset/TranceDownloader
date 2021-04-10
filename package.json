@@ -1,21 +1,22 @@
 {
   "name": "trancedownloader",
+  "title": "Trance Downloader",
   "version": "1.0.0",
   "description": "Progressive Web App to find trance tracks",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FrancoisBasset/TranceDownloader.git"
   },
   "keywords": [
     "trance",
-    "downloader"
+    "downloader",
+	"psytrance",
+	"goa",
+	"hard trance"
   ],
   "author": "FrancoisBasset",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/FrancoisBasset/TranceDownloader/issues"
   },
