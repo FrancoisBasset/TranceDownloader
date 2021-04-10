@@ -27,7 +27,9 @@ module.exports.getAllTracks = function(dir = 'D:/Musique', tracks = []) {
 };
 
 module.exports.getID3Definitions = function() {
-	const ID3Definitions = require("../node_modules/node-id3/src/ID3Definitions").FRAME_IDENTIFIERS.v3;
+	const path = require('path');
+
+	const ID3Definitions = require(path.dirname(require.main.filename) + "/node_modules/node-id3/src/ID3Definitions").FRAME_IDENTIFIERS.v3;
 
 	return Object.keys(ID3Definitions).sort();
 }
