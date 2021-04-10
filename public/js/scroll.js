@@ -6,7 +6,7 @@ switch (document.body.id) {
 			}
 			
 			if (e.deltaY > 0) {
-				fetch('/scroll2.html').then(function(res) {
+				fetch('scroll2.html').then(function(res) {
 					res.text().then(function(html) {
 						document.open();
 						document.write(html);
@@ -23,7 +23,7 @@ switch (document.body.id) {
 			}
 
 			if (e.deltaY < 0) {
-				fetch('/scroll1.html').then(function(res) {
+				fetch('scroll1.html').then(function(res) {
 					res.text().then(function(html) {
 						document.open();
 						document.write(html);
@@ -31,7 +31,7 @@ switch (document.body.id) {
 					});
 				});
 			} else {
-				fetch('/scroll3.html').then(function(res) {
+				fetch('scroll3.html').then(function(res) {
 					res.text().then(function(html) {
 						document.open();
 						document.write(html);
@@ -48,7 +48,7 @@ switch (document.body.id) {
 			}
 			
 			if (e.deltaY < 0) {
-				fetch('/scroll2.html').then(function(res) {
+				fetch('scroll2.html').then(function(res) {
 					res.text().then(function(html) {
 						document.open();
 						document.write(html);
