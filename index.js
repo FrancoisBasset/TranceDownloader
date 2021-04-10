@@ -16,4 +16,4 @@ app.use(express.static('D:/Musique'));
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-app.use('/', require('./routes'));
+app.use('/trancedownloader', require('./routes'));

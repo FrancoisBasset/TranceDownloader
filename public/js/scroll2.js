@@ -17,7 +17,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 function search() {
-	fetch('/youtube?search=' + searchInput.value).then(function(response) {
+	fetch('/trancedownloader/youtube?search=' + searchInput.value).then(function(response) {
 		response.json().then(function(json) {
 			videosTable.clear();
 
@@ -38,7 +38,7 @@ function download() {
 		return;
 	}
 
-	fetch('/youtube', {
+	fetch('/trancedownloader/youtube', {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',

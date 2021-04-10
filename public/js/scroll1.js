@@ -3,14 +3,14 @@ var definitionsSelect = document.getElementById('definitionsSelect');
 var valueInput = document.getElementById('valueInput');
 var updateButton = document.getElementById('updateButton');
 
-fetch('/library').then(function(response) {
+fetch('/trancedownloader/library').then(function(response) {
 	response.json().then(function(json) {
 		genres = buildGenres(json.response);
 		trackSelector = new TrackSelector(genres);
 	});
 });
 
-fetch('/library/definitions').then(function(response) {
+fetch('/trancedownloader/library/definitions').then(function(response) {
 	response.json().then(function(json) {
 		for (const tag of json.response) {
 			const option = new Option(tag, tag);
@@ -64,7 +64,7 @@ function updateTrack() {
 		return;
 	}
 
-	fetch('/library/', {
+	fetch('/trancedownloader/library/', {
 		method: 'PUT',
 		headers: {
 			'Accept': 'application/json',

@@ -9,7 +9,7 @@ var trackInputUpdate = document.getElementById('trackInputUpdate');
 
 var backButton = document.getElementById('backButton');
 
-fetch('/wishes').then(function(response) {
+fetch('/trancedownloader/wishes').then(function(response) {
 	response.json().then(function(json) {
 		for (const wish of json.response) {
 			if (!wish.done) {
@@ -28,7 +28,7 @@ function searchWish(artist, track) {
 }
 
 function doneWish(id) {
-	fetch('/wishes/done/' + id, {
+	fetch('/trancedownloader/wishes/done/' + id, {
 		method: 'PUT'
 	}).then(function(response) {
 		response.json().then(function(json) {
@@ -40,7 +40,7 @@ function doneWish(id) {
 }
 
 function addWish() {
-	fetch('/wishes', {
+	fetch('/trancedownloader/wishes', {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',
@@ -81,7 +81,7 @@ function updateForm() {
 function updateWish() {
 	const wish = JSON.parse(wishesSelect.getValue());
 
-	fetch('/wishes/' + wish.id, {
+	fetch('/trancedownloader/wishes/' + wish.id, {
 		method: 'PUT',
 		headers: {
 			'Accept': 'application/json',
@@ -102,7 +102,7 @@ function updateWish() {
 function backWish() {
 	const wish = JSON.parse(wishesSelect.getValue());
 
-	fetch('/wishes/back/' + wish.id, {
+	fetch('/trancedownloader/wishes/back/' + wish.id, {
 		method: 'PUT'
 	}).then(function(response) {
 		response.json().then(function(json) {
