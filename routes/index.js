@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-router.use('/wishes', require('./wishes'));
-router.use('/youtube', require('./youtube'));
-router.use('/library', require('./library'));
+router.use('/trancedownloader/wishes', require('./wishes'));
+router.use('/trancedownloader/youtube', require('./youtube'));
+router.use('/trancedownloader/library', require('./library'));
 
 module.exports = router;
