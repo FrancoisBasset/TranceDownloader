@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>TranceDownloader | Mes artistes</title>
+		<link rel="manifest" href="Manifest.json">
 		<style>
 			* {
 				font-family: monospace;
@@ -140,4 +141,8 @@
 	script1 = document.createElement('script');
 	script1.src = 'js/index.js';
 	document.body.appendChild(script1);
+
+	if('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('./sw.js');
+	};
 </script>
