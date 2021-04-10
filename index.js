@@ -9,7 +9,7 @@ app.listen(3000, function() {
 });
 
 app.use(express.static('./public', {
-	index: 'scroll1.html'
+	index: 'home.html'
 }));
 
 app.use('/', require('./routes'));
