@@ -1,89 +1,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>TranceDownloader | Téléchargement</title>
-		<style>
-			* {
-				font-family: monospace;
-				border: none;
-				outline: none;
-			}
-
-			body {
-				margin: 0px;
-			}
-
-			table {
-				color: white;
-				font-size: 16px;
-			}
-
-			#searchDiv {
-				position: absolute;
-				width: 100%;
-				height: 15%;
-
-				background-color: rgb(66, 9, 62);
-				text-align: center;
-				padding-top: 35px;
-			}
-
-			#resultsDiv {
-				position: absolute;
-				width: 50%;
-				height: 85%;
-				top: 15%;
-				
-				background-color: rgb(4, 14, 71);
-				overflow: scroll;
-			}
-
-			::-webkit-scrollbar {
-				width: 0;
-			}
-
-			#downloadDiv {
-				position: absolute;
-				width: 50%;
-				height: 85%;
-				top: 15%;
-				right: 0;
-
-				background-color: rgb(75, 17, 36);
-				text-align: center;
-			}
-
-			#searchInput {
-				width: 700px;
-				height: 50px;
-				font-size: 20px;
-			}
-
-			input[type="text"], select {
-				width: 300px;
-				height: 30px;
-				border-radius: 10px;
-				border: none;
-				margin: 2px;
-			}
-
-			label, h1, table {
-				color: white;
-			}
-
-			button {
-				width: 150px;
-				height: 30px;
-				border: none;
-				border-radius: 5px;
-				font-size: 16px;
-				margin: 2px;
-				cursor: pointer;
-			}
-		</style>
+		<title>TranceDownloader | YouTube</title>
+		<link rel="stylesheet" href="css/youtube.css" />
 	</head>
 
 	<body>
+		<div>
+			<img src="favicon.ico" width="100" height="100" />
+			<a href="library.html">Ma bibliothèque</a>
+			<a href="youtube.html">YouTube</a>
+			<a href="wishes.html">Mes envies</a>
+		</div>
+		
 		<div id="searchDiv">
 			<input type="text" id="searchInput" autocomplete="off" readonly />
 		</div>
