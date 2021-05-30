@@ -8,30 +8,24 @@ class VideosTable {
 
 	addVideo(title, image, channel, views, url) {
 		const row = this.#element.insertRow();
-		row.className = 'scroll';
 
 		var cell = row.insertCell();
-		cell.className = 'scroll';
 		cell.textContent = title;
 
 		const img = document.createElement('img');
 		img.src = image;
 		img.width = 400;
 		img.height = 250;
-		img.className = 'scroll';
 		img.onclick = this.#transformToIframe.bind(this, [row, url]);
 
 		cell = row.insertCell();
 		cell.appendChild(img);
-		cell.className = 'scroll';
 
 		cell = row.insertCell();
 		cell.innerText = 'Chaine : ' + channel;
-		cell.className = 'scroll';
 
 		cell = row.insertCell();
 		cell.innerText = views;
-		cell.className = 'scroll';
 
 		row.onclick = () => {
 			this.#selectedUrl = url;
