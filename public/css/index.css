@@ -37,3 +37,8 @@ input[type="text"], select {
 	border: none;
 	margin: 2px;
 }
+
+#menuDiv {
+	position: absolute;
+	height: 10%;
+}
