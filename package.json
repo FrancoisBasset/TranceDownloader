@@ -27,6 +27,6 @@
     "fluent-ffmpeg": "^2.1.2",
     "jsdom": "^16.4.0",
     "node-id3": "^0.2.2",
-    "ytdl-core": "^4.4.5"
+    "ytdl-core": "^4.7.0"
   }
 }

@@ -1,12 +1,16 @@
 const jsdom = require('jsdom').JSDOM;
+const CookieJar = require('jsdom').CookieJar;
 const ytdl = require('ytdl-core');
 const ffmpeg = require('fluent-ffmpeg');
 const NodeID3 = require('node-id3');
 
 module.exports.getResults = function(search) {
 	const url = 'https://www.youtube.com/results?search_query=' + search.split(' ').join('+');
-	
-	return jsdom.fromURL(url).then(function(response) {
+
+	var c = new CookieJar();
+	c.setCookie('CONSENT=YES+yt.375803756.fr+FX+948', 'https://www.youtube.com');
+
+	return jsdom.fromURL(url, {cookieJar: c}).then(function(response) {
 		const scripts = response.window.document.getElementsByTagName('script');
 
 		for (const script of scripts) {
