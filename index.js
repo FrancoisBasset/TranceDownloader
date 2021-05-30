@@ -6,7 +6,7 @@ app.listen(3000, function() {
 });
 
 app.use(express.static('./public', {
-	index: 'index.html'
+	index: 'library.html'
 }));
 
 app.use('/', require('./routes'));

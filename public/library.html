@@ -107,7 +107,7 @@
 		</style>
 	</head>
 
-	<body id="index">
+	<body>
 		<div id="gridDiv" class="scroll">
 			<div id="bar" class="scroll">
 				<button id="backButton" class="scroll">◀</button>
@@ -130,19 +130,10 @@
 	</body>
 </html>
 
-<script src="js/scroll.js"></script>
+<script src="js/TrackSelector.js"></script>
+<script src="js/library.js"></script>
 <script>
-	if (script1 == undefined) {
-		var script1 = document.createElement('script');
-		script1.src = 'js/TrackSelector.js';
-		document.body.appendChild(script1);
-	}
-	
-	script1 = document.createElement('script');
-	script1.src = 'js/index.js';
-	document.body.appendChild(script1);
-
-	if('serviceWorker' in navigator) {
+	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.register('./sw.js');
 	};
 </script>
