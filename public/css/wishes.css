@@ -1,10 +1,10 @@
 #wishesDiv {
 	position: absolute;
 	width: 50%;
-	height: 100%;
+	height: 90%;
+	top: 10%;
 
 	background-color: rgb(66, 19, 19);
-	padding-left: 10%;
 	overflow: scroll;
 	overflow-x: hidden;
 }
@@ -12,8 +12,9 @@
 #addDiv {
 	position: absolute;
 	width: 50%;
-	height: 50%;
+	height: 45%;
 	right: 0;
+	top: 10%;
 
 	background-color: rgb(13, 54, 23);
 	text-align: center;
@@ -22,8 +23,8 @@
 #updateDiv {
 	position: absolute;
 	width: 50%;
-	height: 50%;
-	top: 50%;
+	height: 45%;
+	top: 55%;
 	right: 0;
 
 	background-color: rgb(80, 46, 8);
