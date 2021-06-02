@@ -6,6 +6,7 @@
 
 body {
 	margin: 0px;
+	background-color: rgb(65, 13, 13);
 }
 
 label, h1, table {
@@ -41,4 +42,8 @@ input[type="text"], select {
 #menuDiv {
 	position: absolute;
 	height: 10%;
+}
+
+img {
+	float: left;
 }
