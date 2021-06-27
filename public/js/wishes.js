@@ -24,7 +24,7 @@ fetch('/trancedownloader/wishes').then(function(response) {
 });
 
 function searchWish(artist, track) {
-	console.log('Search ' + artist + ' ' + track + ' on youtube');
+	window.location.href = '/youtube.html?search=' + artist + ' ' + track;
 }
 
 function doneWish(id) {

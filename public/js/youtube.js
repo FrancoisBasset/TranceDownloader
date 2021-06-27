@@ -4,6 +4,12 @@ var trackInput = document.getElementById('trackInput');
 var genreSelect = document.getElementById('genreSelect');
 var videosTable = new VideosTable();
 
+var searchValue = decodeURI(window.location.href.split('search=')[1]);
+if (searchValue != 'undefined') {
+	searchInput.value = searchValue;
+	search();
+}
+
 document.addEventListener('keydown', function(e) {
 	if (document.activeElement != artistInput && document.activeElement != trackInput && e.key != 'Control' && e.key != 'Alt' && e.key != 'Shift') {
 		if (e.key == 'Backspace') {
