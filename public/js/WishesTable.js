@@ -11,15 +11,19 @@ class WishesTable {
 		
 		var cell = row.insertCell();
 		cell.innerText = artist;
+		cell.style.backgroundColor = this.#getRandomColor();
 		
 		cell = row.insertCell();
 		cell.innerText = track;
+		cell.style.backgroundColor = this.#getRandomColor();
 		
 		cell = row.insertCell();
-		cell.innerHTML = `<button onclick="searchWish('${artist}', '${track}')">Rechercher</button>`;
+		cell.innerHTML = `<button style="color: white; background-color: transparent" onclick="searchWish('${artist}', '${track}')">Rechercher</button>`;
+		cell.style.backgroundColor = this.#getRandomColor();
 		
 		cell = row.insertCell();
-		cell.innerHTML = `<button onclick="doneWish(${id})">Done</button>`;
+		cell.innerHTML = `<button style="color: white; background-color: transparent" onclick="doneWish(${id})">Done</button>`;
+		cell.style.backgroundColor = this.#getRandomColor();
 	}
 
 	updateRow(id, artist, track) {
@@ -34,5 +38,13 @@ class WishesTable {
 
 	deleteRow(id) {
 		document.getElementById('wish-' + id).remove();
+	}
+
+	#getRandomColor() {
+		const r = Math.floor(Math.random() * 75) + 50;
+		const g = Math.floor(Math.random() * 75) + 50;
+		const b = Math.floor(Math.random() * 75) + 50;
+	
+		return `rgb(${r}, ${g}, ${b})`;
 	}
 }
