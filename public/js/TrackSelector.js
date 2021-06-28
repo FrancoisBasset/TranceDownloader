@@ -22,7 +22,6 @@ class TrackSelector {
 			const genreDiv = document.createElement('div');
 			genreDiv.innerText = genre;
 			genreDiv.style.padding = '20px';
-			genreDiv.style.border = '1px solid black';
 			genreDiv.style.color = 'white';
 			genreDiv.style.backgroundColor = this.#getRandomColor();
 	
@@ -48,7 +47,6 @@ class TrackSelector {
 			const artistDiv = document.createElement('div');
 			artistDiv.innerText = artist;
 			artistDiv.style.padding = '20px';
-			artistDiv.style.border = '1px solid black';
 			artistDiv.style.color = 'white';
 			artistDiv.style.backgroundColor = this.#getRandomColor();
 	
@@ -73,7 +71,6 @@ class TrackSelector {
 			const trackDiv = document.createElement('div');
 			trackDiv.innerText = track.title;
 			trackDiv.style.padding = '20px';
-			trackDiv.style.border = '1px solid black';
 			trackDiv.style.color = 'white';
 			trackDiv.style.backgroundColor = this.#getRandomColor();
 	

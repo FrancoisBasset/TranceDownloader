@@ -33,7 +33,7 @@ class VideosTable {
 			for (const tr of this.#element.children) {
 				tr.style.backgroundColor = '';
 			}
-			row.style.backgroundColor = 'rgb(10, 30, 140)';
+			row.style.backgroundColor = 'rgb(60, 80, 190)';
 		};
 	}
 
