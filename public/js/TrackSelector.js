@@ -95,9 +95,9 @@ class TrackSelector {
 	}
 
 	#getRandomColor() {
-		const r = Math.floor(Math.random() * 75);
-		const g = Math.floor(Math.random() * 75);
-		const b = Math.floor(Math.random() * 75);
+		const r = Math.floor(Math.random() * 75) + 50;
+		const g = Math.floor(Math.random() * 75) + 50;
+		const b = Math.floor(Math.random() * 75) + 50;
 	
 		return `rgb(${r}, ${g}, ${b})`;
 	}
