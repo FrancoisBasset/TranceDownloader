@@ -61,6 +61,12 @@ function addWish() {
 	});
 }
 
+function updateFormFromTab(id) {
+	document.getElementById('wish_option_' + id).selected = true;
+	
+	updateForm();
+}
+
 function updateForm() {
 	if (wishesSelect.getValue() == '') {
 		return;

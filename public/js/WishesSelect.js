@@ -15,6 +15,7 @@ class WishesSelect {
 				done: done
 			})
 		);
+		option.id = 'wish_option_' + id;
 		
 		if (done) {
 			option.style.color = 'red';
@@ -42,6 +43,10 @@ class WishesSelect {
 				break;
 			}
 		}
+	}
+
+	setValue() {
+
 	}
 
 	getValue() {

@@ -8,6 +8,9 @@ class WishesTable {
 	addRow(id, artist, track) {
 		const row = this.#element.insertRow();
 		row.id = 'wish-' + id;
+		row.onclick = function() {
+			updateFormFromTab(id);
+		}
 		
 		var cell = row.insertCell();
 		cell.innerText = artist;
