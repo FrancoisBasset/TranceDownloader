@@ -5,9 +5,11 @@ class TrackSelector {
 	#currentGenre = null
 	#currentArtist = null
 	#currentTrack = null
+	#genres = []
 
 	constructor(genres) {
-		this.#showGenres(genres);
+		this.#genres = genres;
+		this.#showGenres();
 	}
 
 	#showGenres() {
@@ -18,7 +20,7 @@ class TrackSelector {
 		this.#headLabel.style.backgroundColor = this.#getRandomColor();
 		this.#genresDiv.innerHTML = '';
 	
-		for (const genre of Object.keys(genres)) {
+		for (const genre of Object.keys(this.#genres)) {
 			const genreDiv = document.createElement('div');
 			genreDiv.innerText = genre;
 			genreDiv.style.padding = '20px';
@@ -27,14 +29,14 @@ class TrackSelector {
 	
 			genreDiv.onclick = () => {
 				this.#currentGenre = genreDiv.innerText;
-				this.#showArtists();
+				this.#showArtistsFromGenres();
 			}
 	
 			this.#genresDiv.appendChild(genreDiv);
 		}
 	}
 
-	#showArtists() {
+	#showArtistsFromGenres() {
 		this.#backButton.style.display = 'inline';
 		this.#backButton.style.backgroundColor = this.#getRandomColor();
 		this.#backButton.onclick = () => {
@@ -43,7 +45,7 @@ class TrackSelector {
 		this.#headLabel.innerText = this.#currentGenre;
 		this.#genresDiv.innerHTML = '';
 	
-		for (const artist of Object.keys(genres[this.#currentGenre])) {
+		for (const artist of Object.keys(this.#genres[this.#currentGenre])) {
 			const artistDiv = document.createElement('div');
 			artistDiv.innerText = artist;
 			artistDiv.style.padding = '20px';
@@ -52,22 +54,22 @@ class TrackSelector {
 	
 			artistDiv.onclick = () => {
 				this.#currentArtist = artistDiv.innerText;
-				this.#showTracks();
+				this.#showTracksFromGenres();
 			}
 	
 			this.#genresDiv.appendChild(artistDiv);
 		}
 	}
 
-	#showTracks() {
+	#showTracksFromGenres() {
 		this.#backButton.style.display = 'inline';
 		this.#backButton.onclick = () => {
-			this.#showArtists();
+			this.#showArtistsFromGenres();
 		}
 		this.#headLabel.innerText = this.#currentGenre + " > " + this.#currentArtist;
 		this.#genresDiv.innerHTML = '';
 	
-		for (const track of genres[this.#currentGenre][this.#currentArtist]) {
+		for (const track of this.#genres[this.#currentGenre][this.#currentArtist]) {
 			const trackDiv = document.createElement('div');
 			trackDiv.innerText = track.title;
 			trackDiv.style.padding = '20px';

@@ -5,8 +5,14 @@ var updateButton = document.getElementById('updateButton');
 
 fetch('/trancedownloader/library').then(function(response) {
 	response.json().then(function(json) {
-		genres = buildGenres(json.response);
-		trackSelector = new TrackSelector(genres);
+		if (true) {
+			var genres = buildGenres(json.response);
+			trackSelector = new TrackSelector(genres, 'genres');
+		} else {
+			var artists = buildArtists(json.response);
+			trackSelector = new TrackSelector(artists, 'artists');
+		}
+		
 	});
 });
 
@@ -35,6 +41,20 @@ function buildGenres(tracks) {
 	}
 
 	return genres;
+}
+
+function buildArtists(tracks) {
+	const artists = [];
+
+	for (const track of tracks) {
+		if (artists[track.artist] == null) {
+			artists[track.artist] = [];
+		}
+
+		artists[track.artist].push(track);
+	}
+
+	return artists;
 }
 
 function showTagValue() {
