@@ -3,18 +3,37 @@ var definitionsSelect = document.getElementById('definitionsSelect');
 var valueInput = document.getElementById('valueInput');
 var updateButton = document.getElementById('updateButton');
 
-fetch('/trancedownloader/library').then(function(response) {
-	response.json().then(function(json) {
-		if (true) {
-			var genres = buildGenres(json.response);
-			trackSelector = new TrackSelector(genres, 'genres');
-		} else {
-			var artists = buildArtists(json.response);
-			trackSelector = new TrackSelector(artists, 'artists');
-		}
-		
+var mode = 'genres';
+var switchButton = document.getElementById('switchButton');
+switchButton.onclick = function() {
+	console.log(mode);
+	if (mode == 'genres') {
+		switchButton.textContent = 'Artistes';
+		mode = 'artists';
+	} else {
+		switchButton.textContent = 'Genres';
+		mode = 'genres';
+	}
+
+	loadTracks();
+}
+
+loadTracks();
+
+function loadTracks() {
+	fetch('/trancedownloader/library').then(function(response) {
+		response.json().then(function(json) {
+			if (mode == 'genres') {
+				var genres = buildGenres(json.response);
+				trackSelector = new TrackSelector(genres, mode);
+			} else {
+				var artists = buildArtists(json.response);
+				trackSelector = new TrackSelector(artists, mode);
+			}
+			
+		});
 	});
-});
+}
 
 fetch('/trancedownloader/library/definitions').then(function(response) {
 	response.json().then(function(json) {
