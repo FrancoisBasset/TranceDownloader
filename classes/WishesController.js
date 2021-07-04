@@ -34,6 +34,10 @@ module.exports.getWishes = function() {
 		})
 	}
 
+	wishes = wishes.sort((wish1, wish2) => {
+		return wish1.artist.localeCompare(wish2.artist) || wish1.track.localeCompare(wish2.track);
+	});
+
 	return wishes;
 };
 
