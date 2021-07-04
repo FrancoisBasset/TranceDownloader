@@ -2,6 +2,7 @@ class TrackSelector {
 	#backButton = document.getElementById('backButton');
 	#headLabel = document.getElementById('headLabel');
 	#genresDiv = document.getElementById('genresDiv');
+	#switchButton = document.getElementById('switchButton');
 	#currentGenre = null
 	#currentArtist = null
 	#currentTrack = null
@@ -20,10 +21,12 @@ class TrackSelector {
 
 	#showGenres() {
 		this.#backButton.style.display = 'none';
+		this.#switchButton.style.display = 'inline';
 
 		this.#headLabel.innerText = 'Genres';
 		this.#headLabel.style.width = '100%';
 		this.#headLabel.style.backgroundColor = this.#getRandomColor();
+		this.#switchButton.style.backgroundColor = this.#getRandomColor();
 		this.#genresDiv.innerHTML = '';
 	
 		for (const genre of Object.keys(this.#genres)) {
@@ -44,6 +47,7 @@ class TrackSelector {
 
 	#showArtistsFromGenres() {
 		this.#backButton.style.display = 'inline';
+		this.#switchButton.style.display = 'none';
 		this.#backButton.style.backgroundColor = this.#getRandomColor();
 		this.#backButton.onclick = () => {
 			this.#showGenres();
@@ -69,6 +73,7 @@ class TrackSelector {
 
 	#showTracksFromGenres() {
 		this.#backButton.style.display = 'inline';
+		this.#switchButton.style.display = 'none';
 		this.#backButton.onclick = () => {
 			this.#showArtistsFromGenres();
 		}
@@ -101,7 +106,9 @@ class TrackSelector {
 
 	#showArtists() {
 		this.#backButton.style.display = 'none';
+		this.#switchButton.style.display = 'inline';
 		this.#backButton.style.backgroundColor = this.#getRandomColor();
+		this.#switchButton.style.backgroundColor = this.#getRandomColor();
 		this.#headLabel.innerText = 'Artistes';
 		this.#genresDiv.innerHTML = '';
 	
@@ -123,6 +130,7 @@ class TrackSelector {
 
 	#showTracks() {
 		this.#backButton.style.display = 'inline';
+		this.#switchButton.style.display = 'none';
 		this.#backButton.onclick = () => {
 			this.#showArtists();
 		}

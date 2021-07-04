@@ -85,3 +85,13 @@
 	font-size: 20px;
 	cursor: pointer;
 }
+
+#switchButton {
+	margin: 0px;
+	padding: 0px;
+
+	width: 100px;
+	height: 100%;
+
+	color: white;
+}
