@@ -1,2 +1,2 @@
 # TranceDownloader
-Progressive Web App to find trance tracks
+Progressive Web App to find Trance tracks

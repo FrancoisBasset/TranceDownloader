@@ -1,0 +1,4 @@
+node_modules
+.scannerwork
+package-lock.json
+public/library.json

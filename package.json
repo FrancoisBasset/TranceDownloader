@@ -1,0 +1,42 @@
+{
+	"name": "trancedownloader",
+	"title": "Trance Downloader",
+	"version": "1.0.0",
+	"description": "Progressive Web App to find trance tracks",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"sonar": "sonar-scanner.bat -D\"sonar.projectKey=TranceDownloader\" -D'sonar.sources=.' -D\"sonar.host.url=http://localhost:9000\" -D\"sonar.login=faec696cc1944898f41e5e065b8a4e9a34305f5d\"",
+		"clean": "npx rimraf .scannerwork node_modules package-lock.json public/library.json"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/FrancoisBasset/TranceDownloader.git"
+	},
+	"keywords": [
+		"trance",
+		"downloader",
+		"psytrance",
+		"goa",
+		"hard trance"
+	],
+	"author": "FrancoisBasset",
+	"bugs": {
+		"url": "https://github.com/FrancoisBasset/TranceDownloader/issues"
+	},
+	"homepage": "https://github.com/FrancoisBasset/TranceDownloader#readme",
+	"dependencies": {
+		"body-parser": "^1.19.0",
+		"express": "^4.17.1",
+		"fluent-ffmpeg": "^2.1.2",
+		"jsdom": "^16.4.0",
+		"node-id3": "^0.2.2",
+		"ytdl-core": "^4.9.2"
+	},
+	"devDependencies": {
+		"@types/jsdom": "^16.2.13",
+		"@types/node": "^16.11.6",
+		"rimraf": "^3.0.2",
+		"typescript": "^4.4.4"
+	}
+}

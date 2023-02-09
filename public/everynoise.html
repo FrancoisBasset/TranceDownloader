@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>TranceDownloader | Every Noise</title>
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/everynoise.css" />
+	</head>
+
+	<body>
+		<div id="menuDiv">
+			<a href="library.html"><img src="favicon.ico" alt="Library link" height="100%" /></a>
+			<a href="youtube.html"><img src="img/youtube.png" alt="YouTube link" height="100%" ></a>
+			<a href="wishes.html"><img src="img/wishes.png" alt="Wishes link" height="100%" ></a>
+			<a href="everynoise.html"><img src="img/everynoise.png" alt="Every Noise link" height="100%" ></a>
+		</div>
+
+		<div id="everynoiseDiv">
+			<table id="everynoiseTable">
+				<caption>
+					<h1>Every Noise</h1>
+				</caption>
+				<thead>
+					<tr>
+						<th colspan="6" scope="row">
+							<button onclick="showGenres()">Tous les genres</button>
+							<input type="text" id="genreInput" />
+							<button id="searchButton">Rechercher</button>
+						</th>
+					</tr>
+					<tr>
+						<th colspan="7" scope="row">
+							<button onclick="showGenres('trance')">Trance</button>
+							<button onclick="showGenres('psy')">Psy</button>
+							<button onclick="showGenres('hi-tech')">Hi-Tech</button>
+							<button onclick="showGenres('nitzhonot')">Nitzhonot</button>
+							<button onclick="showGenres('full on')">Full-on</button>
+							<button onclick="showGenres('suomisaundi')">Suomisaundi</button>
+						</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</body>
+</html>
+
+<script src="js/everynoise.js"></script>

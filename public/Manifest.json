@@ -1,0 +1,21 @@
+{
+	"name": "Trance Downloader",
+	"short_name": "Trance Downloader",
+	"description": "Trance Downloader",
+	
+	"start_url": "/",
+
+	"theme_color": "white",
+	"background_color": "white",
+
+	"orientation": "portrait",
+	"display": "fullscreen",
+
+	"icons": [
+		{
+			"src": "img/icon_256x256.png",
+			"type": "image/png",
+			"sizes": "256x256"
+		}
+	]
+}

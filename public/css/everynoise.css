@@ -1,0 +1,30 @@
+#everynoiseDiv {
+	position: absolute;
+	width: 80%;
+	height: 80%;
+
+	cursor: pointer;
+	overflow: scroll;
+
+	left: 5%;
+	top: 15%;
+}
+
+.blinking {
+    animation: opacity 1s ease-in-out infinite;
+    opacity: 1;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

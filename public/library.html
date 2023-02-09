@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<title>TranceDownloader | Ma bibliothèque</title>
+		<link rel="manifest" href="Manifest.json">
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/library.css" />
+	</head>
+
+	<body>
+		<div id="menuDiv">
+			<a href="library.html"><img src="favicon.ico" alt="Library link" height="100%" /></a>
+			<a href="youtube.html"><img src="img/youtube.png" alt="YouTube link" height="100%" ></a>
+			<a href="wishes.html"><img src="img/wishes.png" alt="Wishes link" height="100%" ></a>
+			<a href="everynoise.html"><img src="img/everynoise.png" alt="Every Noise link" height="100%" ></a>
+		</div>
+
+		<div id="gridDiv">
+			<div id="bar">
+				<button id="backButton">◀</button>
+				<label id="headLabel"></label>
+				<button id="switchButton">Artistes</button>
+			</div>
+			<div id="genresDiv"></div>
+		</div>
+
+		<div id="trackDiv">
+			<div id="audioDiv">
+				<audio id="audio" controls></audio>
+			</div>
+			<div id="definitionsDiv">
+				<label style="font-size: 20px;">Définitions :</label><br>
+				<select id="definitionsSelect" size="20"></select><br><br>
+				<input type="text" id="valueInput" /><br><br>
+				<button id="updateButton">Enregistrer</button><br>
+				<button id="removeTagsButton">Supprimer tags</button>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script src="js/library/TrackSelector.js" type="module"></script>
+<script src="js/library/DefinitionsSelect.js" type="module"></script>
+<script src="js/library/UpdateButton.js" type="module"></script>
+<script src="js/library/RemoveTagsButton.js" type="module"></script>
+<script>
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('./sw.js');
+	};
+</script>
