@@ -4,9 +4,9 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 
-const MUSIC_DIR = require('../env.json').MUSIC_DIR;
+const MUSIC_DIR = require('../env.json').MUSIC_DIR + '/';
 
-router.use(express.static(MUSIC_DIR + 'TranceDownloader'));
+router.use(express.static(MUSIC_DIR));
 
 router.use('/trancedownloader/wishes', require('./wishes'));
 router.use('/trancedownloader/youtube', require('./youtube'));

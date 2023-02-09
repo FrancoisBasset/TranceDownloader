@@ -13,7 +13,7 @@ export default class WishesTable {
 		row.id = 'wish-' + id;
 		row.onclick = function() {
 			updateFormFromTab(id);
-		}
+		};
 		
 		let cell = row.insertCell();
 		cell.innerText = artist;
@@ -30,7 +30,7 @@ export default class WishesTable {
 		searchButton.style.color = 'white';
 		searchButton.onclick = function() {
 			searchWish(artist, track);
-		}
+		};
 		cell.appendChild(searchButton);
 		cell.style.backgroundColor = getRandomColor();
 	}
@@ -41,7 +41,7 @@ export default class WishesTable {
 			document.getElementById('wish-' + id).cells[1].textContent = track;
 			document.getElementById('wish-' + id).cells[2].firstChild.onclick = function() {
 				searchWish(artist, track);
-			}
+			};
 		}
 	}
 

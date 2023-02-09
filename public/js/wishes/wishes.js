@@ -125,7 +125,7 @@ function deleteWish() {
 	fetch('/trancedownloader/wishes/' + wish.id, {
 		method: 'DELETE'
 	}).then(function(response) {
-		response.json().then(function(json) {
+		response.json().then(function() {
 			wishesTable.deleteRow(wish.id);
 			wishesSelect.clearOption();
 			clearForm();

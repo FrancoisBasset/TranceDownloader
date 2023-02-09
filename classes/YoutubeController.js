@@ -7,7 +7,7 @@ const vm = require('vm');
 
 const LibraryController = require('./LibraryController');
 
-const MUSIC_DIR = require('../env.json').MUSIC_DIR;
+const MUSIC_DIR = require('../env.json').MUSIC_DIR + '/';
 
 module.exports = {
 	getResults: function(search) {
@@ -26,24 +26,27 @@ module.exports = {
 					break;
 				}
 			}
-			
-			let contents;
 
-			if (JSON.parse(ytInitialData).contents.sectionListRenderer.contents[1].itemSectionRenderer != undefined) {
-				contents = JSON.parse(ytInitialData).contents.sectionListRenderer.contents[1].itemSectionRenderer.contents;
-			} else {
+			let contents = [];
+			let contents2 = [];
+
+			if (JSON.parse(ytInitialData).contents.sectionListRenderer.contents[0].itemSectionRenderer != undefined) {
 				contents = JSON.parse(ytInitialData).contents.sectionListRenderer.contents[0].itemSectionRenderer.contents;
 			}
+			if (JSON.parse(ytInitialData).contents.sectionListRenderer.contents[2] != undefined) {
+				contents2 = JSON.parse(ytInitialData).contents.sectionListRenderer.contents[2].itemSectionRenderer.contents;
+			}
+			contents = contents.concat(contents2);
 
 			let videos = [];
 			for (const content of contents) {
-				if (content.compactVideoRenderer !== undefined) {
+				if (content.videoWithContextRenderer !== undefined) {
 					videos.push({
-						title: content.compactVideoRenderer.title.runs[0].text,
-						image: content.compactVideoRenderer.thumbnail.thumbnails[0].url,
-						channel: content.compactVideoRenderer.longBylineText.runs[0].text,
-						views: content.compactVideoRenderer.shortViewCountText.runs[0].text,
-						url: 'https://www.youtube.com/' + content.compactVideoRenderer.navigationEndpoint.commandMetadata.webCommandMetadata.url
+						title: content.videoWithContextRenderer.headline.runs[0].text,
+						image: content.videoWithContextRenderer.thumbnail.thumbnails[0].url,
+						channel: content.videoWithContextRenderer.shortBylineText.runs[0].text,
+						views: content.videoWithContextRenderer.shortViewCountText.runs[0].text,
+						url: 'https://www.youtube.com' + content.videoWithContextRenderer.navigationEndpoint.commandMetadata.webCommandMetadata.url
 					});
 				}
 			}
@@ -53,9 +56,8 @@ module.exports = {
 	},
 
 	download: function(url, artist, track, genre) {
-		const filename = MUSIC_DIR + 'TranceDownloader/' + artist.split(' ').join('_') + '_' + track.split(' ').join('_') + '.mp3';
-		const stream = ytdl(url);
-
+		const filename = MUSIC_DIR + '/' + artist.split(' ').join('_') + '_' + track.split(' ').join('_') + '.mp3';
+		const stream = ytdl(url, { filter: 'audioonly' });
 		const proc = new ffmpeg({source:stream});
 		proc.saveToFile(filename);
 		proc.on('end', function() {

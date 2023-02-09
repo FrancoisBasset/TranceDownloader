@@ -64,7 +64,7 @@ export default class TrackSelector {
 			genreDiv.onclick = () => {
 				this.#currentGenre = genreDiv.innerText;
 				this.#showArtistsFromGenres();
-			}
+			};
 	
 			this.#genresDiv.appendChild(genreDiv);
 		}
@@ -76,7 +76,7 @@ export default class TrackSelector {
 		this.#backButton.style.backgroundColor = getRandomColor();
 		this.#backButton.onclick = () => {
 			this.#showGenres();
-		}
+		};
 		this.#headLabel.innerText = this.#currentGenre;
 		this.#genresDiv.innerHTML = '';
 	
@@ -90,7 +90,7 @@ export default class TrackSelector {
 			artistDiv.onclick = () => {
 				this.#currentArtist = artistDiv.innerText;
 				this.#showTracksFromGenres();
-			}
+			};
 	
 			this.#genresDiv.appendChild(artistDiv);
 		}
@@ -101,7 +101,7 @@ export default class TrackSelector {
 		this.#switchButton.style.display = 'none';
 		this.#backButton.onclick = () => {
 			this.#showArtistsFromGenres();
-		}
+		};
 		this.#headLabel.innerText = `${this.#currentGenre} > ${this.#currentArtist}`;
 		this.#genresDiv.innerHTML = '';
 	
@@ -114,7 +114,7 @@ export default class TrackSelector {
 	
 			trackDiv.onclick = () => {
 				this.#onTrackSelected(track, trackDiv);
-			}
+			};
 	
 			this.#genresDiv.appendChild(trackDiv);
 		}
@@ -140,7 +140,7 @@ export default class TrackSelector {
 			artistDiv.onclick = () => {
 				this.#currentArtist = artistDiv.innerText;
 				this.#showTracks();
-			}
+			};
 	
 			this.#genresDiv.appendChild(artistDiv);
 		}
@@ -151,7 +151,7 @@ export default class TrackSelector {
 		this.#switchButton.style.display = 'none';
 		this.#backButton.onclick = () => {
 			this.#showArtists();
-		}
+		};
 		this.#headLabel.innerText = this.#currentArtist;
 		this.#genresDiv.innerHTML = '';
 	
@@ -164,7 +164,7 @@ export default class TrackSelector {
 	
 			trackDiv.onclick = () => {
 				this.#onTrackSelected(track, trackDiv);
-			}
+			};
 	
 			this.#genresDiv.appendChild(trackDiv);
 		}
