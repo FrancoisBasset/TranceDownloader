@@ -1,22 +1,19 @@
 import WishesTable from './WishesTable.js';
 import WishesSelect from './WishesSelect.js';
 
-var wishesTable = new WishesTable();
-var wishesSelect = new WishesSelect();
+let artistInputAdd = document.getElementById('artistInputAdd');
+let trackInputAdd = document.getElementById('trackInputAdd');
 
-var artistInputAdd = document.getElementById('artistInputAdd');
-var trackInputAdd = document.getElementById('trackInputAdd');
+let artistInputUpdate = document.getElementById('artistInputUpdate');
+let trackInputUpdate = document.getElementById('trackInputUpdate');
 
-var artistInputUpdate = document.getElementById('artistInputUpdate');
-var trackInputUpdate = document.getElementById('trackInputUpdate');
-
-var addWishButton = document.getElementById('addWishButton');
+let addWishButton = document.getElementById('addWishButton');
 addWishButton.onclick = addWish;
-var updateWishButton = document.getElementById('updateWishButton');
+let updateWishButton = document.getElementById('updateWishButton');
 updateWishButton.onclick = updateWish;
-var deleteWishButton = document.getElementById('deleteWishButton');
+let deleteWishButton = document.getElementById('deleteWishButton');
 deleteWishButton.onclick = deleteWish;
-var initWishesButton = document.getElementById('initWishesButton');
+let initWishesButton = document.getElementById('initWishesButton');
 initWishesButton.onclick = initWishes;
 
 loadWishes();
@@ -32,8 +29,8 @@ function loadWishes() {
 }
 
 function loadWishesJson(wishes) {
-	wishesTable.clear();
-	wishesSelect.clear();
+	WishesTable.clear();
+	WishesSelect.clear();
 
 	wishes = wishes.sort((wish1, wish2) => {
 		return wish1.artist.localeCompare(wish2.artist) || wish1.track.localeCompare(wish2.track);
@@ -41,10 +38,10 @@ function loadWishesJson(wishes) {
 
 	for (const wish of wishes) {
 		if (!wish.done) {
-			wishesTable.addRow(wish.id, wish.artist, wish.track);
+			WishesTable.addRow(wish.id, wish.artist, wish.track);
 		}
 
-		wishesSelect.addOption(wish.id, wish.artist, wish.track, wish.done);
+		WishesSelect.addOption(wish.id, wish.artist, wish.track, wish.done);
 	}
 
 	updateForm();
@@ -70,8 +67,8 @@ function addWish() {
 			artistInputAdd.value = '';
 			trackInputAdd.value = '';
 
-			wishesTable.addRow(json.response.id, json.response.artist, json.response.track);
-			wishesSelect.addOption(json.response.id, json.response.artist, json.response.track, json.response.done);
+			WishesTable.addRow(json.response.id, json.response.artist, json.response.track);
+			WishesSelect.addOption(json.response.id, json.response.artist, json.response.track, json.response.done);
 		});
 	});
 }
@@ -83,11 +80,11 @@ export function updateFormFromTab(id) {
 }
 
 export function updateForm() {
-	if (wishesSelect.getValue() === '') {
+	if (WishesSelect.getValue() === '') {
 		return;
 	}
 
-	const wish = JSON.parse(wishesSelect.getValue());
+	const wish = JSON.parse(WishesSelect.getValue());
 
 	artistInputUpdate.value = wish.artist;
 	trackInputUpdate.value = wish.track;
@@ -99,7 +96,7 @@ function clearForm() {
 }
 
 function updateWish() {
-	const wish = JSON.parse(wishesSelect.getValue());
+	const wish = JSON.parse(WishesSelect.getValue());
 
 	fetch('/trancedownloader/wishes/' + wish.id, {
 		method: 'PUT',
@@ -113,21 +110,21 @@ function updateWish() {
 		})
 	}).then(function(response) {
 		response.json().then(function(json) {
-			wishesTable.updateRow(json.response.id, json.response.artist, json.response.track);
-			wishesSelect.updateOption(json.response.id, json.response.artist, json.response.track, json.response.done);
+			WishesTable.updateRow(json.response.id, json.response.artist, json.response.track);
+			WishesSelect.updateOption(json.response.id, json.response.artist, json.response.track, json.response.done);
 		});
 	});
 }
 
 function deleteWish() {
-	const wish = JSON.parse(wishesSelect.getValue());
+	const wish = JSON.parse(WishesSelect.getValue());
 
 	fetch('/trancedownloader/wishes/' + wish.id, {
 		method: 'DELETE'
 	}).then(function(response) {
 		response.json().then(function() {
-			wishesTable.deleteRow(wish.id);
-			wishesSelect.clearOption();
+			WishesTable.deleteRow(wish.id);
+			WishesSelect.clearOption();
 			clearForm();
 		});
 	});

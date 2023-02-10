@@ -1,14 +1,14 @@
 import { updateForm } from './wishes.js';
 
 export default class WishesSelect {
-	#element = null;
+	static #element = null;
 
-	constructor() {
+	static {
 		this.#element = document.getElementById('wishesSelect');
 		this.#element.onclick = updateForm;
 	}
 
-	addOption(id, artist, track, done) {
+	static addOption(id, artist, track, done) {
 		const option = new Option(
 			artist + ' ' + track,
 			JSON.stringify({
@@ -27,7 +27,7 @@ export default class WishesSelect {
 		this.#element.add(option);
 	}
 
-	updateOption(id, artist, track, done) {
+	static updateOption(id, artist, track, done) {
 		for (const element of this.#element.options) {
 			const wish = JSON.parse(element.value);
 				
@@ -48,11 +48,11 @@ export default class WishesSelect {
 		}
 	}
 
-	clearOption() {
+	static clearOption() {
 		this.#element.selectedIndex = 0;
 	}
 
-	clear() {
+	static clear() {
 		const length = this.#element.length;
 	
 		for (let i = 0; i < length; i++) {
@@ -60,7 +60,7 @@ export default class WishesSelect {
 		}
 	}
 
-	getValue() {
+	static getValue() {
 		return this.#element.value;
 	}
 }
