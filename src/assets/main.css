@@ -1,0 +1,43 @@
+* {
+	font-family: monospace;
+	border: none;
+	outline: none;
+}
+
+html, body, #app {
+	margin: 0px;
+	background-color: rgb(115, 63, 63);
+	height: 100%;
+}
+
+label, h1, table {
+	color: white;
+}
+
+table {
+	font-size: 16px;
+}
+
+button {
+	width: 150px;
+	height: 30px;
+	border: none;
+	font-size: 16px;
+	margin: 2px;
+	cursor: pointer;
+}
+
+::-webkit-scrollbar {
+	width: 0;
+}
+
+input[type="text"], select {
+	width: 300px;
+	height: 30px;
+	border: none;
+	margin: 2px;
+}
+
+img {
+	float: left;
+}

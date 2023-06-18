@@ -13,8 +13,4 @@ router.use('/trancedownloader/youtube', require('./youtube'));
 router.use('/trancedownloader/library', require('./library'));
 router.use('/trancedownloader/everynoise', require('./everynoise'));
 
-router.use(express.static('./public', {
-	index: 'library.html'
-}));
-
 module.exports = router;
