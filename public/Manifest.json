@@ -13,7 +13,7 @@
 
 	"icons": [
 		{
-			"src": "img/icon_256x256.png",
+			"src": "img/library.png",
 			"type": "image/png",
 			"sizes": "256x256"
 		}

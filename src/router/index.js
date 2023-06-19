@@ -10,24 +10,42 @@ const router = createRouter({
 		{
 			path: '/',
 			name: 'library',
-			component: LibraryView
+			component: LibraryView,
+			meta: {
+				title: 'Library'
+			}
 		},
 		{
 			path: '/youtube',
 			name: 'youtube',
-			component: YouTubeView
+			component: YouTubeView,
+			meta: {
+				title: 'YouTube'
+			}
 		},
 		{
 			path: '/wishes',
 			name: 'wishes',
-			component: WishesView
+			component: WishesView,
+			meta: {
+				title: 'Mes envies'
+			}
 		},
 		{
 			path: '/everynoise',
 			name: 'everynoise',
-			component: EveryNoiseView
+			component: EveryNoiseView,
+			meta: {
+				title: 'EveryNoise'
+			}
 		}
 	]
+});
+
+router.beforeEach(function(to) {
+	const link = document.querySelector('link[rel~="icon"]');
+	link.href = '/' + to.name + '.ico';
+	document.title = to.meta.title;
 });
 
 export default router;

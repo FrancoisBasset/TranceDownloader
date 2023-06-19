@@ -57,7 +57,8 @@ export default {
 	methods: {
 		getRandomColor,
 		onWishSearch(wish) {
-			console.log('search', wish.artist, wish.track);
+			localStorage.setItem('search', wish.artist + ' ' + wish.track);
+			this.$router.push('/youtube');
 		}
 	}
 };
