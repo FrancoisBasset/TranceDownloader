@@ -1,8 +1,11 @@
 const express = require('express');
 const fs = require('fs');
+const cors = require('cors');
 const app = express();
 
 app.disable('x-powered-by');
+
+app.use(cors());
 
 app.listen(3000, function() {
 	console.log('Start on 3000 http://localhost:3000');

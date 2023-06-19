@@ -3,7 +3,7 @@
 	<RouterView />
 </template>
 
-<style>
+<style scoped>
 #menu-bar {
 	height: 10%;
 }

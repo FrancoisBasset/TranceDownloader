@@ -15,7 +15,7 @@
 	</div>
 </template>
 
-<style>
+<style scoped>
 img {
 	height: 100%;
 }
