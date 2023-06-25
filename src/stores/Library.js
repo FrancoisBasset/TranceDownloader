@@ -2,11 +2,15 @@ import { defineStore } from "pinia";
 
 export default defineStore('Library', {
 	state: () => ({
+		mode: 'artist',
 		tracks: null,
 		artists: [],
 		genres: [],
+		artist: null,
+		genre: null,
 		ready: false,
-		track: null
+		track: null,
+		headLabel: ''
 	}),
 	actions: {
 		initTracks() {

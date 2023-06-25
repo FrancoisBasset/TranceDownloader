@@ -1,14 +1,14 @@
 <template>
 	<div id="track-selector">
 		<div id="bar">
-			<button v-if="artist || genre" @click="onBackClicked()" id="back" :style="{ backgroundColor: getRandomColor() }">◀</button>
-			<label id="headLabel" :style="{ backgroundColor: getRandomColor() }">{{ headLabel }}</label>
+			<button v-if="library.artist || library.genre" @click="onBackClicked()" id="back" :style="{ backgroundColor: getRandomColor() }">◀</button>
+			<label id="headLabel" :style="{ backgroundColor: getRandomColor() }">{{ library.headLabel }}</label>
 			<button @click="changeMode()" id="switch" :style="{ backgroundColor: getRandomColor() }">
-				<text v-if="mode == 'genre'">Artistes</text>
+				<text v-if="library.mode == 'genre'">Artistes</text>
 				<text v-else>Genres</text>
 			</button>
 		</div>
-		<div v-if="mode === 'artist' && artist === null">
+		<div v-if="library.mode === 'artist' && library.artist === null">
 			<div v-for="element in Object.keys(elements)" :key="element"
 				@click="onArtistClicked(element)"
 				class="element"
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 		
-		<div v-if="mode === 'artist' && artist !== null">
+		<div v-if="library.mode === 'artist' && library.artist !== null">
 			<div v-for="element in elements" :key="element"
 				@click="onTrackClicked(element)"
 				class="element"
@@ -26,7 +26,7 @@
 			</div>
 		</div>
 
-		<div v-if="mode === 'genre' && genre === null">
+		<div v-if="library.mode === 'genre' && library.genre === null">
 			<div v-for="element in Object.keys(elements)" :key="element"
 				@click="onGenreClicked(element)"
 				class="element"
@@ -35,7 +35,7 @@
 			</div>
 		</div>
 
-		<div v-if="mode === 'genre' && genre !== null && artist === null">
+		<div v-if="library.mode === 'genre' && library.genre !== null && library.artist === null">
 			<div v-for="element in Object.keys(elements)" :key="element"
 				@click="onGenreArtistClicked(element)"
 				class="element"
@@ -44,7 +44,7 @@
 			</div>
 		</div>
 
-		<div v-if="mode === 'genre' && artist !== null">
+		<div v-if="library.mode === 'genre' && library.artist !== null">
 			<div v-for="element in elements" :key="element"
 				@click="onTrackClicked(element)"
 				class="element"
@@ -77,6 +77,7 @@
 	color: white;
 	border: none;
 	outline: none;
+	margin: 0px;
 
 	cursor: pointer;
 }
@@ -114,12 +115,8 @@ import useLibraryStore from '../stores/Library';
 export default {
 	data() {
 		return {
-			mode: 'artist',
 			library: useLibraryStore(),
-			artist: null,
-			genre: null,
 			elements: [],
-			headLabel: ''
 		};
 	},
 	mounted() {
@@ -128,36 +125,36 @@ export default {
 	methods: {
 		getRandomColor,
 		changeMode() {
-			if (this.mode === 'artist') {
-				this.mode = 'genre';
+			if (this.library.mode === 'artist') {
+				this.library.mode = 'genre';
 				this.showGenres();
 			} else {
-				this.mode = 'artist';
+				this.library.mode = 'artist';
 				this.showArtists();
 			}
 		},
 		showArtists() {
-			this.artist = null;
-			this.genre = null;
+			this.library.artist = null;
+			this.library.genre = null;
 			this.elements = this.library.artists;
-			this.headLabel = 'Artistes';
+			this.library.headLabel = 'Artistes';
 		},
 		showGenres() {
-			this.artist = null;
-			this.genre = null;
+			this.library.artist = null;
+			this.library.genre = null;
 			this.elements = this.library.genres;
-			this.headLabel = 'Genres';
+			this.library.headLabel = 'Genres';
 		},
 		showGenresArtists() {
-			this.artist = null;
-			this.elements = this.library.genres[this.genre];
-			this.headLabel = 'Genres > ' + this.genre;
+			this.library.artist = null;
+			this.elements = this.library.genres[this.library.genre];
+			this.library.headLabel = 'Genres > ' + this.library.genre;
 		},
 		onBackClicked() {
-			if (this.mode === 'artist') {
+			if (this.library.mode === 'artist') {
 				this.showArtists();
 			} else {
-				if (this.genre && this.artist) {
+				if (this.library.genre && this.library.artist) {
 					this.showGenresArtists();
 				} else {
 					this.showGenres();
@@ -165,22 +162,22 @@ export default {
 			}
 		},
 		onArtistClicked(artist) {
-			this.artist = artist;
+			this.library.artist = artist;
 			this.elements = this.library.artists[artist];
-			this.headLabel = 'Artistes > ' + artist;
+			this.library.headLabel = 'Artistes > ' + artist;
 		},
 		onTrackClicked(track) {
 			this.library.track = track;
 		},
 		onGenreClicked(genre) {
-			this.genre = genre;
+			this.library.genre = genre;
 			this.elements = this.library.genres[genre];
-			this.headLabel = 'Genres > ' + genre;
+			this.library.headLabel = 'Genres > ' + genre;
 		},
 		onGenreArtistClicked(artist) {
-			this.artist = artist;
-			this.elements = this.library.genres[this.genre][artist];
-			this.headLabel = 'Genres > ' + this.genre + ' > ' + artist;
+			this.library.artist = artist;
+			this.elements = this.library.genres[this.library.genre][artist];
+			this.library.headLabel = 'Genres > ' + this.library.genre + ' > ' + artist;
 		}
 	}
 };

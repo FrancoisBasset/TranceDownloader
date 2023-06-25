@@ -87,9 +87,5 @@ module.exports = {
 		fs.writeFileSync(__dirname + '/../public/library.json', JSON.stringify(tracks));
 
 		return tags;
-	},
-	
-	removeTags: function(url) {
-		NodeId3.removeTags(MUSIC_DIR + `${url}`);
 	}
 };

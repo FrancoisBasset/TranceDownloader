@@ -3,8 +3,10 @@
 		<label style="font-size: 20px;">Définitions :</label>
 		<br>
 		
-		<select @change="onDefinitionSelect($event.target.value)" size="20">
-			<option v-for="definition of definitions" :key="definition" :style="{color: Object.keys(library.track).includes(definition) ? 'red' : 'white'}">{{ definition }}</option>
+		<select @change="onDefinitionSelect($event.target.value)" size="3">
+			<option v-for="definition of definitions" :key="definition" :style="{color: Object.keys(library.track).includes(definition) ? 'green' : 'white'}">
+				<b>{{ definition }}</b>
+			</option>
 		</select>
 		<br><br>
 		
@@ -13,8 +15,6 @@
 		
 		<button @click="update()">Enregistrer</button>
 		<br>
-		
-		<button @click="removeTags()">Supprimer tags</button>
 	</div>
 </template>
 
@@ -28,9 +28,9 @@ div {
 
 select {
 	width: 40%;
-	height: 40%;
+	height: 80px;
 	color: white;
-	background-color: rgb(90, 90, 90);
+	
 	border: none;
 	outline: none;
 	padding: 10px;
@@ -79,24 +79,19 @@ export default {
 				})
 			}).then(() => {
 				this.library.track[this.definition] = this.value;
+				if (this.library.artist) {
+					this.library.artist = this.library.track.artist;
+				}
 				this.library.initTracks();
+
+				if (this.library.mode === 'artist' && this.library.artist) {
+					this.library.headLabel = 'Artistes > ' + this.library.artist;
+				} else if (this.library.mode === 'genre' && this.library.genre && this.library.artist) {
+					this.library.headLabel = 'Genres > ' + this.library.genre + ' > ' + this.library.artist;
+				} else if (this.library.mode === 'genre' && this.library.genre) {
+					this.library.headLabel = 'Genres > ' + this.library.genre;
+				}
 			});
-		},
-		removeTags() {
-			/*fetch('http://localhost:3000/trancedownloader/library/', {
-				method: 'DELETE',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					url: this.mutableTrack.url
-				})
-			}).then(() => {*/
-			this.library.track = {
-				url: this.library.track.url
-			};
-			//});
 		}
 	}
 };

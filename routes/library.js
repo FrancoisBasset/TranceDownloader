@@ -23,12 +23,4 @@ router.put('/', function(req, res) {
 	});
 });
 
-router.delete('/', function(req, res) {
-	LibraryController.removeTags(req.body.url);
-
-	res.json({
-		success: true
-	});
-});
-
 module.exports = router;
