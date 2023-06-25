@@ -2,15 +2,15 @@
 	<div>
 		<h1>Télécharger</h1>
 
-		<label>Artiste :</label>
+		<label>Artiste : </label>
 		<input type="text" v-model="artist" />
 		<br><br>
 
-		<label>Track :</label>
+		<label>Track : </label>
 		<input type="text" v-model="track" />
 		<br><br>
 
-		<label>Genre :</label>
+		<label>Genre : </label>
 		<select v-model="genre">
 			<option value="Acid Trance">Acid Trance</option>
 			<option value="Balearic Trance">Balearic Trance</option>
