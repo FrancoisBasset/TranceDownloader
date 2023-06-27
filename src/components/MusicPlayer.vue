@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<audio :src="'http://localhost:3000' + library.url" controls autoplay />
+		<audio :src="library.url ? 'http://localhost:3000' + library.url : ''" controls autoplay />
 	</div>
 </template>
 

@@ -61,6 +61,11 @@ export default {
 			value: ''
 		};
 	},
+	mounted() {
+		if (this.library.track) {
+			this.value = this.library.track.genre;
+		}
+	},
 	methods: {
 		onDefinitionSelect(definition) {
 			this.definition = definition;
