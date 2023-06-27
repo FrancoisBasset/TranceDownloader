@@ -1,13 +1,12 @@
 <template>
 	<div>
-		<audio :src="url" controls />
+		<audio :src="'http://localhost:3000' + library.url" controls autoplay />
 	</div>
 </template>
 
 <style scoped>
 div {
-	width: 50%;
-	height: 30%;
+	height: 10%;
 	background-color: rgb(92, 56, 113);
 	text-align: center;
 }
@@ -23,9 +22,13 @@ audio {
 </style>
 
 <script>
+import useLibraryStore from '../stores/Library';
+
 export default {
-	props: [
-		'url'
-	]
+	data() {
+		return {
+			library: useLibraryStore()
+		};
+	}
 };
 </script>

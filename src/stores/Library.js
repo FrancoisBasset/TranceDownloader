@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
 export default defineStore('Library', {
 	state: () => ({
@@ -10,7 +10,8 @@ export default defineStore('Library', {
 		genre: null,
 		ready: false,
 		track: null,
-		headLabel: ''
+		headLabel: '',
+		url: ''
 	}),
 	actions: {
 		initTracks() {

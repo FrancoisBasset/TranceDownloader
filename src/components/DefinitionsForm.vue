@@ -1,6 +1,7 @@
 <template>
 	<div>
-		<label style="font-size: 20px;">Définitions :</label>
+		<br>		
+		<br>		
 		<br>
 		
 		<select @change="onDefinitionSelect($event.target.value)" size="3">
@@ -21,7 +22,7 @@
 <style scoped>
 div {
 	width: 50%;
-	height: 55%;
+	height: 75%;
 	background-color: rgb(55, 101, 89);
 	text-align: center;
 }
@@ -46,7 +47,7 @@ button {
 
 <script>
 import definitions from '../definitions';
-import useLibraryStore from '../stores/Library'
+import useLibraryStore from '../stores/Library';
 
 export default {
 	props: [

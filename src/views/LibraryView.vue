@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<TrackSelector id="track-selector" v-if="library.ready" />
-		<MusicPlayer id="music-player" v-if="library.track" :url="'http://localhost:3000' + library.track.url" />
 		<DefinitionsForm id="definitions-form" v-if="library.track" :track="library.track" :key="library.track" />
+		<MusicPlayer id="music-player" :key="library.url" />
 	</div>
 </template>
 
@@ -13,16 +13,16 @@
 	top: 15%;
 }
 
-#music-player {
+#definitions-form {
 	position: absolute;
 	left: 50%;
 	top: 15%;
 }
 
-#definitions-form {
+#music-player {
 	position: absolute;
-	left: 50%;
-	top: 45%;
+	width: 100%;
+	bottom: 0;
 }
 </style>
 

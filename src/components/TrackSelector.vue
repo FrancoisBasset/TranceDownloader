@@ -1,5 +1,5 @@
 <template>
-	<div id="track-selector">
+	<div id="track-selector" :class="{'middle-width': library.track, 'full-width': !library.track }">
 		<div id="bar">
 			<button v-if="library.artist || library.genre" @click="onBackClicked()" id="back" :style="{ backgroundColor: getRandomColor() }">◀</button>
 			<label id="headLabel" :style="{ backgroundColor: getRandomColor() }">{{ library.headLabel }}</label>
@@ -56,9 +56,16 @@
 </template>
 
 <style scoped>
-#track-selector {
+.full-width {
+	width: 90%;
+}
+
+.middle-width {
 	width: 40%;
-	height: 80%;
+}
+
+#track-selector {
+	height: 70%;
 
 	cursor: pointer;
 	overflow: scroll;
@@ -160,6 +167,7 @@ export default {
 					this.showGenres();
 				}
 			}
+			this.library.track = null;
 		},
 		onArtistClicked(artist) {
 			this.library.artist = artist;
@@ -168,6 +176,9 @@ export default {
 		},
 		onTrackClicked(track) {
 			this.library.track = track;
+			if (this.library.track) {
+				this.library.url = track.url;
+			}
 		},
 		onGenreClicked(genre) {
 			this.library.genre = genre;
