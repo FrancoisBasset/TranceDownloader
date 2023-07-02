@@ -50,6 +50,7 @@ export default {
 					this.artist = '';
 					this.track = '';
 
+					localStorage.clear();
 					this.$emit('wishAdded');
 				});
 			});

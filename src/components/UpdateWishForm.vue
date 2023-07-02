@@ -67,6 +67,7 @@ export default {
 					track: this.track
 				})
 			}).then(() => {
+				localStorage.clear();
 				this.$emit('wishUpdated');
 			});
 		},
@@ -74,6 +75,7 @@ export default {
 			fetch('http://localhost:3000/trancedownloader/wishes/' + this.selectedWish.id, {
 				method: 'DELETE'
 			}).then(() => {
+				localStorage.clear();
 				this.$emit('wishUpdated');
 			});
 		},

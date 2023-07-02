@@ -26,9 +26,8 @@
 <style scoped>
 div {
 	width: 50%;
-	height: 90%;
+	height: 80%;
 
-	background-color: rgb(116, 69, 69);
 	overflow: scroll;
 	overflow-x: hidden;
 }

@@ -9,7 +9,7 @@
 <style scoped>
 #wishesDiv {
 	position: absolute;
-	top: 10%;
+	top: 15%;
 }
 
 #addDiv {
