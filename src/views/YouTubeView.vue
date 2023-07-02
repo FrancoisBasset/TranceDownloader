@@ -65,7 +65,7 @@ export default {
 	methods: {
 		search(e) {
 			if (!e || e.key === 'Enter') {
-				fetch('http://localhost:3000/trancedownloader/youtube?search=' + this.searchText).then(response => {
+				fetch(import.meta.env.VITE_API + '/trancedownloader/youtube?search=' + this.searchText).then(response => {
 					response.json().then(json => {
 						this.results = json.response;
 					});

@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const MUSIC_DIR = require('../env.json').MUSIC_DIR + '/';
+const MUSIC_DIR = process.env.MUSIC_DIR + '/';
 
 if (!fs.existsSync(MUSIC_DIR + 'wishes.csv')) {
 	fs.writeFileSync(MUSIC_DIR + 'wishes.csv', '');

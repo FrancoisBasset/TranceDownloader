@@ -49,7 +49,7 @@ export default {
 	},
 	methods: {
 		initWishes() {
-			fetch('http://localhost:3000/trancedownloader/wishes').then(response => {
+			fetch(import.meta.env.VITE_API + '/trancedownloader/wishes').then(response => {
 				response.json().then(json => {					
 					this.wishes = json.response.sort((wish1, wish2) => {
 						return wish1.artist.localeCompare(wish2.artist) || wish1.track.localeCompare(wish2.track);

@@ -56,7 +56,7 @@ export default {
 			this.track = this.selectedWish.track;
 		},
 		updateWish() {
-			fetch('http://localhost:3000/trancedownloader/wishes/' + this.selectedWish.id, {
+			fetch(import.meta.env.VITE_API + '/trancedownloader/wishes/' + this.selectedWish.id, {
 				method: 'PUT',
 				headers: {
 					'Accept': 'application/json',
@@ -72,7 +72,7 @@ export default {
 			});
 		},
 		deleteWish() {
-			fetch('http://localhost:3000/trancedownloader/wishes/' + this.selectedWish.id, {
+			fetch(import.meta.env.VITE_API + '/trancedownloader/wishes/' + this.selectedWish.id, {
 				method: 'DELETE'
 			}).then(() => {
 				localStorage.clear();
@@ -80,7 +80,7 @@ export default {
 			});
 		},
 		initWishes() {
-			fetch('http://localhost:3000/trancedownloader/wishes', {
+			fetch(import.meta.env.VITE_API + '/trancedownloader/wishes', {
 				method: 'PATCH'
 			}).then(() => {
 				this.$emit('wishUpdated');

@@ -1,26 +1,46 @@
 # TranceDownloader
-Progressive Web App to find Trance tracks
+Node + Vue.js app to find and download Trance tracks from YouTube
 
 ## Project Setup
 
-```sh
+```
 npm install
+```
+
+Also install, `ffmpeg` package
+
+### Start back-end
+
+```
+npm start
 ```
 
 ### Compile and Hot-Reload for Development
 
-```sh
+```
 npm run dev
 ```
 
 ### Compile and Minify for Production
 
-```sh
+```
 npm run build
+```
+
+### Launch app with build
+
+```
+npm run preview
+```
+
+### Clean project
+
+```
+npm run clean
 ```
 
 ### Lint with [ESLint](https://eslint.org/)
 
-```sh
+```
 npm run lint
 ```

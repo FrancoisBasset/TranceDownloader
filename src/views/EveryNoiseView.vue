@@ -75,7 +75,7 @@ export default {
 				return;
 			}
 
-			fetch('http://localhost:3000/trancedownloader/everynoise/genres').then(response => {
+			fetch(import.meta.env.VITE_API + '/trancedownloader/everynoise/genres').then(response => {
 				response.json().then(json => {
 					localStorage.setItem('genres', JSON.stringify(json.response));
 				});
@@ -93,7 +93,7 @@ export default {
 				return;
 			}
 
-			fetch('http://localhost:3000/trancedownloader/everynoise/genre/' + this.genre).then(response => {
+			fetch(import.meta.env.VITE_API + '/trancedownloader/everynoise/genre/' + this.genre).then(response => {
 				response.json().then(json => {
 					this.artists = [];
 
@@ -110,7 +110,7 @@ export default {
 				return;
 			}
 
-			fetch('http://localhost:3000/trancedownloader/wishes', {
+			fetch(import.meta.env.VITE_API + '/trancedownloader/wishes', {
 				method: 'POST',
 				headers: {
 					'Accept': 'application/json',

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const NodeId3 = require('node-id3');
 
-const MUSIC_DIR = require('../env.json').MUSIC_DIR + '/';
+const MUSIC_DIR = process.env.MUSIC_DIR + '/';
 
 module.exports = {
 	writeAllTracks: function() {

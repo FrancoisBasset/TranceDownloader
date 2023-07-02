@@ -3,7 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 
 const Youtube = require('../classes').Youtube;
-const MUSIC_DIR = require('../env.json').MUSIC_DIR + '/';
+const MUSIC_DIR = process.env.MUSIC_DIR + '/';
 
 router.get('/', function(req, res) {
 	Youtube.getResults(req.query.search).then(function(videos) {

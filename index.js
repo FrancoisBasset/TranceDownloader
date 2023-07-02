@@ -1,24 +1,32 @@
+const dotenv = require('dotenv').config();
+const dotenvExpand = require('dotenv-expand');
+dotenvExpand.expand(dotenv);
+
 const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
 const app = express();
 
+const {exec} = require('child_process');
+
 app.disable('x-powered-by');
 
 app.use(cors());
 
-app.listen(3000, function() {
-	console.log('Start on 3000 http://localhost:3000');
+
+const distExists = fs.existsSync('./dist');
+
+app.listen(process.env.PORT, function() {
+	console.log(`Go to http://localhost:${distExists ? process.env.PORT : 5173}`);
 });
 
 app.use('/', require('./routes'));
 
-if (fs.existsSync('./dist')) {
+if (distExists) {
 	app.use(express.static('./dist', {
 		index: 'index.html'
 	}));
 } else {
-	app.use(express.static('./public', {
-		index: 'library.html'
-	}));
+	exec('npm run dev');
+	console.log('Starting front');
 }

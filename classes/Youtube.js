@@ -7,7 +7,7 @@ const vm = require('vm');
 
 const Library = require('./Library');
 
-const MUSIC_DIR = require('../env.json').MUSIC_DIR + '/';
+const MUSIC_DIR = process.env.MUSIC_DIR + '/';
 
 module.exports = {
 	getResults: function(search) {
