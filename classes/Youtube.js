@@ -30,10 +30,10 @@ module.exports = {
 			let contents = [];
 			let contents2 = [];
 
-			if (JSON.parse(ytInitialData).contents.sectionListRenderer.contents[0].itemSectionRenderer != undefined) {
+			if (JSON.parse(ytInitialData).contents.sectionListRenderer.contents[0].itemSectionRenderer !== undefined) {
 				contents = JSON.parse(ytInitialData).contents.sectionListRenderer.contents[0].itemSectionRenderer.contents;
 			}
-			if (JSON.parse(ytInitialData).contents.sectionListRenderer.contents[2] != undefined) {
+			if (JSON.parse(ytInitialData).contents.sectionListRenderer.contents[2] !== undefined) {
 				contents2 = JSON.parse(ytInitialData).contents.sectionListRenderer.contents[2].itemSectionRenderer.contents;
 			}
 			contents = contents.concat(contents2);

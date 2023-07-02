@@ -16,14 +16,14 @@
 			<button @click="showGenres('suomisaundi')">Suomisaundi</button>
 		</div>
 
-		<table :key="genres" v-if="artists == null">
+		<table :key="genres" v-if="artists === null">
 			<tr v-for="genres_4 in genres" :key="genres_4">
 				<td @click="showArtists(genre)" v-for="genre in genres_4" :key="genre" :style="{ backgroundColor: getRandomColor() }">{{ genre }}</td>
 			</tr>
 		</table>
 		<table :key="artists" v-if="artists">
 			<tr v-for="artists_4 in artists" :key="artists_4">
-				<td @click="addWish(artist)" v-for="artist in artists_4" :key="artist" :style="{ backgroundColor: getRandomColor() }" :class="{'have1': artist.have == 1, 'have2': artist.have == 2}">{{ artist.artist }}</td>
+				<td @click="addWish(artist)" v-for="artist in artists_4" :key="artist" :style="{ backgroundColor: getRandomColor() }" :class="{'have1': artist.have === 1, 'have2': artist.have === 2}">{{ artist.artist }}</td>
 			</tr>
 		</table>
 	</div>
@@ -106,7 +106,7 @@ export default {
 			});
 		},
 		addWish(artist) {
-			if (artist.have != 0) {
+			if (artist.have !== 0) {
 				return;
 			}
 
@@ -128,7 +128,7 @@ export default {
 	},
 	computed: {
 		genres() {
-			if (localStorage.getItem('genres') == null) {
+			if (localStorage.getItem('genres') === null) {
 				return null;
 			}
 			let result = JSON.parse(localStorage.getItem('genres'));

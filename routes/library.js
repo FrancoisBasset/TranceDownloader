@@ -3,8 +3,6 @@ const router = express.Router();
 
 const Library = require('../classes').Library;
 
-Library.writeAllTracks();
-
 router.get('/definitions', function(req, res) {
 	const definitions = Library.getID3Definitions();
 

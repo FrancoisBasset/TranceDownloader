@@ -2,6 +2,9 @@ const dotenv = require('dotenv').config();
 const dotenvExpand = require('dotenv-expand');
 dotenvExpand.expand(dotenv);
 
+const Library = require('./classes').Library;
+Library.writeAllTracks();
+
 const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
@@ -12,7 +15,6 @@ const {exec} = require('child_process');
 app.disable('x-powered-by');
 
 app.use(cors());
-
 
 const distExists = fs.existsSync('./dist');
 

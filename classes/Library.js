@@ -9,7 +9,7 @@ module.exports = {
 			return;
 		}
 
-		let tracks = fs.readdirSync(MUSIC_DIR).filter(track => track != 'wishes.csv');
+		let tracks = fs.readdirSync(MUSIC_DIR).filter(track => track !== 'wishes.csv');
 
 		let i = 0;
 
@@ -56,7 +56,7 @@ module.exports = {
 		updateInfo[tag] = value;
 
 		let tracks = JSON.parse(fs.readFileSync(__dirname + '/../public/library.json').toString());
-		tracks = tracks.filter(t => t.url != url);
+		tracks = tracks.filter(t => t.url !== url);
 
 		let tags = NodeId3.update(updateInfo, MUSIC_DIR + `${url}`);
 

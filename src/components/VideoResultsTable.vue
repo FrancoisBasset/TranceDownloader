@@ -2,7 +2,7 @@
 	<div>
 		<table role="presentation">
 			<tbody>
-				<tr v-for="result in results" :key="result" @click="onResultSelected(result)" :style="{backgroundColor: selectedResult && result.url == selectedResult.url ? 'rgb(60, 80, 190)' : ''}">
+				<tr v-for="result in results" :key="result" @click="onResultSelected(result)" :style="{backgroundColor: selectedResult && result.url === selectedResult.url ? 'rgb(60, 80, 190)' : ''}">
 					<td>{{ result.title }}</td>
 					<img :src="result.image" width="400" height="250" @click="transformToIframe(result, $event)" />
 					<td>{{ result.channel }}</td>

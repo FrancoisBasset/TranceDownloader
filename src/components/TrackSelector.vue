@@ -4,7 +4,7 @@
 			<button v-if="library.artist || library.genre" @click="onBackClicked()" id="back" :style="{ backgroundColor: getRandomColor() }">◀</button>
 			<label id="headLabel" :style="{ backgroundColor: getRandomColor() }">{{ library.headLabel }}</label>
 			<button @click="changeMode()" id="switch" :style="{ backgroundColor: getRandomColor() }">
-				<text v-if="library.mode == 'genre'">Artistes</text>
+				<text v-if="library.mode === 'genre'">Artistes</text>
 				<text v-else>Genres</text>
 			</button>
 		</div>
@@ -84,7 +84,7 @@
 	color: white;
 	border: none;
 	outline: none;
-	margin: 0px;
+	margin: 0;
 
 	cursor: pointer;
 }
@@ -100,8 +100,8 @@
 }
 
 #switch {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 
 	width: 100px;
 	height: 100%;
