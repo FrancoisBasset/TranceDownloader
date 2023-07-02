@@ -1,6 +1,6 @@
 module.exports = {
-	WishesController: require('./WishesController'),
-	YoutubeController: require('./YoutubeController'),
-	LibraryController: require('./LibraryController'),
-	EveryNoiseController: require('./EveryNoiseController')
+	Wishes: require('./Wishes'),
+	Youtube: require('./Youtube'),
+	Library: require('./Library'),
+	EveryNoise: require('./EveryNoise')
 };

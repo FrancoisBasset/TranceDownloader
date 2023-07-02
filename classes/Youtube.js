@@ -5,7 +5,7 @@ const ffmpeg = require('fluent-ffmpeg');
 const NodeID3 = require('node-id3');
 const vm = require('vm');
 
-const LibraryController = require('./LibraryController');
+const Library = require('./Library');
 
 const MUSIC_DIR = require('../env.json').MUSIC_DIR + '/';
 
@@ -67,7 +67,7 @@ module.exports = {
 				genre: genre
 			}, filename);
 
-			LibraryController.addTrack(artist, track, genre);
+			Library.addTrack(artist, track, genre);
 		});
 
 		return true;

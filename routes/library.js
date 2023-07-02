@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const LibraryController = require('../classes').LibraryController;
+const Library = require('../classes').Library;
 
-LibraryController.writeAllTracks();
+Library.writeAllTracks();
 
 router.get('/definitions', function(req, res) {
-	const definitions = LibraryController.getID3Definitions();
+	const definitions = Library.getID3Definitions();
 
 	res.json({
 		success: true,
@@ -15,7 +15,7 @@ router.get('/definitions', function(req, res) {
 });
 
 router.put('/', function(req, res) {
-	const track = LibraryController.update(req.body.url, req.body.tag, req.body.value);
+	const track = Library.update(req.body.url, req.body.tag, req.body.value);
 
 	res.json({
 		success: true,

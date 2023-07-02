@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const WishesController = require('../classes').WishesController;
+const Wishes = require('../classes').Wishes;
 
 router.get('/', function(req, res) {
-	const wishes = WishesController.getWishes();
+	const wishes = Wishes.getWishes();
 
 	res.json({
 		success: true,
@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-	const wish = WishesController.addWish(req.body.artist, req.body.track);
+	const wish = Wishes.addWish(req.body.artist, req.body.track);
 
 	res.json({
 		success: true,
@@ -22,7 +22,7 @@ router.post('/', function(req, res) {
 });
 
 router.delete('/:id', function(req, res) {
-	WishesController.deleteWish(req.params.id);
+	Wishes.deleteWish(req.params.id);
 
 	res.json({
 		success: true
@@ -30,7 +30,7 @@ router.delete('/:id', function(req, res) {
 });
 
 router.put('/:id', function(req, res) {
-	const wish = WishesController.updateWish(req.params.id, req.body.artist, req.body.track);
+	const wish = Wishes.updateWish(req.params.id, req.body.artist, req.body.track);
 
 	res.json({
 		success: true,
@@ -39,7 +39,7 @@ router.put('/:id', function(req, res) {
 });
 
 router.patch('/', function(req, res) {
-	WishesController.initWishes();
+	Wishes.initWishes();
 
 	res.json({
 		success: true
