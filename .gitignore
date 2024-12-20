@@ -2,3 +2,4 @@ node_modules
 package-lock.json
 public/library.json
 dist
+src/assets/main.css
