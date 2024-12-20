@@ -39,8 +39,8 @@ npm run preview
 npm run clean
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Format with [Prettier](https://prettier.io/)
 
 ```
-npm run lint
+npm run format
 ```
