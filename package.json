@@ -8,7 +8,7 @@
 		"start": "node index.js",
 		"dev": "vite",
 		"build": "vite build",
-		"buildcss": "tailwind -i src/input.css -o src/assets/main.css",
+		"buildcss": "tailwind -i front/input.css -o front/assets/main.css",
 		"preview": "vite preview",
 		"lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
 		"clean": "rm -rf node_modules package-lock.json public/library.json dist"
