@@ -8,13 +8,13 @@ module.exports.getGenres = () => {
 
 	return jsdom.fromURL('https://everynoise.com/').then(response => {
 		const items = response.window.document.querySelectorAll('[id*=item]');
-	
+
 		items.forEach(item => {
 			genres.push(item.textContent.replace('» ', ''));
 		});
-	
+
 		genres.sort();
-	
+
 		return genres;
 	});
 };
@@ -29,7 +29,7 @@ module.exports.getArtists = genre => {
 
 	return jsdom.fromURL('https://everynoise.com/engenremap-' + genre + '.html').then(response => {
 		const items = response.window.document.querySelectorAll('[id*=item]');
-	
+
 		items.forEach(item => {
 			const text = item.title.replace('e.g. ', '');
 			const artist = text.split(' "')[0];
@@ -47,18 +47,18 @@ module.exports.getArtists = genre => {
 			if (tracks.filter(t => t.artist === artist).length > 0) {
 				have = 2;
 			}
-			
+
 			artists.push({
 				artist: artist,
 				track: track,
 				have: have
 			});
 		});
-	
+
 		artists.sort((a, b) => {
 			return a.artist.localeCompare(b.artist);
 		});
-	
+
 		return artists;
 	});
 };

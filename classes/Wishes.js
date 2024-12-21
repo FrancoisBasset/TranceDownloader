@@ -40,7 +40,7 @@ module.exports.getWishes = () => {
 				done = true;
 			}
 		}
-		
+
 		wishes.push({
 			id: line.split(';')[0],
 			artist: line.split(';')[1],

@@ -1,19 +1,19 @@
 <template>
 	<div>
-		<br />		
-		<br />		
 		<br />
-		
+		<br />
+		<br />
+
 		<select @change="onDefinitionSelect($event.target.value)" size="3">
 			<option v-for="definition of definitions" :key="definition" :style="{color: Object.keys(library.track).includes(definition) ? 'green' : 'white'}">
 				<b>{{ definition }}</b>
 			</option>
 		</select>
 		<br /><br />
-		
+
 		<input type="text" v-model="value" />
 		<br /><br />
-		
+
 		<button @click="update()">Enregistrer</button>
 		<br />
 	</div>
@@ -31,7 +31,7 @@ select {
 	width: 40%;
 	height: 80px;
 	color: white;
-	
+
 	border: none;
 	outline: none;
 	padding: 10px;

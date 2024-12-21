@@ -43,14 +43,14 @@ td {
 	color: orange;
 	border: 10px solid orange;
 	animation: opacity 1s ease-in-out infinite;
-    opacity: 1;
+	opacity: 1;
 }
 
 .have2 {
 	color: white;
 	border: 10px solid rgb(41, 184, 41);
 	animation: opacity 1s ease-in-out infinite;
-    opacity: 1;
+	opacity: 1;
 }
 </style>
 
@@ -137,11 +137,11 @@ export default {
 			}
 
 			const genres = [];
-			
+
 			for (let i = 0; i < result.length; i += 4) {
 				genres.push(result.slice(i, i + 4));
 			}
-			
+
 			return genres;
 		}
 	}

@@ -111,7 +111,7 @@
 
 .element {
 	padding: 20px;
-	color: white;	
+	color: white;
 }
 </style>
 

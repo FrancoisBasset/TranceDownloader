@@ -33,9 +33,9 @@ export default defineStore('Library', {
 				if (artists[track.artist] === undefined) {
 					artists[track.artist] = [];
 				}
-		
+
 				artists[track.artist].push(track);
-		
+
 				return artists;
 			}, []);
 		},
@@ -44,13 +44,13 @@ export default defineStore('Library', {
 				if (genres[track.genre] === undefined) {
 					genres[track.genre] = [];
 				}
-		
+
 				if (genres[track.genre][track.artist] === undefined) {
 					genres[track.genre][track.artist] = [];
 				}
-		
+
 				genres[track.genre][track.artist].push(track);
-		
+
 				return genres;
 			}, []);
 		}

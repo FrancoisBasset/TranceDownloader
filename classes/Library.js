@@ -25,12 +25,12 @@ module.exports = {
 			process.stdout.clearLine(0);
 			process.stdout.cursorTo(0);
 			process.stdout.write(`${i}/${tracks.length}`);
-			
+
 			return tags;
 		});
 
 		fs.writeFileSync('public/library.json', JSON.stringify(tracks));
-		
+
 		console.log();
 	},
 
@@ -67,12 +67,12 @@ module.exports = {
 			});
 
 			const newUrl = `/${tags.artist.split(' ').join('_')}_${tags.title.split(' ').join('_')}.mp3`;
-			
+
 			fs.renameSync(MUSIC_DIR + `${url}`, MUSIC_DIR + `${newUrl}`);
 
 			url = newUrl;
 		}
-		
+
 		tags = NodeId3.read(MUSIC_DIR + `${url}`, {
 			noRaw: true,
 			include: ['TPE1', 'TIT2', 'TCON']

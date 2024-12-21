@@ -13,7 +13,7 @@
 		<label>Track : </label>
 		<input type="text" v-model="track" />
 		<br /><br />
-		
+
 		<button @click="updateWish()">Modifier</button>
 		<br /><br />
 		<button @click="deleteWish()">Supprimer</button>
