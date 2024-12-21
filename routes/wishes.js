@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Wishes = require('../classes').Wishes;
 
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
 	const wishes = Wishes.getWishes();
 
 	res.json({
@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
 	});
 });
 
-router.post('/', function(req, res) {
+router.post('/', (req, res) => {
 	const wish = Wishes.addWish(req.body.artist, req.body.track);
 
 	res.json({
@@ -21,7 +21,7 @@ router.post('/', function(req, res) {
 	});
 });
 
-router.delete('/:id', function(req, res) {
+router.delete('/:id', (req, res) => {
 	Wishes.deleteWish(req.params.id);
 
 	res.json({
@@ -29,7 +29,7 @@ router.delete('/:id', function(req, res) {
 	});
 });
 
-router.put('/:id', function(req, res) {
+router.put('/:id', (req, res) => {
 	const wish = Wishes.updateWish(req.params.id, req.body.artist, req.body.track);
 
 	res.json({
@@ -38,7 +38,7 @@ router.put('/:id', function(req, res) {
 	});
 });
 
-router.patch('/', function(req, res) {
+router.patch('/', (req, res) => {
 	Wishes.initWishes();
 
 	res.json({

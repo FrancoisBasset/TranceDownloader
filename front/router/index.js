@@ -42,7 +42,7 @@ const router = createRouter({
 	]
 });
 
-router.beforeEach(function(to) {
+router.beforeEach(to => {
 	const link = document.querySelector('link[rel~="icon"]');
 	link.href = '/' + to.name + '.ico';
 	document.title = to.meta.title;

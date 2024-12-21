@@ -4,7 +4,7 @@ const NodeId3 = require('node-id3');
 const MUSIC_DIR = process.env.MUSIC_DIR + '/';
 
 module.exports = {
-	writeAllTracks: function() {
+	writeAllTracks: () => {
 		if (fs.existsSync(__dirname + '/../public/library.json')) {
 			return;
 		}
@@ -13,7 +13,7 @@ module.exports = {
 
 		let i = 0;
 
-		tracks = tracks.map(function(track) {
+		tracks = tracks.map(track => {
 			const tags = NodeId3.read(MUSIC_DIR + `${track}`, {
 				noRaw: true,
 				include: ['TPE1', 'TIT2', 'TCON']
@@ -34,7 +34,7 @@ module.exports = {
 		console.log();
 	},
 
-	addTrack: function(artist, title, genre) {
+	addTrack: (artist, title, genre) => {
 		let tracks = JSON.parse(fs.readFileSync(__dirname + '/../public/library.json').toString());
 
 		tracks.push({
@@ -51,7 +51,7 @@ module.exports = {
 		fs.writeFileSync(__dirname + '/../public/library.json', JSON.stringify(tracks));
 	},
 
-	update: function(url, tag, value) {
+	update: (url, tag, value) => {
 		const updateInfo = {};
 		updateInfo[tag] = value;
 

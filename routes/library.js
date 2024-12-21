@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Library = require('../classes').Library;
 
-router.get('/definitions', function(req, res) {
+router.get('/definitions', (req, res) => {
 	const definitions = Library.getID3Definitions();
 
 	res.json({
@@ -12,7 +12,7 @@ router.get('/definitions', function(req, res) {
 	});
 });
 
-router.put('/', function(req, res) {
+router.put('/', (req, res) => {
 	const track = Library.update(req.body.url, req.body.tag, req.body.value);
 
 	res.json({

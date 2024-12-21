@@ -5,8 +5,8 @@ const fs = require('fs');
 const Youtube = require('../classes').Youtube;
 const MUSIC_DIR = process.env.MUSIC_DIR + '/';
 
-router.get('/', function(req, res) {
-	Youtube.getResults(req.query.search).then(function(videos) {
+router.get('/', (req, res) => {
+	Youtube.getResults(req.query.search).then(videos => {
 		res.json({
 			success: true,
 			response: videos
@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
 	});
 });
 
-router.post('/', async function(req, res) {
+router.post('/', async (req, res) => {
 	process.on('uncaughtException', (e) => {
 		console.log(e);
 		console.log('Failed : ' + req.body.artist + ' ' + req.body.track);

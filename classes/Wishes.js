@@ -17,7 +17,7 @@ function writeWishes(wishes) {
 	fs.writeFileSync(MUSIC_DIR + 'wishes.csv', text);
 }
 
-module.exports.getWishes = function() {
+module.exports.getWishes = () => {
 	const csv = fs.readFileSync(MUSIC_DIR + 'wishes.csv').toString();
 	if (csv === '') {
 		return [];
@@ -52,7 +52,7 @@ module.exports.getWishes = function() {
 	return wishes;
 };
 
-module.exports.addWish = function(artist, track) {
+module.exports.addWish = (artist, track) => {
 	const wishes = this.getWishes();
 
 	let id = 1;
@@ -75,7 +75,7 @@ module.exports.addWish = function(artist, track) {
 	};
 };
 
-module.exports.deleteWish = function(id) {
+module.exports.deleteWish = id => {
 	let wishes = this.getWishes();
 
 	wishes = wishes.filter(w => w.id !== id);
@@ -83,10 +83,10 @@ module.exports.deleteWish = function(id) {
 	writeWishes(wishes);
 };
 
-module.exports.updateWish = function(id, artist, track) {
+module.exports.updateWish = (id, artist, track) => {
 	const wishes = this.getWishes();
 
-	wishes.filter(w => w.id === id).forEach(function(w) {
+	wishes.filter(w => w.id === id).forEach(w => {
 		w.artist = artist;
 		w.track = track;
 		return w;
@@ -97,9 +97,9 @@ module.exports.updateWish = function(id, artist, track) {
 	return wishes.filter(w => w.id === id)[0];
 };
 
-module.exports.initWishes = function() {
+module.exports.initWishes = () => {
 	const lines = fs.readFileSync(MUSIC_DIR + 'wishes.csv').toString().split('\r\n');
-	let text = lines.reduce(function(acc, line, index) {
+	let text = lines.reduce((acc, line, index) => {
 		return acc + `${index+1};${line.split(';')[1]};${line.split(';')[2]}\r\n`;
 	}, '');
 	text = text.substring(0, text.length - 2);

@@ -10,13 +10,13 @@ const Library = require('./Library');
 const MUSIC_DIR = process.env.MUSIC_DIR + '/';
 
 module.exports = {
-	getResults: function(search) {
+	getResults: search => {
 		const url = 'https://www.youtube.com/results?search_query=' + search.split(' ').join('+');
 
 		const c = new CookieJar();
 		c.setCookie('CONSENT=YES+yt.375803756.fr+FX+948', 'https://www.youtube.com');
 
-		return jsdom.fromURL(url, {cookieJar: c}).then(function(response) {
+		return jsdom.fromURL(url, {cookieJar: c}).then(response => {
 			const scripts = response.window.document.getElementsByTagName('script');
 
 			for (const script of scripts) {
@@ -55,12 +55,12 @@ module.exports = {
 		});
 	},
 
-	download: function(url, artist, track, genre) {
+	download: (url, artist, track, genre) => {
 		const filename = MUSIC_DIR + '/' + artist.split(' ').join('_') + '_' + track.split(' ').join('_') + '.mp3';
 		const stream = ytdl(url, { filter: 'audioonly' });
 		const proc = new ffmpeg({source:stream});
 		proc.saveToFile(filename);
-		proc.on('end', function() {
+		proc.on('end', () => {
 			NodeID3.write({
 				artist: artist,
 				title: track,

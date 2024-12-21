@@ -3,13 +3,13 @@ const jsdom = require('jsdom').JSDOM;
 
 const Wishes = require('./Wishes');
 
-module.exports.getGenres = function() {
+module.exports.getGenres = () => {
 	const genres = [];
 
-	return jsdom.fromURL('https://everynoise.com/').then(function(response) {
+	return jsdom.fromURL('https://everynoise.com/').then(response => {
 		const items = response.window.document.querySelectorAll('[id*=item]');
 	
-		items.forEach(function(item) {
+		items.forEach(item => {
 			genres.push(item.textContent.replace('» ', ''));
 		});
 	
@@ -19,7 +19,7 @@ module.exports.getGenres = function() {
 	});
 };
 
-module.exports.getArtists = function(genre) {
+module.exports.getArtists = genre => {
 	genre = genre.split(' ').join('');
 
 	const artists = [];
@@ -27,10 +27,10 @@ module.exports.getArtists = function(genre) {
 	const wishes = Wishes.getWishes();
 	const tracks = JSON.parse(fs.readFileSync('public/library.json'));
 
-	return jsdom.fromURL('https://everynoise.com/engenremap-' + genre + '.html').then(function(response) {
+	return jsdom.fromURL('https://everynoise.com/engenremap-' + genre + '.html').then(response => {
 		const items = response.window.document.querySelectorAll('[id*=item]');
 	
-		items.forEach(function(item) {
+		items.forEach(item => {
 			const text = item.title.replace('e.g. ', '');
 			const artist = text.split(' "')[0];
 			let track = text.split(' "')[1];
@@ -55,7 +55,7 @@ module.exports.getArtists = function(genre) {
 			});
 		});
 	
-		artists.sort(function(a, b) {
+		artists.sort((a, b) => {
 			return a.artist.localeCompare(b.artist);
 		});
 	

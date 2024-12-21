@@ -18,7 +18,7 @@ app.use(cors());
 
 const distExists = fs.existsSync('./dist');
 
-app.listen(process.env.PORT, function() {
+app.listen(process.env.PORT, () => {
 	console.log(`Go to http://localhost:${distExists ? process.env.PORT : 5173}`);
 });
 

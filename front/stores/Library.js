@@ -29,7 +29,7 @@ export default defineStore('Library', {
 			}
 		},
 		getArtists(tracks) {
-			return tracks.reduce(function(artists, track) {
+			return tracks.reduce((artists, track) => {
 				if (artists[track.artist] === undefined) {
 					artists[track.artist] = [];
 				}
@@ -40,7 +40,7 @@ export default defineStore('Library', {
 			}, []);
 		},
 		getGenres(tracks) {
-			return tracks.reduce(function(genres, track) {
+			return tracks.reduce((genres, track) => {
 				if (genres[track.genre] === undefined) {
 					genres[track.genre] = [];
 				}

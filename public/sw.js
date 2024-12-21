@@ -1,7 +1,7 @@
-self.addEventListener('install', function() {
+self.addEventListener('install', () => {
 	console.log('Installation...');
 });
 
-self.addEventListener('fetch', function() {
+self.addEventListener('fetch', () => {
 	console.log('Installation...');
 });
