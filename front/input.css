@@ -35,7 +35,7 @@ button {
 	width: 0;
 }
 
-input[type="text"], select {
+input[type='text'], select {
 	width: 300px;
 	height: 30px;
 	border: none;

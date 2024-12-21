@@ -9,46 +9,31 @@
 			</button>
 		</div>
 		<div v-if="library.mode === 'artist' && library.artist === null">
-			<div v-for="element in Object.keys(elements)" :key="element"
-				@click="onArtistClicked(element)"
-				class="element"
-				:style="{ backgroundColor: getRandomColor() }">
+			<div v-for="element in Object.keys(elements)" :key="element" @click="onArtistClicked(element)" class="element" :style="{ backgroundColor: getRandomColor() }">
 				{{ element }}
 			</div>
 		</div>
 
 		<div v-if="library.mode === 'artist' && library.artist !== null">
-			<div v-for="element in elements" :key="element"
-				@click="onTrackClicked(element)"
-				class="element"
-				:style="{ backgroundColor: getRandomColor() }">
+			<div v-for="element in elements" :key="element" @click="onTrackClicked(element)" class="element" :style="{ backgroundColor: getRandomColor() }">
 				{{ element.title }}
 			</div>
 		</div>
 
 		<div v-if="library.mode === 'genre' && library.genre === null">
-			<div v-for="element in Object.keys(elements)" :key="element"
-				@click="onGenreClicked(element)"
-				class="element"
-				:style="{ backgroundColor: getRandomColor() }">
+			<div v-for="element in Object.keys(elements)" :key="element" @click="onGenreClicked(element)" class="element" :style="{ backgroundColor: getRandomColor() }">
 				{{ element }}
 			</div>
 		</div>
 
 		<div v-if="library.mode === 'genre' && library.genre !== null && library.artist === null">
-			<div v-for="element in Object.keys(elements)" :key="element"
-				@click="onGenreArtistClicked(element)"
-				class="element"
-				:style="{ backgroundColor: getRandomColor() }">
+			<div v-for="element in Object.keys(elements)" :key="element" @click="onGenreArtistClicked(element)" class="element" :style="{ backgroundColor: getRandomColor() }">
 				{{ element }}
 			</div>
 		</div>
 
 		<div v-if="library.mode === 'genre' && library.artist !== null">
-			<div v-for="element in elements" :key="element"
-				@click="onTrackClicked(element)"
-				class="element"
-				:style="{ backgroundColor: getRandomColor() }">
+			<div v-for="element in elements" :key="element" @click="onTrackClicked(element)" class="element" :style="{ backgroundColor: getRandomColor() }">
 				{{ element.title }}
 			</div>
 		</div>
