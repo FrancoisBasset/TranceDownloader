@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Library = require('../classes').Library;
 
-router.get('/definitions', (req, res) => {
+router.get('/definitions', (_, res) => {
 	const definitions = Library.getID3Definitions();
 
 	res.json({

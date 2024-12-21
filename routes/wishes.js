@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Wishes = require('../classes').Wishes;
 
-router.get('/', (req, res) => {
+router.get('/', (_, res) => {
 	const wishes = Wishes.getWishes();
 
 	res.json({
@@ -38,7 +38,7 @@ router.put('/:id', (req, res) => {
 	});
 });
 
-router.patch('/', (req, res) => {
+router.patch('/', (_, res) => {
 	Wishes.initWishes();
 
 	res.json({

@@ -3,7 +3,7 @@ const router = express.Router();
 
 const EveryNoise = require('../classes').EveryNoise;
 
-router.get('/genres', (req, res) => {
+router.get('/genres', (_, res) => {
 	EveryNoise.getGenres().then(genres => {
 		res.json({
 			success: true,
