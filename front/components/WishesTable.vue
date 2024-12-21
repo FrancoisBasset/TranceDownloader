@@ -12,11 +12,9 @@
 			</thead>
 			<tbody>
 				<tr v-for="wish of wishes" :key="wish" @click="$emit('wishSelected', wish)">
-					<td :style="{ backgroundColor: getRandomColor()}">{{ wish.artist }}</td>
-					<td :style="{ backgroundColor: getRandomColor()}">{{ wish.track }}</td>
-					<td @click="onWishSearch(wish)" :style="{ backgroundColor: getRandomColor(), cursor: 'pointer'}">
-						Rechercher
-					</td>
+					<td :style="{ backgroundColor: getRandomColor() }">{{ wish.artist }}</td>
+					<td :style="{ backgroundColor: getRandomColor() }">{{ wish.track }}</td>
+					<td @click="onWishSearch(wish)" :style="{ backgroundColor: getRandomColor(), cursor: 'pointer' }">Rechercher</td>
 				</tr>
 			</tbody>
 		</table>
@@ -47,12 +45,8 @@ td {
 import { getRandomColor } from '../utils';
 
 export default {
-	props: [
-		'wishes'
-	],
-	emits: [
-		'wishSelected'
-	],
+	props: ['wishes'],
+	emits: ['wishSelected'],
 	methods: {
 		getRandomColor,
 		onWishSearch(wish) {

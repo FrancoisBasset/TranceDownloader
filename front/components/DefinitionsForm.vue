@@ -5,7 +5,7 @@
 		<br />
 
 		<select @change="onDefinitionSelect($event.target.value)" size="3">
-			<option v-for="definition of definitions" :key="definition" :style="{color: Object.keys(library.track).includes(definition) ? 'green' : 'white'}">
+			<option v-for="definition of definitions" :key="definition" :style="{ color: Object.keys(library.track).includes(definition) ? 'green' : 'white' }">
 				<b>{{ definition }}</b>
 			</option>
 		</select>
@@ -50,9 +50,7 @@ import definitions from '../definitions';
 import useLibraryStore from '../stores/Library';
 
 export default {
-	props: [
-		'track'
-	],
+	props: ['track'],
 	data() {
 		return {
 			library: useLibraryStore(),

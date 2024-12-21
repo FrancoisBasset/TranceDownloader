@@ -2,7 +2,7 @@
 	<div>
 		<table role="presentation">
 			<tbody>
-				<tr v-for="result in results" :key="result" @click="onResultSelected(result)" :style="{backgroundColor: selectedResult && result.url === selectedResult.url ? 'rgb(60, 80, 190)' : ''}">
+				<tr v-for="result in results" :key="result" @click="onResultSelected(result)" :style="{ backgroundColor: selectedResult && result.url === selectedResult.url ? 'rgb(60, 80, 190)' : '' }">
 					<td>{{ result.title }}</td>
 					<img :src="result.image" width="400" height="250" @click="transformToIframe(result, $event)" />
 					<td>{{ result.channel }}</td>
@@ -16,7 +16,7 @@
 <style scoped>
 div {
 	width: 50%;
-	height: 80%;	
+	height: 80%;
 	background-color: rgb(54, 64, 121);
 	overflow: scroll;
 }
@@ -29,12 +29,8 @@ table {
 
 <script>
 export default {
-	emits: [
-		'resultSelected'
-	],
-	props: [
-		'results'
-	],
+	emits: ['resultSelected'],
+	props: ['results'],
 	data() {
 		return {
 			selectedResult: null

@@ -2,7 +2,7 @@
 module.exports = {
 	content: ['./front/**/*.vue'],
 	theme: {
-		extend: {},
+		extend: {}
 	},
 	plugins: []
 };

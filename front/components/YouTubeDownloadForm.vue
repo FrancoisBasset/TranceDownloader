@@ -57,9 +57,7 @@ div {
 
 <script>
 export default {
-	props: [
-		'result'
-	],
+	props: ['result'],
 	data() {
 		return {
 			artist: '',

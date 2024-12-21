@@ -9,7 +9,7 @@ router.get('/genres', (_, res) => {
 			success: true,
 			response: genres
 		});
-	});	
+	});
 });
 
 router.get('/genre/:genre', (req, res) => {

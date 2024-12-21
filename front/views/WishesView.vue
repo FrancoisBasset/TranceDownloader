@@ -49,15 +49,17 @@ export default {
 	},
 	methods: {
 		initWishes() {
-			fetch(import.meta.env.VITE_API + '/trancedownloader/wishes').then(response => {
-				response.json().then(json => {					
-					this.wishes = json.response.sort((wish1, wish2) => {
-						return wish1.artist.localeCompare(wish2.artist) || wish1.track.localeCompare(wish2.track);
-					}).filter(w => !w.done);
+			fetch(import.meta.env.VITE_API + '/trancedownloader/wishes')
+				.then(res => res.json())
+				.then(json => {
+					this.wishes = json.response
+						.sort((wish1, wish2) => {
+							return wish1.artist.localeCompare(wish2.artist) || wish1.track.localeCompare(wish2.track);
+						})
+						.filter(w => !w.done);
 
 					this.selectedWish = this.wishes[0];
 				});
-			});
 		},
 		onWishSelected(wish) {
 			this.selectedWish = wish;

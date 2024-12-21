@@ -16,7 +16,7 @@ module.exports = {
 		const c = new CookieJar();
 		c.setCookie('CONSENT=YES+yt.375803756.fr+FX+948', 'https://www.youtube.com');
 
-		return jsdom.fromURL(url, {cookieJar: c}).then(response => {
+		return jsdom.fromURL(url, { cookieJar: c }).then(response => {
 			const scripts = response.window.document.getElementsByTagName('script');
 
 			for (const script of scripts) {
@@ -58,7 +58,7 @@ module.exports = {
 	download: (url, artist, track, genre) => {
 		const filename = MUSIC_DIR + '/' + artist.split(' ').join('_') + '_' + track.split(' ').join('_') + '.mp3';
 		const stream = ytdl(url, { filter: 'audioonly' });
-		const proc = new ffmpeg({source:stream});
+		const proc = new ffmpeg({ source: stream });
 		proc.saveToFile(filename);
 		proc.on('end', () => {
 			NodeID3.write({

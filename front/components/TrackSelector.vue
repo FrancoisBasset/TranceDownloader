@@ -1,5 +1,5 @@
 <template>
-	<div id="track-selector" :class="{'middle-width': library.track, 'full-width': !library.track }">
+	<div id="track-selector" :class="{ 'middle-width': library.track, 'full-width': !library.track }">
 		<div id="bar">
 			<button v-if="library.artist || library.genre" @click="onBackClicked()" id="back" :style="{ backgroundColor: getRandomColor() }">◀</button>
 			<label id="headLabel" :style="{ backgroundColor: getRandomColor() }">{{ library.headLabel }}</label>
@@ -16,13 +16,13 @@
 				{{ element }}
 			</div>
 		</div>
-		
+
 		<div v-if="library.mode === 'artist' && library.artist !== null">
 			<div v-for="element in elements" :key="element"
 				@click="onTrackClicked(element)"
 				class="element"
 				:style="{ backgroundColor: getRandomColor() }">
-				{{  element.title }}
+				{{ element.title }}
 			</div>
 		</div>
 
@@ -123,7 +123,7 @@ export default {
 	data() {
 		return {
 			library: useLibraryStore(),
-			elements: [],
+			elements: []
 		};
 	},
 	mounted() {

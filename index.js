@@ -10,7 +10,7 @@ const fs = require('fs');
 const cors = require('cors');
 const app = express();
 
-const {exec} = require('child_process');
+const { exec } = require('child_process');
 
 app.disable('x-powered-by');
 

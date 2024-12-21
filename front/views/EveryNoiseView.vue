@@ -23,7 +23,7 @@
 		</table>
 		<table :key="artists" v-if="artists">
 			<tr v-for="artists_4 in artists" :key="artists_4">
-				<td @click="addWish(artist)" v-for="artist in artists_4" :key="artist" :style="{ backgroundColor: getRandomColor() }" :class="{'have1': artist.have === 1, 'have2': artist.have === 2}">{{ artist.artist }}</td>
+				<td @click="addWish(artist)" v-for="artist in artists_4" :key="artist" :style="{ backgroundColor: getRandomColor() }" :class="{ 'have1': artist.have === 1, 'have2': artist.have === 2 }">{{ artist.artist }}</td>
 			</tr>
 		</table>
 	</div>

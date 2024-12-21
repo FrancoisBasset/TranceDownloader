@@ -1,5 +1,1 @@
-export default [
-	'genre',
-	'artist',
-	'title'
-];
+export default ['genre', 'artist', 'title'];

@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-	process.on('uncaughtException', (e) => {
+	process.on('uncaughtException', e => {
 		console.log(e);
 		console.log('Failed : ' + req.body.artist + ' ' + req.body.track);
 	});

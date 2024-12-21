@@ -86,11 +86,13 @@ module.exports.deleteWish = id => {
 module.exports.updateWish = (id, artist, track) => {
 	const wishes = this.getWishes();
 
-	wishes.filter(w => w.id === id).forEach(w => {
-		w.artist = artist;
-		w.track = track;
-		return w;
-	});
+	wishes
+		.filter(w => w.id === id)
+		.forEach(w => {
+			w.artist = artist;
+			w.track = track;
+			return w;
+		});
 
 	writeWishes(wishes);
 
@@ -98,9 +100,12 @@ module.exports.updateWish = (id, artist, track) => {
 };
 
 module.exports.initWishes = () => {
-	const lines = fs.readFileSync(MUSIC_DIR + 'wishes.csv').toString().split('\r\n');
+	const lines = fs
+		.readFileSync(MUSIC_DIR + 'wishes.csv')
+		.toString()
+		.split('\r\n');
 	let text = lines.reduce((acc, line, index) => {
-		return acc + `${index+1};${line.split(';')[1]};${line.split(';')[2]}\r\n`;
+		return acc + `${index + 1};${line.split(';')[1]};${line.split(';')[2]}\r\n`;
 	}, '');
 	text = text.substring(0, text.length - 2);
 

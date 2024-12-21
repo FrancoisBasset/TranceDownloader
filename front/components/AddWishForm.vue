@@ -24,9 +24,7 @@ div {
 
 <script>
 export default {
-	emits: [
-		'wishAdded'
-	],
+	emits: ['wishAdded'],
 	data() {
 		return {
 			artist: '',

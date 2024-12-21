@@ -2,7 +2,7 @@
 	<div>
 		<h1>Modifier</h1>
 		<select v-model="selectedWish" @change="onWishSelected()">
-			<option v-for="w of wishes" :key="w" :value="w" :selected="w.id === selectedWish.id">{{ w.artist }} {{  w.track }}</option>
+			<option v-for="w of wishes" :key="w" :value="w" :selected="w.id === selectedWish.id">{{ w.artist }} {{ w.track }}</option>
 		</select>
 		<br /><br />
 
@@ -31,13 +31,8 @@ div {
 
 <script>
 export default {
-	props: [
-		'wishes',
-		'wish'
-	],
-	emits: [
-		'wishUpdated'
-	],
+	props: ['wishes', 'wish'],
+	emits: ['wishUpdated'],
 	data() {
 		return {
 			selectedWish: null,
