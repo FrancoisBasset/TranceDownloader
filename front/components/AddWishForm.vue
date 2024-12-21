@@ -4,11 +4,11 @@
 
 		<label>Artiste : </label>
 		<input type="text" v-model="artist" />
-		<br><br>
+		<br /><br />
 
 		<label>Track : </label>
 		<input type="text" v-model="track" />
-		<br><br>
+		<br /><br />
 
 		<button @click="addWish()">Ajouter</button>
 	</div>

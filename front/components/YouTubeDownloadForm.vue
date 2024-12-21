@@ -4,11 +4,11 @@
 
 		<label>Artiste : </label>
 		<input type="text" v-model="artist" />
-		<br><br>
+		<br /><br />
 
 		<label>Track : </label>
 		<input type="text" v-model="track" />
-		<br><br>
+		<br /><br />
 
 		<label>Genre : </label>
 		<select v-model="genre">
@@ -41,7 +41,7 @@
 			<option value="Vocal Trance">Vocal Trance</option>
 			<option value="Zenonesque">Zenonesque</option>
 		</select>
-		<br><br>
+		<br /><br />
 
 		<button @click="download()">Télécharger</button>
 	</div>

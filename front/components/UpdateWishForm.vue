@@ -4,18 +4,18 @@
 		<select v-model="selectedWish" @change="onWishSelected()">
 			<option v-for="w of wishes" :key="w" :value="w" :selected="w.id === selectedWish.id">{{ w.artist }} {{  w.track }}</option>
 		</select>
-		<br><br>
+		<br /><br />
 
 		<label>Artiste : </label>
 		<input type="text" v-model="artist" />
-		<br><br>
+		<br /><br />
 
 		<label>Track : </label>
 		<input type="text" v-model="track" />
-		<br><br>
+		<br /><br />
 		
 		<button @click="updateWish()">Modifier</button>
-		<br><br>
+		<br /><br />
 		<button @click="deleteWish()">Supprimer</button>
 		<button @click="initWishes()">Init</button>
 	</div>

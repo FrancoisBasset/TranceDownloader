@@ -1,21 +1,21 @@
 <template>
 	<div>
-		<br>		
-		<br>		
-		<br>
+		<br />		
+		<br />		
+		<br />
 		
 		<select @change="onDefinitionSelect($event.target.value)" size="3">
 			<option v-for="definition of definitions" :key="definition" :style="{color: Object.keys(library.track).includes(definition) ? 'green' : 'white'}">
 				<b>{{ definition }}</b>
 			</option>
 		</select>
-		<br><br>
+		<br /><br />
 		
 		<input type="text" v-model="value" />
-		<br><br>
+		<br /><br />
 		
 		<button @click="update()">Enregistrer</button>
-		<br>
+		<br />
 	</div>
 </template>
 
