@@ -30,5 +30,6 @@ if (distExists) {
 	}));
 } else {
 	exec('npm run dev');
+	exec('npm run buildcss -- --watch');
 	console.log('Starting front');
 }
