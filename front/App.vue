@@ -1,13 +1,9 @@
 <template>
-	<MenuBar id="menu-bar" />
-	<RouterView />
+	<div class="text-center">
+		<MenuBar />
+		<RouterView />
+	</div>
 </template>
-
-<style scoped>
-#menu-bar {
-	height: 10%;
-}
-</style>
 
 <script>
 import MenuBar from './components/MenuBar.vue';
