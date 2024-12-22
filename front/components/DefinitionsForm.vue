@@ -46,8 +46,8 @@ button {
 </style>
 
 <script>
-import definitions from '../definitions';
-import useLibraryStore from '../stores/Library';
+import definitions from '@/definitions';
+import useLibraryStore from '@/stores/Library';
 
 export default {
 	props: ['track'],

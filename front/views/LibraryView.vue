@@ -26,18 +26,15 @@
 }
 </style>
 
-<script>
-import TrackSelector from '../components/TrackSelector.vue';
-import MusicPlayer from '../components/MusicPlayer.vue';
-import DefinitionsForm from '../components/DefinitionsForm.vue';
-import useLibraryStore from '../stores/Library';
+<script setup>
+import TrackSelector from '@/components/TrackSelector.vue';
+import MusicPlayer from '@/components/MusicPlayer.vue';
+import DefinitionsForm from '@/components/DefinitionsForm.vue';
+import useLibraryStore from '@/stores/Library';
+</script>
 
+<script>
 export default {
-	components: {
-		TrackSelector,
-		MusicPlayer,
-		DefinitionsForm
-	},
 	data() {
 		return {
 			library: useLibraryStore()

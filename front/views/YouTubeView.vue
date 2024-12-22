@@ -39,15 +39,13 @@
 }
 </style>
 
-<script>
-import VideoResultsTable from '../components/VideoResultsTable.vue';
-import YouTubeDownloadForm from '../components/YouTubeDownloadForm.vue';
+<script setup>
+import VideoResultsTable from '@/components/VideoResultsTable.vue';
+import YouTubeDownloadForm from '@/components/YouTubeDownloadForm.vue';
+</script>
 
+<script>
 export default {
-	components: {
-		VideoResultsTable,
-		YouTubeDownloadForm
-	},
 	data() {
 		return {
 			searchText: '',

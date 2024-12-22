@@ -27,17 +27,14 @@
 }
 </style>
 
-<script>
-import WishesTable from '../components/WishesTable.vue';
-import AddWishForm from '../components/AddWishForm.vue';
-import UpdateWishForm from '../components/UpdateWishForm.vue';
+<script setup>
+import WishesTable from '@/components/WishesTable.vue';
+import AddWishForm from '@/components/AddWishForm.vue';
+import UpdateWishForm from '@/components/UpdateWishForm.vue';
+</script>
 
+<script>
 export default {
-	components: {
-		WishesTable,
-		AddWishForm,
-		UpdateWishForm
-	},
 	data() {
 		return {
 			wishes: null,

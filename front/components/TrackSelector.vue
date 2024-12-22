@@ -101,8 +101,8 @@
 </style>
 
 <script>
-import { getRandomColor } from '../utils';
-import useLibraryStore from '../stores/Library';
+import { getRandomColor } from '@/utils';
+import useLibraryStore from '@/stores/Library';
 
 export default {
 	data() {

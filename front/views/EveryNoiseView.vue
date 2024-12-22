@@ -55,7 +55,7 @@ td {
 </style>
 
 <script>
-import { getRandomColor } from '../utils';
+import { getRandomColor } from '@/utils';
 
 export default {
 	data() {

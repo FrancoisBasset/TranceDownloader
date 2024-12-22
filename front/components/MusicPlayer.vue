@@ -22,7 +22,7 @@ audio {
 </style>
 
 <script>
-import useLibraryStore from '../stores/Library';
+import useLibraryStore from '@/stores/Library';
 
 export default {
 	data() {
