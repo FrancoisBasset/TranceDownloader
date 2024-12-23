@@ -1,34 +1,29 @@
 <template>
-	<div>
-		<audio :src="library.url ? 'http://localhost:3000' + library.url : ''" controls autoplay />
+	<div v-if="app.currentTrack" class="fixed bottom-0 w-full text-start bg-white">
+		<text class="p-2">{{ app.currentTrack.artist }} - {{ app.currentTrack.title }}</text>
+		<audio ref="audio" class="w-full" :src="'http://localhost:3000' + app.currentTrack.url" controls autoplay @play="app.isPlaying = true" @pause="app.isPlaying = false" />
 	</div>
 </template>
 
-<style scoped>
-div {
-	height: 10%;
-	background-color: rgb(92, 56, 113);
-	text-align: center;
-}
-
-audio {
-	position: absolute;
-	left: 10%;
-	right: 10%;
-	top: 40%;
-	bottom: 40%;
-	width: 80%;
-}
-</style>
-
 <script>
-import useLibraryStore from '@/stores/Library';
+import useApp from '@/stores/app';
 
 export default {
-	data() {
-		return {
-			library: useLibraryStore()
-		};
+	data: () => ({
+		app: useApp()
+	}),
+	watch: {
+		'app.isPlaying'() {
+			if (!this.$refs.audio) {
+				return;
+			}
+
+			if (this.app.isPlaying) {
+				this.$refs.audio.play();
+			} else {
+				this.$refs.audio.pause();
+			}
+		}
 	}
 };
 </script>

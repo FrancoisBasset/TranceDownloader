@@ -1,8 +1,11 @@
 <template>
 	<div>
-		<TrackSelector id="track-selector" v-if="library.ready" />
-		<DefinitionsForm id="definitions-form" v-if="library.track" :track="library.track" :key="library.track" />
-		<MusicPlayer id="music-player" :key="library.url" />
+		<b>Bibliothèque</b>
+		<br /><br />
+		<div class="bg-gray-100 !overflow-scroll rounded-lg h-[80vh]">
+			<TrackList  />
+		</div>
+		<!--<DefinitionsForm id="definitions-form" v-if="library.track" :track="library.track" :key="library.track" />-->
 	</div>
 </template>
 
@@ -27,9 +30,8 @@
 </style>
 
 <script setup>
-import TrackSelector from '@/components/TrackSelector.vue';
-import MusicPlayer from '@/components/MusicPlayer.vue';
-import DefinitionsForm from '@/components/DefinitionsForm.vue';
+import TrackList from '@/components/TrackList.vue';
+//import DefinitionsForm from '@/components/DefinitionsForm.vue';
 import useLibraryStore from '@/stores/Library';
 </script>
 
