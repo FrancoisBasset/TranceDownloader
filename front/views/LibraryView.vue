@@ -2,7 +2,7 @@
 	<div>
 		<b>Bibliothèque</b>
 		<br /><br />
-		<div class="bg-gray-100 !overflow-scroll rounded-lg h-[80vh]">
+		<div class="bg-sky-100 !overflow-scroll rounded-lg h-[80vh]">
 			<TrackList  />
 		</div>
 		<!--<DefinitionsForm id="definitions-form" v-if="library.track" :track="library.track" :key="library.track" />-->
