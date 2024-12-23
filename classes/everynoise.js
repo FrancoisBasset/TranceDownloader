@@ -1,7 +1,7 @@
 const fs = require('fs');
 const jsdom = require('jsdom').JSDOM;
 
-const Wishes = require('./Wishes');
+const wishesService = require('@/classes/wishes');
 
 module.exports.getGenres = () => {
 	const genres = [];
@@ -24,7 +24,7 @@ module.exports.getArtists = genre => {
 
 	const artists = [];
 
-	const wishes = Wishes.getWishes();
+	const wishes = wishesService.getWishes();
 	const tracks = JSON.parse(fs.readFileSync('public/library.json'));
 
 	return jsdom.fromURL('https://everynoise.com/engenremap-' + genre + '.html').then(response => {

@@ -5,7 +5,7 @@ const ffmpeg = require('fluent-ffmpeg');
 const NodeID3 = require('node-id3');
 const vm = require('vm');
 
-const Library = require('./Library');
+const libraryService = require('@/classes/library');
 
 const MUSIC_DIR = process.env.MUSIC_DIR + '/';
 
@@ -67,7 +67,7 @@ module.exports = {
 				genre: genre
 			}, filename);
 
-			Library.addTrack(artist, track, genre);
+			libraryService.addTrack(artist, track, genre);
 		});
 
 		return true;

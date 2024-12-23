@@ -33,7 +33,7 @@ export default {
 	},
 	methods: {
 		addWish() {
-			fetch(import.meta.env.VITE_API + '/trancedownloader/wishes', {
+			fetch(import.meta.env.VITE_API + '/wishes', {
 				method: 'POST',
 				headers: {
 					'Accept': 'application/json',

@@ -2,8 +2,10 @@ const dotenv = require('dotenv').config();
 const dotenvExpand = require('dotenv-expand');
 dotenvExpand.expand(dotenv);
 
-const Library = require('./classes').Library;
-Library.writeAllTracks();
+require('module-alias/register');
+
+const libraryService = require('@/classes/library');
+libraryService.writeAllTracks();
 
 const express = require('express');
 const fs = require('fs');
@@ -22,7 +24,8 @@ app.listen(process.env.PORT, () => {
 	console.log(`Go to http://localhost:${distExists ? process.env.PORT : 5173}`);
 });
 
-app.use('/', require('./routes'));
+app.use('/api', require('./routes'));
+app.use(express.static(process.env.MUSIC_DIR));
 
 if (distExists) {
 	app.use(express.static('./dist', {

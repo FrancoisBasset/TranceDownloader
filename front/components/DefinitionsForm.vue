@@ -70,7 +70,7 @@ export default {
 			this.value = this.library.track[definition];
 		},
 		update() {
-			fetch(import.meta.env.VITE_API + '/trancedownloader/library', {
+			fetch(import.meta.env.VITE_API + '/library', {
 				method: 'PUT',
 				headers: {
 					'Accept': 'application/json',

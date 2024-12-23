@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const Library = require('../classes').Library;
+const libraryService = require('@/classes/library');
 
 router.get('/definitions', (_, res) => {
-	const definitions = Library.getID3Definitions();
+	const definitions = libraryService.getID3Definitions();
 
 	res.json({
 		success: true,
@@ -13,7 +13,7 @@ router.get('/definitions', (_, res) => {
 });
 
 router.put('/', (req, res) => {
-	const track = Library.update(req.body.url, req.body.tag, req.body.value);
+	const track = libraryService.update(req.body.url, req.body.tag, req.body.value);
 
 	res.json({
 		success: true,

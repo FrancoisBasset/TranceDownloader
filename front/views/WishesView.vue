@@ -46,7 +46,7 @@ export default {
 	},
 	methods: {
 		initWishes() {
-			fetch(import.meta.env.VITE_API + '/trancedownloader/wishes')
+			fetch(import.meta.env.VITE_API + '/wishes')
 				.then(res => res.json())
 				.then(json => {
 					this.wishes = json.response

@@ -80,7 +80,7 @@ export default {
 		download() {
 			console.log(this.artist, this.track, this.genre);
 
-			fetch(import.meta.env.VITE_API + '/trancedownloader/youtube', {
+			fetch(import.meta.env.VITE_API + '/youtube', {
 				method: 'POST',
 				headers: {
 					'Accept': 'application/json',
