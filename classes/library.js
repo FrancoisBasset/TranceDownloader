@@ -11,20 +11,16 @@ module.exports = {
 
 		let tracks = fs.readdirSync(MUSIC_DIR).filter(track => track !== 'wishes.csv');
 
-		let i = 0;
-
-		tracks = tracks.map(track => {
+		tracks = tracks.map((track, i) => {
 			const tags = NodeId3.read(MUSIC_DIR + `${track}`, {
 				noRaw: true,
 				include: ['TPE1', 'TIT2', 'TCON']
 			});
 			tags.url = `/${track}`;
 
-			i++;
-
 			process.stdout.clearLine(0);
 			process.stdout.cursorTo(0);
-			process.stdout.write(`${i}/${tracks.length}`);
+			process.stdout.write(`${i + 1}/${tracks.length}`);
 
 			return tags;
 		});
