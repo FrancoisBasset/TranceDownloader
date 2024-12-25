@@ -20,7 +20,7 @@ export default {
 	data: () => ({
 		app: useApp(),
 		tracks: [],
-		sortMode: 'genre'
+		sortMode: 'artist'
 	}),
 	created() {
 		this.setTracks();
