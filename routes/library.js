@@ -13,7 +13,7 @@ router.get('/definitions', (_, res) => {
 });
 
 router.put('/', (req, res) => {
-	const track = libraryService.update(req.body.url, req.body.tag, req.body.value);
+	const track = libraryService.update(req.body.url, req.body.artist, req.body.title, req.body.genre);
 
 	res.json({
 		success: true,

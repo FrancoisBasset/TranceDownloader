@@ -51,33 +51,23 @@ module.exports = {
 		fs.writeFileSync(__dirname + '/../public/library.json', JSON.stringify(tracks));
 	},
 
-	update: (url, tag, value) => {
-		const updateInfo = {};
-		updateInfo[tag] = value;
+	update: (url, artist, title, genre) => {
+		const tags = {
+			artist: artist,
+			title: title,
+			genre: genre
+		};
 
 		let tracks = JSON.parse(fs.readFileSync(__dirname + '/../public/library.json').toString());
 		tracks = tracks.filter(t => t.url !== url);
 
-		let tags = NodeId3.update(updateInfo, MUSIC_DIR + `${url}`);
+		NodeId3.update(tags, MUSIC_DIR + `${url}`);
 
-		if (tag === 'artist' || tag === 'title') {
-			tags = NodeId3.read(MUSIC_DIR + `${url}`, {
-				noRaw: true,
-				include: ['TPE1', 'TIT2', 'TCON']
-			});
+		tags.url = `${tags.artist.split(' ').join('_')}_${tags.title.split(' ').join('_')}.mp3`;
 
-			const newUrl = `/${tags.artist.split(' ').join('_')}_${tags.title.split(' ').join('_')}.mp3`;
-
-			fs.renameSync(MUSIC_DIR + `${url}`, MUSIC_DIR + `${newUrl}`);
-
-			url = newUrl;
+		if (tags.url !== url) {
+			fs.renameSync(MUSIC_DIR + `${url}`, MUSIC_DIR + `${tags.url}`);
 		}
-
-		tags = NodeId3.read(MUSIC_DIR + `${url}`, {
-			noRaw: true,
-			include: ['TPE1', 'TIT2', 'TCON']
-		});
-		tags.url = url;
 
 		tracks.push(tags);
 		tracks = tracks.sort((track1, track2) => {
