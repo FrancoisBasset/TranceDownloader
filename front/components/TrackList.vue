@@ -1,9 +1,9 @@
 <template>
-	<table class="mx-auto text-start">
-		<tr>
-			<th class="text-start">Artiste</th>
-			<th class="text-start">Track</th>
-			<th class="text-start">Genre</th>
+	<table class="mx-auto text-start m-8">
+		<tr class="cursor-pointer">
+			<th @click="sortBy('artist')" class="text-start" :class="{ 'text-green-500': sortMode === 'artist' }">Artiste</th>
+			<th @click="sortBy('title')" class="text-start" :class="{ 'text-green-500': sortMode === 'title' }">Track</th>
+			<th @click="sortBy('genre')" class="text-start" :class="{ 'text-green-500': sortMode === 'genre' }">Genre</th>
 		</tr>
 		<TrackRow v-for="track of tracks" :key="track" :track="track" />
 	</table>
@@ -19,7 +19,8 @@ import useApp from '@/stores/app';
 export default {
 	data: () => ({
 		app: useApp(),
-		tracks: []
+		tracks: [],
+		sortMode: 'genre'
 	}),
 	created() {
 		this.setTracks();
@@ -28,6 +29,13 @@ export default {
 		async setTracks() {
 			this.tracks = await fetch('/library.json')
 				.then(res => res.json())
+		},
+		sortBy(type) {
+			this.sortMode = type;
+
+			this.tracks = this.tracks.sort((t1, t2) => {
+				return t1[type].localeCompare(t2[type]);
+			});
 		}
 	}
 };
