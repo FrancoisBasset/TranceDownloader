@@ -1,11 +1,12 @@
 const jsdom = require('jsdom').JSDOM;
 const CookieJar = require('jsdom').CookieJar;
-const ytdl = require('ytdl-core');
+const ytdl = require('@distube/ytdl-core');
 const ffmpeg = require('fluent-ffmpeg');
 const NodeID3 = require('node-id3');
 const vm = require('vm');
 
 const libraryService = require('@/classes/library');
+const wishesService = require('@/classes/wishes');
 
 const MUSIC_DIR = process.env.MUSIC_DIR + '/';
 
@@ -55,21 +56,27 @@ module.exports = {
 		});
 	},
 
-	download: (url, artist, track, genre) => {
-		const filename = MUSIC_DIR + '/' + artist.split(' ').join('_') + '_' + track.split(' ').join('_') + '.mp3';
-		const stream = ytdl(url, { filter: 'audioonly' });
-		const proc = new ffmpeg({ source: stream });
-		proc.saveToFile(filename);
-		proc.on('end', () => {
-			NodeID3.write({
-				artist: artist,
-				title: track,
-				genre: genre
-			}, filename);
+	download: (id, url, artist, title, genre, callback) => {
+		const filename = MUSIC_DIR + '/' + artist.split(' ').join('_') + '_' + title.split(' ').join('_') + '.mp3';
 
-			libraryService.addTrack(artist, track, genre);
+		const stream = ytdl(url, {
+			filter: 'audioandvideo'
 		});
 
-		return true;
+		ffmpeg(stream)
+			.noVideo()
+			.saveToFile(filename)
+			.on('end', () => {
+				NodeID3.write({
+					artist: artist,
+					title: title,
+					genre: genre
+				}, filename);
+
+				libraryService.addTrack(artist, title, genre);
+				wishesService.deleteWish(id);
+
+				callback();
+			});
 	}
 };

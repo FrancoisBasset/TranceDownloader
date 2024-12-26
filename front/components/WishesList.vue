@@ -9,7 +9,7 @@
 				<th class="text-start">Lien</th>
 				<th class="text-start">Aperçu</th>
 			</tr>
-			<WishRow v-for="wish of wishes" :key="wish" :wish="wish" @wishUpdated="this.setWishes" @wishDeleted="this.setWishes" />
+			<WishRow v-for="wish of wishes" :key="wish" :wish="wish" @wishUpdated="setWishes" @wishDeleted="setWishes" @wishDownloaded="setWishes" />
 		</table>
 	</div>
 </template>
@@ -34,11 +34,9 @@ export default {
 				.then(res => res.json())
 				.then(json => json.response);
 
-			this.wishes = this.wishes
-				.sort((wish1, wish2) => {
-					return wish1.artist.localeCompare(wish2.artist) || wish1.title.localeCompare(wish2.title);
-				})
-				.filter(w => !w.done);
+			this.wishes = this.wishes.sort((wish1, wish2) => {
+				return wish1.artist.localeCompare(wish2.artist) || wish1.title.localeCompare(wish2.title);
+			});
 		},
 		sortBy(type) {
 			this.sortMode = type;

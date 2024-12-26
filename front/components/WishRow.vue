@@ -24,6 +24,11 @@
 		<td>
 			<DeleteButton @click="deleteWish" />
 		</td>
+
+		<td>
+			<DownloadButton v-if="!downloading" @click="downloadWish" />
+			<Spinner v-else />
+		</td>
 	</tr>
 </template>
 
@@ -32,6 +37,8 @@ import GenreSelect from '@/components/GenreSelect.vue';
 import EditButton from '@/components/EditButton.vue';
 import SaveButton from '@/components/SaveButton.vue';
 import DeleteButton from '@/components/DeleteButton.vue';
+import DownloadButton from '@/components/DownloadButton.vue';
+import Spinner from '@/components/Spinner.vue';
 </script>
 
 <script>
@@ -41,7 +48,8 @@ export default {
 	props: ['wish'],
 	data: () => ({
 		app: useApp(),
-		editMode: false
+		editMode: false,
+		downloading: false
 	}),
 	computed: {
 		trClasses() {
@@ -69,6 +77,26 @@ export default {
 			}).then(() => {
 				this.editMode = false;
 				this.$emit('wishUpdated');
+			});
+		},
+		downloadWish() {
+			this.downloading = true;
+
+			fetch(import.meta.env.VITE_API + '/youtube', {
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					id: this.wish.id,
+					url: this.wish.url,
+					artist: this.wish.artist,
+					title: this.wish.title,
+					genre: this.wish.genre
+				})
+			}).then(() => {
+				this.$emit('wishDownloaded');
 			});
 		},
 		deleteWish() {

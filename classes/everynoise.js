@@ -41,7 +41,7 @@ module.exports.getArtists = genre => {
 			track = track.substring(0, track.length - 1);
 
 			let have = 0;
-			if (wishes.filter(wish => wish.artist === artist && !wish.done).length > 0) {
+			if (wishes.filter(wish => wish.artist === artist).length > 0) {
 				have = 1;
 			}
 			if (tracks.filter(t => t.artist === artist).length > 0) {

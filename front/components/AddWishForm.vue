@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import GenreSelect from './GenreSelect.vue';
+import GenreSelect from '@/components/GenreSelect.vue';
 </script>
 
 <script>

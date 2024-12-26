@@ -25,33 +25,23 @@ module.exports.getWishes = () => {
 
 	const lines = csv.split('\r\n');
 
-	const wishes = [];
-
 	const tracks = JSON.parse(fs.readFileSync(__dirname + '/../public/library.json').toString());
 
-	for (const line of lines) {
-		let done = false;
-		if (line.split(';')[2] !== '') {
-			if (tracks.filter(track => track.artist === line.split(';')[1] && track.title === line.split(';')[2]).length > 0) {
-				done = true;
-			}
-		} else {
-			if (tracks.filter(track => track.artist === line.split(';')[1]).length > 0) {
-				done = true;
-			}
+	return lines.reduce((wishes, line) => {
+		const done = tracks.find(track => track.artist === line.split(';')[1] && track.title === line.split(';')[2]) !== undefined;
+
+		if (!done) {
+			wishes.push({
+				id: line.split(';')[0],
+				artist: line.split(';')[1],
+				title: line.split(';')[2],
+				genre: line.split(';')[3],
+				url: line.split(';')[4]
+			});
 		}
 
-		wishes.push({
-			id: line.split(';')[0],
-			artist: line.split(';')[1],
-			title: line.split(';')[2],
-			genre: line.split(';')[3],
-			url: line.split(';')[4],
-			done: done
-		});
-	}
-
-	return wishes;
+		return wishes;
+	}, []);
 };
 
 module.exports.addWish = (artist, title, genre, url) => {
@@ -74,8 +64,7 @@ module.exports.addWish = (artist, title, genre, url) => {
 		artist: artist,
 		title: title,
 		genre: genre,
-		url: url,
-		done: false
+		url: url
 	};
 };
 
