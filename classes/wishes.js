@@ -9,7 +9,7 @@ if (!fs.existsSync(MUSIC_DIR + 'wishes.csv')) {
 function writeWishes(wishes) {
 	let text = '';
 	for (const wish of wishes) {
-		text += `${wish.id};${wish.artist};${wish.track}\r\n`;
+		text += `${wish.id};${wish.artist};${wish.title};${wish.genre};${wish.url}\r\n`;
 	}
 
 	text = text.substring(0, text.length - 2);
@@ -44,7 +44,9 @@ module.exports.getWishes = () => {
 		wishes.push({
 			id: line.split(';')[0],
 			artist: line.split(';')[1],
-			track: line.split(';')[2],
+			title: line.split(';')[2],
+			genre: line.split(';')[3],
+			url: line.split(';')[4],
 			done: done
 		});
 	}
@@ -52,7 +54,7 @@ module.exports.getWishes = () => {
 	return wishes;
 };
 
-module.exports.addWish = (artist, track) => {
+module.exports.addWish = (artist, title, genre, url) => {
 	const wishes = this.getWishes();
 
 	let id = 1;
@@ -60,7 +62,7 @@ module.exports.addWish = (artist, track) => {
 		id = parseInt(wishes[wishes.length - 1].id) + 1;
 	}
 
-	let line = `\r\n${id};${artist};${track}`;
+	let line = `\r\n${id};${artist};${title};${genre};${url}`;
 	if (wishes.length === 0) {
 		line = line.substring(2);
 	}
@@ -70,7 +72,9 @@ module.exports.addWish = (artist, track) => {
 	return {
 		id: id,
 		artist: artist,
-		track: track,
+		title: title,
+		genre: genre,
+		url: url,
 		done: false
 	};
 };
@@ -83,14 +87,16 @@ module.exports.deleteWish = id => {
 	writeWishes(wishes);
 };
 
-module.exports.updateWish = (id, artist, track) => {
+module.exports.updateWish = (id, artist, title, genre, url) => {
 	const wishes = this.getWishes();
 
 	wishes
 		.filter(w => w.id === id)
 		.forEach(w => {
 			w.artist = artist;
-			w.track = track;
+			w.title = title;
+			w.genre = genre;
+			w.url = url;
 			return w;
 		});
 

@@ -1,35 +1,38 @@
 <template>
 	<div>
-		<h1>Ajouter</h1>
+		<b>Ajouter une vidéo</b>
 
-		<label>Artiste : </label>
-		<input type="text" v-model="artist" />
-		<br /><br />
+		<div>Url : <input type="text" v-model="wish.url" /></div>
+		<div v-if="wish.url">Artiste : <input type="text" v-model="wish.artist" /></div>
+		<div v-if="wish.url">Titre : <input type="text" v-model="wish.title" /></div>
+		<div v-if="wish.url">Genre : <GenreSelect @change="wish.genre = $event.target.value" :value="wish.genre" /></div>
 
-		<label>Track : </label>
-		<input type="text" v-model="track" />
-		<br /><br />
+		<iframe v-if="wish.url" class="mx-auto" width="350" height="200" :src="youtubeLink" frameborder="0"></iframe>
 
-		<button @click="addWish()">Ajouter</button>
+		<button @click="addWish()" class="bg-green-500 text-white">Ajouter</button>
 	</div>
 </template>
 
-<style scoped>
-div {
-	width: 50%;
-	height: 45%;
-	background-color: rgb(63, 104, 73);
-}
-</style>
+<script setup>
+import GenreSelect from './GenreSelect.vue';
+</script>
 
 <script>
 export default {
-	emits: ['wishAdded'],
 	data() {
 		return {
-			artist: '',
-			track: ''
+			wish: {
+				artist: '',
+				title: '',
+				genre: '',
+				url: ''
+			}
 		};
+	},
+	computed: {
+		youtubeLink() {
+			return 'https://www.youtube.com/embed/' + this.wish.url.split('v=')[1];
+		}
 	},
 	methods: {
 		addWish() {
@@ -39,19 +42,33 @@ export default {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({
-					artist: this.artist,
-					track: this.track
-				})
+				body: JSON.stringify(this.wish)
 			}).then(response => {
 				response.json().then(() => {
-					this.artist = '';
-					this.track = '';
-
-					localStorage.clear();
+					this.wish = {
+						artist: '',
+						title: '',
+						genre: '',
+						url: ''
+					};
 					this.$emit('wishAdded');
 				});
 			});
+		}
+	},
+	watch: {
+		'wish.url'() {
+			fetch('https://www.youtube.com/oembed?url=' + this.wish.url)
+				.then(res => res.json())
+				.then(json => {
+					if (json.title.includes(' - ')) {
+						this.wish.artist = json.title.split(' - ')[0];
+						this.wish.title = json.title.split(' - ')[1];
+					} else {
+						this.wish.artist = json.author_name;
+						this.wish.title = json.title;
+					}
+				})
 		}
 	}
 };

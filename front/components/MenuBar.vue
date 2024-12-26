@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<button>Bibliothèque</button>
-		<button>En attente</button>
+		<button>À ajouter</button>
 		<button>YouTube</button>
 		<button>EveryNoise</button>
 	</div>

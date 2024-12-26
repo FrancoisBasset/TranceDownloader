@@ -74,3 +74,11 @@ export default {
 	}
 };
 </script>
+
+<style scoped>
+input[type="text"], select {
+	height: 20px;
+	margin: 0;
+	width: 150px;
+}
+</style>

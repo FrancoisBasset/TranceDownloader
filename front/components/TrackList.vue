@@ -2,7 +2,7 @@
 	<table class="mx-auto text-start m-8">
 		<tr class="cursor-pointer">
 			<th @click="sortBy('artist')" class="text-start" :class="{ 'text-green-500': sortMode === 'artist' }">Artiste</th>
-			<th @click="sortBy('title')" class="text-start" :class="{ 'text-green-500': sortMode === 'title' }">Track</th>
+			<th @click="sortBy('title')" class="text-start" :class="{ 'text-green-500': sortMode === 'title' }">Titre</th>
 			<th @click="sortBy('genre')" class="text-start" :class="{ 'text-green-500': sortMode === 'genre' }">Genre</th>
 		</tr>
 		<TrackRow v-for="track of tracks" :key="track" :track="track" />

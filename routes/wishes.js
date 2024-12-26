@@ -13,7 +13,7 @@ router.get('/', (_, res) => {
 });
 
 router.post('/', (req, res) => {
-	const wish = wishesService.addWish(req.body.artist, req.body.track);
+	const wish = wishesService.addWish(req.body.artist, req.body.title, req.body.genre, req.body.url);
 
 	res.json({
 		success: true,
@@ -30,7 +30,7 @@ router.delete('/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-	const wish = wishesService.updateWish(req.params.id, req.body.artist, req.body.track);
+	const wish = wishesService.updateWish(req.params.id, req.body.artist, req.body.title, req.body.genre, req.body.url);
 
 	res.json({
 		success: true,

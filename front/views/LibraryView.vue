@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<b>Bibliothèque</b>
+		<b class="text-lg">Bibliothèque</b>
 		<br /><br />
 		<div class="bg-sky-100 !overflow-scroll rounded-lg h-[80vh]">
 			<TrackList  />

@@ -1,66 +1,13 @@
 <template>
 	<div>
-		<WishesTable v-if="wishes" id="wishesDiv" :wishes="wishes" @wishSelected="wish => onWishSelected(wish)" />
-		<AddWishForm id="addDiv" @wishAdded="initWishes()" />
-		<UpdateWishForm v-if="selectedWish" id="updateDiv" @wishUpdated="initWishes()" :wishes="wishes" :wish="selectedWish" :key="selectedWish" />
+		<b class="text-lg">Vidéos à ajouter</b>
+		<br /><br />
+		<div class="bg-sky-100 !overflow-scroll rounded-lg h-[80vh]">
+			<WishesList />
+		</div>
 	</div>
 </template>
 
-<style scoped>
-#wishesDiv {
-	position: absolute;
-	top: 15%;
-}
-
-#addDiv {
-	position: absolute;
-	right: 0;
-	top: 10%;
-	text-align: center;
-}
-
-#updateDiv {
-	position: absolute;
-	top: 55%;
-	right: 0;
-	text-align: center;
-}
-</style>
-
 <script setup>
-import WishesTable from '@/components/WishesTable.vue';
-import AddWishForm from '@/components/AddWishForm.vue';
-import UpdateWishForm from '@/components/UpdateWishForm.vue';
-</script>
-
-<script>
-export default {
-	data() {
-		return {
-			wishes: null,
-			selectedWish: null
-		};
-	},
-	created() {
-		this.initWishes();
-	},
-	methods: {
-		initWishes() {
-			fetch(import.meta.env.VITE_API + '/wishes')
-				.then(res => res.json())
-				.then(json => {
-					this.wishes = json.response
-						.sort((wish1, wish2) => {
-							return wish1.artist.localeCompare(wish2.artist) || wish1.track.localeCompare(wish2.track);
-						})
-						.filter(w => !w.done);
-
-					this.selectedWish = this.wishes[0];
-				});
-		},
-		onWishSelected(wish) {
-			this.selectedWish = wish;
-		}
-	}
-};
+import WishesList from '@/components/WishesList.vue';
 </script>
