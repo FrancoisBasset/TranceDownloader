@@ -64,7 +64,7 @@ export default {
 					artist: this.wish.artist,
 					title: this.wish.title,
 					genre: this.wish.genre,
-					url: this.wish.url,
+					url: this.wish.url
 				})
 			}).then(() => {
 				this.editMode = false;

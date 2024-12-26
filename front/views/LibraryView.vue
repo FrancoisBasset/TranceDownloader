@@ -3,7 +3,7 @@
 		<b class="text-lg">Bibliothèque</b>
 		<br /><br />
 		<div class="bg-sky-100 !overflow-scroll rounded-lg h-[80vh]">
-			<TrackList  />
+			<TrackList />
 		</div>
 	</div>
 </template>

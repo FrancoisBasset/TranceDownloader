@@ -34,9 +34,11 @@ export default {
 				.then(res => res.json())
 				.then(json => json.response);
 
-			this.wishes = this.wishes.sort((wish1, wish2) => {
-				return wish1.artist.localeCompare(wish2.artist) || wish1.title.localeCompare(wish2.title);
-			}).filter(w => !w.done);
+			this.wishes = this.wishes
+				.sort((wish1, wish2) => {
+					return wish1.artist.localeCompare(wish2.artist) || wish1.title.localeCompare(wish2.title);
+				})
+				.filter(w => !w.done);
 		},
 		sortBy(type) {
 			this.sortMode = type;

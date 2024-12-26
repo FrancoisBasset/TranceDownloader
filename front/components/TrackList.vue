@@ -27,8 +27,7 @@ export default {
 	},
 	methods: {
 		async setTracks() {
-			this.tracks = await fetch('/library.json')
-				.then(res => res.json())
+			this.tracks = await fetch('/library.json').then(res => res.json());
 		},
 		sortBy(type) {
 			this.sortMode = type;

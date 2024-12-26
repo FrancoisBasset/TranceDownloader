@@ -68,7 +68,7 @@ export default {
 						this.wish.artist = json.author_name;
 						this.wish.title = json.title;
 					}
-				})
+				});
 		}
 	}
 };
