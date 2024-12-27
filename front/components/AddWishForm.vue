@@ -65,9 +65,13 @@ export default {
 						this.wish.artist = json.title.split(' - ')[0];
 						this.wish.title = json.title.split(' - ')[1];
 					} else {
-						this.wish.artist = json.author_name;
+						this.wish.artist = json.author_name.replace(' - Topic', '');
+
 						this.wish.title = json.title;
 					}
+
+					this.wish.title = this.wish.title.replace(' (Original Mix)', '');
+					this.wish.title = this.wish.title.replace(' (Extended Mix)', '');
 				});
 		}
 	}
