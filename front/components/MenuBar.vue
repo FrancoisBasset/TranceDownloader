@@ -1,22 +1,19 @@
 <template>
 	<div>
-		<button @click="goTo('library')">Bibliothèque</button>
-		<button @click="goTo('wishes')">À ajouter</button>
-		<button>YouTube</button>
+		<button @click="app.goTo('library')">Bibliothèque</button>
+		<button @click="app.goTo('wishes')">À ajouter</button>
+		<button @click="app.goTo('youtube')">YouTube</button>
 		<button>EveryNoise</button>
 	</div>
 </template>
 
 <script>
+import useApp from '@/stores/app';
+
 export default {
-	methods: {
-		goTo(id) {
-			scrollTo({
-				behavior: 'smooth',
-				top: document.getElementById(id).offsetTop - 50
-			});
-		}
-	}
+	data: () => ({
+		app: useApp()
+	})
 };
 </script>
 

@@ -18,9 +18,12 @@ import GenreSelect from '@/components/GenreSelect.vue';
 </script>
 
 <script>
+import useApp from '@/stores/app';
+
 export default {
 	data() {
 		return {
+			app: useApp(),
 			wish: {
 				artist: '',
 				title: '',
@@ -73,6 +76,9 @@ export default {
 					this.wish.title = this.wish.title.replace(' (Original Mix)', '');
 					this.wish.title = this.wish.title.replace(' (Extended Mix)', '');
 				});
+		},
+		'app.wishUrl'() {
+			this.wish.url = this.app.wishUrl;
 		}
 	}
 };

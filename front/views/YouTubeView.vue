@@ -1,74 +1,41 @@
 <template>
 	<div>
-		<div id="searchDiv">
-			<input type="text" v-model="searchText" @keydown="search($event)" id="searchInput" autocomplete="off" />
+		<b class="text-lg">YouTube</b>
+		<br /><br />
+		<div class="bg-sky-100 !overflow-scroll rounded-lg h-[80vh]">
+			<div>
+				<input type="text" v-model="searchText" autocomplete="off" />
+				<button class="bg-green-500 text-white" @click="search">OK</button>
+			</div>
+			<YouTubeResultsList :results="results" />
 		</div>
-		<VideoResultsTable id="resultsTable" :results="results" @resultSelected="result => this.resultSelected = result" />
-		<YouTubeDownloadForm id="downloadForm" :result="resultSelected" :key="resultSelected" />
 	</div>
 </template>
 
-<style scoped>
-#searchDiv {
-	position: absolute;
-	width: 100%;
-	height: 10%;
-	top: 10%;
-
-	background-color: rgb(116, 59, 112);
-	text-align: center;
-}
-
-#searchInput {
-	width: 700px;
-	height: 50px;
-	font-size: 20px;
-	margin-top: 20px;
-}
-
-#resultsTable {
-	position: absolute;
-	top: 20%;
-}
-
-#downloadForm {
-	position: absolute;
-	top: 20%;
-	right: 0;
-	text-align: center;
-}
-</style>
-
 <script setup>
-import VideoResultsTable from '@/components/VideoResultsTable.vue';
-import YouTubeDownloadForm from '@/components/YouTubeDownloadForm.vue';
+import YouTubeResultsList from '@/components/YouTubeResultsList.vue';
 </script>
 
 <script>
+import useApp from '@/stores/app';
+
 export default {
 	data() {
 		return {
+			app: useApp(),
 			searchText: '',
-			results: [],
-			resultSelected: null
+			results: []
 		};
 	},
-	mounted() {
-		if (localStorage.getItem('search')) {
-			this.searchText = localStorage.getItem('search');
-			localStorage.removeItem('search');
-			this.search();
-		}
-	},
 	methods: {
-		search(e) {
-			if (!e || e.key === 'Enter') {
-				fetch(import.meta.env.VITE_API + '/trancedownloader/youtube?search=' + this.searchText).then(response => {
-					response.json().then(json => {
-						this.results = json.response;
-					});
+		search() {
+			this.app.goTo('youtube');
+
+			fetch(import.meta.env.VITE_API + '/youtube?search=' + this.searchText)
+				.then(res => res.json())
+				.then(json => {
+					this.results = json.response;
 				});
-			}
 		}
 	}
 };

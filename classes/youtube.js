@@ -42,12 +42,18 @@ module.exports = {
 			let videos = [];
 			for (const content of contents) {
 				if (content.videoWithContextRenderer !== undefined) {
+					const url = content.videoWithContextRenderer.navigationEndpoint.commandMetadata.webCommandMetadata.url.split('&pp')[0];
+
+					if (url.startsWith('/shorts/')) {
+						continue;
+					}
+
 					videos.push({
 						title: content.videoWithContextRenderer.headline.runs[0].text,
 						image: content.videoWithContextRenderer.thumbnail.thumbnails[0].url,
 						channel: content.videoWithContextRenderer.shortBylineText.runs[0].text,
-						views: content.videoWithContextRenderer.shortViewCountText.runs[0].text,
-						url: 'https://www.youtube.com' + content.videoWithContextRenderer.navigationEndpoint.commandMetadata.webCommandMetadata.url
+						views: content.videoWithContextRenderer.shortViewCountText.runs[0].text.split(' ')[0],
+						url: 'https://www.youtube.com' + url
 					});
 				}
 			}
