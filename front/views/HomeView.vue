@@ -1,8 +1,13 @@
 <template>
 	<div>
-		<LibraryView class="w-10/12 mx-auto" />
+		<LibraryView id="library" class="w-10/12 mx-auto" />
 		<br />
-		<WishesView class="w-10/12 mx-auto" />
+		<WishesView id="wishes" class="w-10/12 mx-auto" />
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
 
 		<MusicPlayer />
 	</div>

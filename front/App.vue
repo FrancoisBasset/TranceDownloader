@@ -1,7 +1,7 @@
 <template>
 	<div class="text-center">
-		<MenuBar />
-		<RouterView />
+		<MenuBar class="fixed bg-white w-full" />
+		<RouterView class="pt-[50px]" />
 	</div>
 </template>
 
