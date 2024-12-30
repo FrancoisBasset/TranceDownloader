@@ -2,10 +2,14 @@
 	<div>
 		<b class="text-lg">YouTube</b>
 		<br /><br />
-		<div class="bg-sky-100 !overflow-scroll rounded-lg h-[80vh]">
+		<div @scroll="onScroll" ref="list" class="bg-sky-100 !overflow-scroll rounded-lg h-[80vh]">
+			<div class="sticky top-3 flex justify-end pr-3" v-if="scrollTop !== 0">
+				<TopButton @click="$refs.list.scrollTop = 0" />
+			</div>
 			<div>
 				<input type="text" v-model="searchText" autocomplete="off" />
-				<button class="bg-green-500 text-white" @click="search">OK</button>
+				<button :class="searchButtonClasses" @click="search">OK</button>
+				<button v-if="!emptySearch" class="bg-red-500 text-white w-20" @click="clear">Effacer</button>
 			</div>
 			<YouTubeResultsList :results="results" />
 		</div>
@@ -14,6 +18,7 @@
 
 <script setup>
 import YouTubeResultsList from '@/components/YouTubeResultsList.vue';
+import TopButton from '@/components/TopButton.vue';
 </script>
 
 <script>
@@ -24,11 +29,30 @@ export default {
 		return {
 			app: useApp(),
 			searchText: '',
-			results: []
+			results: [],
+			scrollTop: 0
 		};
+	},
+	computed: {
+		emptySearch() {
+			return this.searchText.trim() === '';
+		},
+		searchButtonClasses() {
+			return {
+				'bg-green-500': !this.emptySearch,
+				'bg-gray-500': this.emptySearch,
+				'text-white': true,
+				'w-10': true,
+				'cursor-not-allowed': this.emptySearch
+			};
+		}
 	},
 	methods: {
 		search() {
+			if (this.emptySearch) {
+				return;
+			}
+
 			this.app.goTo('youtube');
 
 			fetch(import.meta.env.VITE_API + '/youtube?search=' + this.searchText)
@@ -36,6 +60,13 @@ export default {
 				.then(json => {
 					this.results = json.response;
 				});
+		},
+		clear() {
+			this.searchText = '';
+			this.results = [];
+		},
+		onScroll() {
+			this.scrollTop = this.$refs.list.scrollTop;
 		}
 	}
 };
