@@ -5,16 +5,20 @@ export default defineStore('app', {
 		currentTrack: null,
 		isPlaying: false,
 		wishUrl: '',
-		mode: 'library'
+		mode: 'library',
+		direct: false
 	}),
 	actions: {
-		goTo(mode) {
+		async goTo(mode) {
+			this.direct = true;
 			this.mode = mode;
 
 			document.getElementById('view').scrollTo({
 				behavior: 'smooth',
 				top: document.getElementById(mode).offsetTop - 100
 			});
+			await new Promise(r => setTimeout(r, 1000));
+			this.direct = false;
 		}
 	}
 });
