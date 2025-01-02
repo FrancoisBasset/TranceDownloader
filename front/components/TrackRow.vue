@@ -8,6 +8,9 @@
 
 		<td v-if="!editMode">{{ track.genre }}</td>
 		<td v-else><GenreSelect @change="track.genre = $event.target.value" :value="track.genre" /></td>
+
+		<td>{{ duration }}</td>
+
 		<td>
 			<PlayButton v-if="app.currentTrack !== track || !app.isPlaying" @click="selectTrack" />
 			<PauseButton v-else-if="app.currentTrack === track && app.isPlaying" @click="app.isPlaying = false" />
@@ -34,8 +37,30 @@ export default {
 	props: ['track'],
 	data: () => ({
 		app: useApp(),
-		editMode: false
+		editMode: false,
+		duration: '↻'
 	}),
+	async created() {
+		const audio = document.createElement('audio');
+		audio.src = 'http://localhost:3000' + this.track.url;
+      
+      	while (isNaN(audio.duration)) {
+       		await new Promise(r => setTimeout(r, 10));
+      	}
+
+		const duration = Math.round(audio.duration);
+
+		let minutes = Math.floor(duration / 60);
+		if (minutes < 10) {
+			minutes = '0' + minutes;
+		}
+		let seconds = duration % 60;
+		if (seconds < 10) {
+			seconds = '0' + seconds;
+		}
+
+		this.duration = minutes + ':' + seconds;
+	},
 	computed: {
 		trClasses() {
 			if (this.editMode) {

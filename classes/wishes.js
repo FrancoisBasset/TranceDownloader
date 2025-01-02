@@ -1,11 +1,5 @@
 const fs = require('fs');
 
-const MUSIC_DIR = process.env.MUSIC_DIR + '/';
-
-if (!fs.existsSync(MUSIC_DIR + 'wishes.csv')) {
-	fs.writeFileSync(MUSIC_DIR + 'wishes.csv', '');
-}
-
 function writeWishes(wishes) {
 	let text = '';
 	for (const wish of wishes) {
@@ -14,11 +8,11 @@ function writeWishes(wishes) {
 
 	text = text.substring(0, text.length - 2);
 
-	fs.writeFileSync(MUSIC_DIR + 'wishes.csv', text);
+	fs.writeFileSync(process.env.MUSIC_DIR + '/wishes.csv', text);
 }
 
 module.exports.getWishes = () => {
-	const csv = fs.readFileSync(MUSIC_DIR + 'wishes.csv').toString();
+	const csv = fs.readFileSync(process.env.MUSIC_DIR + '/wishes.csv').toString();
 	if (csv === '') {
 		return [];
 	}
@@ -57,7 +51,7 @@ module.exports.addWish = (artist, title, genre, url) => {
 		line = line.substring(2);
 	}
 
-	fs.appendFileSync(MUSIC_DIR + 'wishes.csv', line);
+	fs.appendFileSync(process.env.MUSIC_DIR + '/wishes.csv', line);
 
 	return {
 		id: id,
@@ -96,7 +90,7 @@ module.exports.updateWish = (id, artist, title, genre, url) => {
 
 module.exports.initWishes = () => {
 	const lines = fs
-		.readFileSync(MUSIC_DIR + 'wishes.csv')
+		.readFileSync(process.env.MUSIC_DIR + '/wishes.csv')
 		.toString()
 		.split('\r\n');
 	let text = lines.reduce((acc, line, index) => {
@@ -104,5 +98,5 @@ module.exports.initWishes = () => {
 	}, '');
 	text = text.substring(0, text.length - 2);
 
-	fs.writeFileSync(MUSIC_DIR + 'wishes.csv', text);
+	fs.writeFileSync(process.env.MUSIC_DIR + '/wishes.csv', text);
 };

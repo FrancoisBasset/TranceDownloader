@@ -11,7 +11,7 @@
 
 			<iframe class="mx-auto" width="350" height="200" :src="youtubeLink" frameborder="0"></iframe>
 
-			<button @click="addWish()" :class="addButtonClasses">Ajouter</button>
+			<button @click="addWish" :class="addButtonClasses">Ajouter</button>
 			<button @click="wish = getInitialWish()" class="bg-red-500 text-white w-20">Annuler</button>
 		</div>
 	</div>

@@ -4,13 +4,19 @@ dotenvExpand.expand(dotenv);
 
 require('module-alias/register');
 
-const libraryService = require('@/classes/library');
-libraryService.writeAllTracks();
-
 const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
 const app = express();
+
+if (process.env.MUSIC_DIR) {
+	if (!fs.existsSync(process.env.MUSIC_DIR + '/wishes.csv')) {
+		fs.writeFileSync(process.env.MUSIC_DIR + '/wishes.csv', '');
+	}
+
+	const libraryService = require('@/classes/library');
+	libraryService.writeAllTracks();
+}
 
 const { exec } = require('child_process');
 
@@ -25,7 +31,9 @@ app.listen(process.env.PORT, () => {
 });
 
 app.use('/api', require('./routes'));
-app.use(express.static(process.env.MUSIC_DIR));
+if (process.env.MUSIC_DIR) {
+	app.use(express.static(process.env.MUSIC_DIR));
+}
 
 if (distExists) {
 	app.use(express.static('./dist', {

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AddWishForm @wishAdded="this.setWishes" />
+		<AddWishForm class="p-6" @wishAdded="this.setWishes" />
 		<table class="mx-auto text-start m-8">
 			<tr class="cursor-pointer">
 				<th @click="sortBy('artist')" class="text-start" :class="{ 'text-green-500': sortMode === 'artist' }">Artiste</th>
