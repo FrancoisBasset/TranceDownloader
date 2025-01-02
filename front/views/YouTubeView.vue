@@ -1,5 +1,5 @@
 <template>
-	<div @scroll="onScroll" ref="list" class="bg-sky-100 !overflow-scroll rounded-lg h-[80vh] shadow-2xl">
+	<div @scroll="onScroll" ref="list" class="bg-zinc-100 !overflow-scroll rounded-lg h-[80vh] shadow-2xl">
 		<div class="sticky top-3 flex justify-end pr-3" v-if="scrollTop !== 0">
 			<TopButton @click="$refs.list.scrollTop = 0" />
 		</div>

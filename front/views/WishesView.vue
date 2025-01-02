@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-sky-100 !overflow-scroll rounded-lg h-[80vh] shadow-2xl">
+	<div class="bg-zinc-100 !overflow-scroll rounded-lg h-[80vh] shadow-2xl">
 		<WishesList />
 	</div>
 </template>

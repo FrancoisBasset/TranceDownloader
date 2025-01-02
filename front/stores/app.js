@@ -4,13 +4,16 @@ export default defineStore('app', {
 	state: () => ({
 		currentTrack: null,
 		isPlaying: false,
-		wishUrl: ''
+		wishUrl: '',
+		mode: 'library'
 	}),
 	actions: {
-		goTo(id) {
+		goTo(mode) {
+			this.mode = mode;
+
 			document.getElementById('view').scrollTo({
 				behavior: 'smooth',
-				top: document.getElementById(id).offsetTop - 100
+				top: document.getElementById(mode).offsetTop - 100
 			});
 		}
 	}
