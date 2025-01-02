@@ -1,15 +1,8 @@
 <template>
-	<div>
-		<LibraryView id="library" class="w-10/12 mx-auto" />
-		<br />
-		<WishesView id="wishes" class="w-10/12 mx-auto" />
-		<br />
-		<YouTubeView id="youtube" class="w-10/12 mx-auto" />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
+	<div class="mb-28 flex flex-col gap-24">
+		<LibraryView id="library" class="w-10/12 mx-auto mt-[40px]" />
+		<WishesView id="wishes" class="w-10/12 mx-auto mt-[40px]" />
+		<YouTubeView id="youtube" class="w-10/12 mx-auto mt-[40px]" />
 
 		<MusicPlayer />
 	</div>

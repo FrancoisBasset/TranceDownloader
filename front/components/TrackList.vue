@@ -1,5 +1,5 @@
 <template>
-	<table class="mx-auto text-start m-8">
+	<table class="mx-auto text-start">
 		<tr class="cursor-pointer">
 			<th @click="sortBy('artist')" class="text-start" :class="{ 'text-green-500': sortMode === 'artist' }">Artiste</th>
 			<th @click="sortBy('title')" class="text-start" :class="{ 'text-green-500': sortMode === 'title' }">Titre</th>

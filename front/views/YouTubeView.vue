@@ -1,18 +1,14 @@
 <template>
-	<div>
-		<b class="text-lg">YouTube</b>
-		<br /><br />
-		<div @scroll="onScroll" ref="list" class="bg-sky-100 !overflow-scroll rounded-lg h-[80vh] shadow-2xl">
-			<div class="sticky top-3 flex justify-end pr-3" v-if="scrollTop !== 0">
-				<TopButton @click="$refs.list.scrollTop = 0" />
-			</div>
-			<div class="p-6">
-				<input type="text" v-model="searchText" autocomplete="off" />
-				<button :class="searchButtonClasses" @click="search">OK</button>
-				<button v-if="!emptySearch" class="bg-red-500 text-white w-20" @click="clear">Effacer</button>
-			</div>
-			<YouTubeResultsList :results="results" />
+	<div @scroll="onScroll" ref="list" class="bg-sky-100 !overflow-scroll rounded-lg h-[80vh] shadow-2xl">
+		<div class="sticky top-3 flex justify-end pr-3" v-if="scrollTop !== 0">
+			<TopButton @click="$refs.list.scrollTop = 0" />
 		</div>
+		<div class="p-6">
+			<input type="text" v-model="searchText" autocomplete="off" />
+			<button :class="searchButtonClasses" @click="search">OK</button>
+			<button v-if="!emptySearch" class="bg-red-500 text-white w-20" @click="clear">Effacer</button>
+		</div>
+		<YouTubeResultsList :results="results" />
 	</div>
 </template>
 

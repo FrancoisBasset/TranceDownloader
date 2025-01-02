@@ -8,9 +8,9 @@ export default defineStore('app', {
 	}),
 	actions: {
 		goTo(id) {
-			scrollTo({
+			document.getElementById('view').scrollTo({
 				behavior: 'smooth',
-				top: document.getElementById(id).offsetTop - 50
+				top: document.getElementById(id).offsetTop - 100
 			});
 		}
 	}

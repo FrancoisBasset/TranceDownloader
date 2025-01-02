@@ -1,10 +1,6 @@
 <template>
-	<div>
-		<b class="text-lg">Vidéos à ajouter</b>
-		<br /><br />
-		<div class="bg-sky-100 !overflow-scroll rounded-lg h-[80vh] shadow-2xl">
-			<WishesList />
-		</div>
+	<div class="bg-sky-100 !overflow-scroll rounded-lg h-[80vh] shadow-2xl">
+		<WishesList />
 	</div>
 </template>
 
