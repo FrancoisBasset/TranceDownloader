@@ -4,9 +4,9 @@
 			<TopButton @click="$refs.list.scrollTop = 0" />
 		</div>
 		<div class="p-6">
-			<input type="text" v-model="searchText" autocomplete="off" />
+			<input type="text" v-model="searchText" autocomplete="off" class="shadow-xl rounded-lg" />
 			<button :class="searchButtonClasses" @click="search">OK</button>
-			<button v-if="!emptySearch" class="bg-red-500 text-white w-20" @click="clear">Effacer</button>
+			<button v-if="!emptySearch" class="bg-red-500 text-white w-20 shadow-lg rounded-lg shadow-red-500" @click="clear">Effacer</button>
 		</div>
 		<YouTubeResultsList :results="results" />
 	</div>
@@ -35,11 +35,14 @@ export default {
 		},
 		searchButtonClasses() {
 			return {
-				'bg-green-500': !this.emptySearch,
-				'bg-gray-500': this.emptySearch,
-				'text-white': true,
+				'bg-white': this.emptySearch,
+				'bg-teal-400': !this.emptySearch,
+				'text-white': !this.emptySearch,
 				'w-10': true,
-				'cursor-not-allowed': this.emptySearch
+				'cursor-not-allowed': this.emptySearch,
+				'rounded-lg': true,
+				'shadow-xl': true,
+				'shadow-teal-400': !this.emptySearch
 			};
 		}
 	},

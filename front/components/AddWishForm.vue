@@ -1,18 +1,20 @@
 <template>
-	<div>
+	<div class="flex flex-col gap-2">
 		<b>Ajouter une vidéo</b>
 
 		<div>Url : <input type="text" v-model="wish.url" :class="inputClasses" /></div>
 
-		<div v-if="videoFound">
-			<div>Artiste : <input type="text" v-model="wish.artist" /></div>
-			<div>Titre : <input type="text" v-model="wish.title" /></div>
-			<div>Genre : <GenreSelect @change="wish.genre = $event.target.value" :value="wish.genre" /></div>
+		<div v-if="videoFound" class="flex flex-col gap-2">
+			<div>Artiste : <input type="text" v-model="wish.artist" class="shadow-xl rounded-lg" /></div>
+			<div>Titre : <input type="text" v-model="wish.title" class="shadow-xl rounded-lg" /></div>
+			<div>Genre : <GenreSelect @change="wish.genre = $event.target.value" :value="wish.genre" class="shadow-xl rounded-lg" /></div>
 
-			<iframe class="mx-auto" width="350" height="200" :src="youtubeLink" frameborder="0"></iframe>
+			<iframe class="mx-auto shadow-xl rounded-lg" width="350" height="200" :src="youtubeLink" frameborder="0"></iframe>
 
-			<button @click="addWish" :class="addButtonClasses">Ajouter</button>
-			<button @click="wish = getInitialWish()" class="bg-red-500 text-white w-20">Annuler</button>
+			<div>
+				<button @click="addWish" :class="addButtonClasses">Ajouter</button>
+				<button @click="wish = getInitialWish()" class="bg-red-500 text-white w-20 rounded-lg shadow-xl shadow-red-500">Annuler</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -46,26 +48,31 @@ export default {
 			return 'https://www.youtube.com/embed/' + this.wish.url.split('v=')[1];
 		},
 		inputClasses() {
+			const classes = ['shadow-xl', 'rounded-lg'];
+
 			if (this.wish.url === '') {
-				return [];
+				return classes;
 			}
 
 			if (this.videoFound === false) {
-				return ['!border-[1px]', '!border-solid', '!border-red-500'];
+				classes.push(['!border-[1px]', '!border-solid', '!border-red-500']);
 			}
 
-			return [];
+			return classes;
 		},
 		formCompleted() {
 			return this.wish.url && this.wish.artist && this.wish.title && this.wish.genre;
 		},
 		addButtonClasses() {
 			return {
-				'bg-green-500': this.formCompleted,
-				'bg-gray-500': !this.formCompleted,
-				'text-white': true,
+				'bg-white': !this.formCompleted,
+				'bg-teal-400': this.formCompleted,
+				'text-white': this.formCompleted,
 				'w-20': true,
-				'cursor-not-allowed': !this.formCompleted
+				'cursor-not-allowed': !this.formCompleted,
+				'rounded-lg': true,
+				'shadow-xl': true,
+				'shadow-teal-400': this.formCompleted
 			};
 		}
 	},

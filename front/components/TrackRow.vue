@@ -1,13 +1,13 @@
 <template>
 	<tr :class="trClasses">
 		<td v-if="!editMode">{{ track.artist }}</td>
-		<td v-else><input type="text" v-model="track.artist" /></td>
+		<td v-else class="p-4"><input type="text" v-model="track.artist" class="rounded-lg shadow-xl" /></td>
 
 		<td v-if="!editMode">{{ track.title }}</td>
-		<td v-else><input type="text" v-model="track.title" /></td>
+		<td v-else class="p-4"><input type="text" v-model="track.title" class="rounded-lg shadow-xl" /></td>
 
 		<td v-if="!editMode">{{ track.genre }}</td>
-		<td v-else><GenreSelect @change="track.genre = $event.target.value" :value="track.genre" /></td>
+		<td v-else class="p-4"><GenreSelect @change="track.genre = $event.target.value" :value="track.genre" class="rounded-lg shadow-xl" /></td>
 
 		<td>{{ duration }}</td>
 
@@ -64,11 +64,7 @@ export default {
 	computed: {
 		trClasses() {
 			if (this.editMode) {
-				return ['bg-red-500'];
-			}
-
-			if (this.app.currentTrack === this.track) {
-				return ['text-white', 'bg-green-500'];
+				return ['rounded-lg', 'shadow-lg', 'shadow-orange-500'];
 			}
 
 			return ['hover:bg-orange-100'];

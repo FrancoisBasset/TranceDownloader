@@ -1,20 +1,16 @@
 <template>
 	<tr :class="trClasses">
 		<td v-if="!editMode">{{ wish.artist }}</td>
-		<td v-else><input type="text" v-model="wish.artist" /></td>
+		<td v-else><input type="text" v-model="wish.artist" class="rounded-lg shadow-xl mb-4" /></td>
 
 		<td v-if="!editMode">{{ wish.title }}</td>
-		<td v-else><input type="text" v-model="wish.title" /></td>
+		<td v-else><input type="text" v-model="wish.title" class="rounded-lg shadow-xl mb-4" /></td>
 
 		<td v-if="!editMode">{{ wish.genre }}</td>
-		<td v-else><GenreSelect @change="wish.genre = $event.target.value" :value="wish.genre" /></td>
+		<td v-else><GenreSelect @change="wish.genre = $event.target.value" :value="wish.genre" class="rounded-lg shadow-xl my-4" /></td>
 
 		<td v-if="!editMode">{{ wish.url }}</td>
-		<td v-else><input type="text" v-model="wish.url" /></td>
-
-		<td>
-			<iframe width="150" height="100" :src="'https://www.youtube.com/embed/' + this.wish.url.split('v=')[1]" frameborder="0"></iframe>
-		</td>
+		<td v-else><input type="text" v-model="wish.url" class="rounded-lg shadow-xl mb-4" /></td>
 
 		<td>
 			<EditButton v-if="!editMode" @click="editMode = true" />
@@ -54,7 +50,7 @@ export default {
 	computed: {
 		trClasses() {
 			if (this.editMode) {
-				return ['bg-red-500'];
+				return ['rounded-lg', 'shadow-lg', 'shadow-orange-500'];
 			}
 
 			return ['hover:bg-orange-100'];

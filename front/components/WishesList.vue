@@ -7,7 +7,6 @@
 				<th @click="sortBy('title')" class="text-start" :class="{ 'text-green-500': sortMode === 'title' }">Titre</th>
 				<th @click="sortBy('genre')" class="text-start" :class="{ 'text-green-500': sortMode === 'genre' }">Genre</th>
 				<th class="text-start">Lien</th>
-				<th class="text-start">Aperçu</th>
 			</tr>
 			<WishRow v-for="wish of wishes" :key="wish" :wish="wish" @wishUpdated="setWishes" @wishDeleted="setWishes" @wishDownloaded="setWishes" />
 		</table>

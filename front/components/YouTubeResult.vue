@@ -1,14 +1,14 @@
 <template>
 	<div class="flex flex-col text-start mx-auto">
-		<img ref="image" :src="result.image" width="400" height="187" @click="transformToIframe" />
+		<img ref="image" :src="result.image" width="400" height="187" @click="transformToIframe" class="rounded-lg" />
 
 		<text>{{ result.title }}</text>
 
 		<div class="flex flex-row justify-between">
 			<b class="py-1">{{ result.channel }}</b>
 			<div class="flex flex-row justify-right">
-				<b class="bg-teal-500 text-white rounded-lg w-fit p-1">{{ result.views }}</b>
-				<DownloadButton class="bg-orange-500 fill-white rounded-lg w-fit p-1" @click="add" />
+				<b class="bg-teal-400 shadow-xl shadow-teal-400 text-white rounded-lg w-fit p-1">{{ result.views }}</b>
+				<DownloadButton class="bg-orange-400 shadow-xl shadow-orange-400 fill-white rounded-lg w-fit p-1" @click="add" />
 			</div>
 		</div>
 	</div>
