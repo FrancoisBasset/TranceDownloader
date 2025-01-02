@@ -1,12 +1,12 @@
 <template>
-	<div v-if="haveDir" class="h-screen flex flex-col text-center">
+	<div v-if="haveDir === true" class="h-screen flex flex-col text-center">
 		<MenuBar class="bg-zinc-100 w-fit mx-auto m-4 rounded-lg shadow-2xl" />
 		
 		<div id="view" class="flex-1 overflow-y-auto">
 			<RouterView />
 		</div>
 	</div>
-	<div v-else class="h-screen flex items-center justify-center">
+	<div v-else-if="haveDir === false" class="h-screen flex items-center justify-center">
 		<div class="flex flex-col p-2 bg-zinc-100 shadow-2xl rounded-lg">
 			<text >Le dossier Musique n'est pas renseigné.</text>
 			<input type="text" v-model="dir" />
@@ -22,7 +22,7 @@ import MenuBar from '@/components/MenuBar.vue';
 <script>
 export default {
 	data: () => ({
-		haveDir: false,
+		haveDir: null,
 		dir: ''
 	}),
 	created() {
