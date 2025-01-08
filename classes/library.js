@@ -1,26 +1,22 @@
 const fs = require('fs');
 const NodeId3 = require('node-id3');
 
-const MUSIC_DIR = process.env.MUSIC_DIR + '/';
-
 module.exports = {
-	writeAllTracks: () => {
+	writeAllTracks: (connection) => {
 		if (fs.existsSync(__dirname + '/../public/library.json')) {
 			return;
 		}
 
-		let tracks = fs.readdirSync(MUSIC_DIR).filter(track => track !== 'wishes.csv');
+		let tracks = fs.readdirSync(process.env.MUSIC_DIR).filter(track => track.endsWith('.mp3'));
 
 		tracks = tracks.map((track, i) => {
-			const tags = NodeId3.read(MUSIC_DIR + `${track}`, {
+			const tags = NodeId3.read(process.env.MUSIC_DIR + `/${track}`, {
 				noRaw: true,
 				include: ['TPE1', 'TIT2', 'TCON']
 			});
 			tags.url = `/${track}`;
-
-			process.stdout.clearLine(0);
-			process.stdout.cursorTo(0);
-			process.stdout.write(`${i + 1}/${tracks.length}`);
+				
+			connection.send(`${i + 1}/${tracks.length}`);
 
 			return tags;
 		});
@@ -57,12 +53,12 @@ module.exports = {
 		let tracks = JSON.parse(fs.readFileSync(__dirname + '/../public/library.json').toString());
 		tracks = tracks.filter(t => t.url !== url);
 
-		NodeId3.update(tags, MUSIC_DIR + `${url}`);
+		NodeId3.update(tags, process.env.MUSIC_DIR + `/${url}`);
 
 		tags.url = `${tags.artist.split(' ').join('_')}_${tags.title.split(' ').join('_')}.mp3`;
 
 		if (tags.url !== url) {
-			fs.renameSync(MUSIC_DIR + `${url}`, MUSIC_DIR + `${tags.url}`);
+			fs.renameSync(process.env.MUSIC_DIR + `/${url}`, process.env.MUSIC_DIR + `/${tags.url}`);
 		}
 
 		tracks.push(tags);

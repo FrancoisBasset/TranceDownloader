@@ -9,13 +9,8 @@ const fs = require('fs');
 const cors = require('cors');
 const app = express();
 
-if (process.env.MUSIC_DIR) {
-	if (!fs.existsSync(process.env.MUSIC_DIR + '/wishes.csv')) {
-		fs.writeFileSync(process.env.MUSIC_DIR + '/wishes.csv', '');
-	}
-
-	const libraryService = require('@/classes/library');
-	libraryService.writeAllTracks();
+if (process.env.MUSIC_DIR && !fs.existsSync(process.env.MUSIC_DIR + '/wishes.csv')) {
+	fs.writeFileSync(process.env.MUSIC_DIR + '/wishes.csv', '');
 }
 
 const { exec } = require('child_process');
