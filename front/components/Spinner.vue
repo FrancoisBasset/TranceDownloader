@@ -4,16 +4,17 @@
 
 <style scoped>
 .loader {
-	width: 50px;
+	width: 20px;
 	aspect-ratio: 1;
 	display: grid;
 	border-radius: 50%;
-	background: conic-gradient(#25b09b 25%,#f03355 0 50%,#514b82 0 75%,#ffa516 0);
+	background: conic-gradient(#25b09b 25%, #f03355 0 50%, #514b82 0 75%, #ffa516 0);
 	animation: l22 2s infinite linear;
 }
 
-.loader::before, .loader::after {
-	content: "";
+.loader::before,
+.loader::after {
+	content: '';
 	grid-area: 1/1;
 	margin: 15%;
 	border-radius: 50%;
@@ -27,6 +28,8 @@
 }
 
 @keyframes l22 {
-	100% {transform: rotate(1turn)}
+	100% {
+		transform: rotate(1turn);
+	}
 }
 </style>

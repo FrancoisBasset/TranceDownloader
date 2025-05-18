@@ -44,11 +44,11 @@ export default {
 			entries.forEach(entry => {
 				if (!this.app.direct && entry.isIntersecting && entry.intersectionRatio >= 0.5) {
 					const index = parseInt(entry.target.dataset.index);
-					
+
 					this.app.mode = this.views[index];
 				}
 			});
 		}
 	}
-}
+};
 </script>

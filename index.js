@@ -31,9 +31,11 @@ if (process.env.MUSIC_DIR) {
 }
 
 if (distExists) {
-	app.use(express.static('./dist', {
-		index: 'index.html'
-	}));
+	app.use(
+		express.static('./dist', {
+			index: 'index.html'
+		})
+	);
 } else {
 	exec('npm run dev');
 	exec('npm run buildcss -- --watch');

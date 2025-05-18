@@ -34,7 +34,7 @@ router.put('/dir', (req, res) => {
 		if (fs.existsSync(__dirname + '/../public/library.json')) {
 			fs.unlinkSync(__dirname + '/../public/library.json');
 		}
-		
+
 		libraryService.writeAllTracks(connection);
 		fs.appendFileSync(__dirname + '/../.env', '\nMUSIC_DIR=' + dir);
 

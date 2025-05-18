@@ -43,10 +43,10 @@ export default {
 	async created() {
 		const audio = document.createElement('audio');
 		audio.src = 'http://localhost:3000' + this.track.url;
-      
-      	while (isNaN(audio.duration)) {
-       		await new Promise(r => setTimeout(r, 10));
-      	}
+
+		while (isNaN(audio.duration)) {
+			await new Promise(r => setTimeout(r, 10));
+		}
 
 		const duration = Math.round(audio.duration);
 
@@ -97,7 +97,8 @@ export default {
 </script>
 
 <style scoped>
-input[type='text'], select {
+input[type='text'],
+select {
 	height: 20px;
 	margin: 0;
 	width: 150px;

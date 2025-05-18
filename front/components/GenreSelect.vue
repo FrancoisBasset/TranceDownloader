@@ -9,6 +9,7 @@
 		<option value="Forest Psytrance">Forest Psytrance</option>
 		<option value="Full-on">Full-on</option>
 		<option value="Futurepop">Futurepop</option>
+		<option value="Hardstyle">Hardstyle</option>
 		<option value="Hard Trance">Hard Trance</option>
 		<option value="Hi-Tech">Hi-Tech</option>
 		<option value="Morning Full-on">Morning Full-on</option>
@@ -28,5 +29,6 @@
 		<option value="Uplifting Trance">Uplifting Trance</option>
 		<option value="Vocal Trance">Vocal Trance</option>
 		<option value="Zenonesque">Zenonesque</option>
+		<option value="Other">Other</option>
 	</select>
 </template>

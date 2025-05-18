@@ -73,11 +73,14 @@ module.exports = {
 			.noVideo()
 			.saveToFile(filename)
 			.on('end', () => {
-				NodeID3.write({
-					artist: artist,
-					title: title,
-					genre: genre
-				}, filename);
+				NodeID3.write(
+					{
+						artist: artist,
+						title: title,
+						genre: genre
+					},
+					filename
+				);
 
 				libraryService.addTrack(artist, title, genre);
 				wishesService.deleteWish(id);

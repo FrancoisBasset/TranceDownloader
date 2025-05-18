@@ -2,7 +2,7 @@ const fs = require('fs');
 const NodeId3 = require('node-id3');
 
 module.exports = {
-	writeAllTracks: (connection) => {
+	writeAllTracks: connection => {
 		if (fs.existsSync(__dirname + '/../public/library.json')) {
 			return;
 		}
@@ -15,7 +15,7 @@ module.exports = {
 				include: ['TPE1', 'TIT2', 'TCON']
 			});
 			tags.url = `/${track}`;
-				
+
 			connection.send(`${i + 1}/${tracks.length}`);
 
 			return tags;
