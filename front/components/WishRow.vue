@@ -12,16 +12,10 @@
 		<td v-if="!editMode">{{ wish.url }}</td>
 		<td v-else><input type="text" v-model="wish.url" class="rounded-lg shadow-xl mb-4" /></td>
 
-		<td>
+		<td class="flex space-x-1">
 			<EditButton v-if="!editMode" @click="editMode = true" />
 			<SaveButton v-if="editMode" @click="saveWish" />
-		</td>
-
-		<td>
 			<DeleteButton @click="deleteWish" />
-		</td>
-
-		<td>
 			<DownloadButton v-if="!downloading" @click="downloadWish" />
 			<Spinner v-else />
 		</td>

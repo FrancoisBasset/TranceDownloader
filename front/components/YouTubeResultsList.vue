@@ -1,6 +1,6 @@
 <template>
-	<div class="grid grid-cols-3">
-		<YouTubeResult class="w-8/12 m-8" v-for="result in results" :key="result" :result="result" />
+	<div class="grid grid-cols-4">
+		<YouTubeResult class="w-10/12 m-2" v-for="result in results" :key="result" :result="result" />
 	</div>
 </template>
 

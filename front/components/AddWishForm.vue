@@ -45,7 +45,7 @@ export default {
 	},
 	computed: {
 		youtubeLink() {
-			return 'https://www.youtube.com/embed/' + this.wish.url.split('v=')[1];
+			return 'https://www.youtube.com/embed/' + this.wish.url.split('v=')[1] + '?mute=0&autoplay=1';
 		},
 		inputClasses() {
 			const classes = ['shadow-xl', 'rounded-lg'];
@@ -98,6 +98,7 @@ export default {
 						url: ''
 					};
 					this.$emit('wishAdded');
+					this.app.goTo('youtube');
 				});
 			});
 		}

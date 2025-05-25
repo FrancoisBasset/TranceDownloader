@@ -4,14 +4,14 @@
 
 		<button @click="downloadAll" class="!w-auto green-button">Télécharger tout ({{ wishes.length }})</button>
 
-		<table class="mx-auto text-start m-8">
+		<table class="mx-auto text-start m-8 border-separate border-spacing-x-10">
 			<tr class="cursor-pointer">
 				<th @click="sortBy('artist')" class="text-start" :class="{ 'text-green-500': sortMode === 'artist' }">Artiste</th>
 				<th @click="sortBy('title')" class="text-start" :class="{ 'text-green-500': sortMode === 'title' }">Titre</th>
 				<th @click="sortBy('genre')" class="text-start" :class="{ 'text-green-500': sortMode === 'genre' }">Genre</th>
 				<th class="text-start">Lien</th>
 			</tr>
-			<WishRow ref="wishRows" v-for="wish of wishes" :key="wish" :wish="wish" @wishUpdated="setWishes" @wishDeleted="setWishes" @wishDownloaded="setWishes" />
+			<WishRow ref="wishRows" v-for="wish of wishes" :key="wish" :wish="wish" @wishUpdated="setWishes" @wishDeleted="setWishes" @wishDownloaded="removeWish(wish)" />
 		</table>
 	</div>
 </template>
@@ -51,6 +51,9 @@ export default {
 			this.$refs.wishRows.forEach(wishRow => {
 				wishRow.downloadWish();
 			});
+		},
+		removeWish(wish) {
+			this.wishes = this.wishes.filter(w => w.id != wish.id);
 		}
 	}
 };

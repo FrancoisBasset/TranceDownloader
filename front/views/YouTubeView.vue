@@ -1,12 +1,17 @@
 <template>
-	<div @scroll="onScroll" ref="list" class="bg-zinc-100 !overflow-scroll rounded-lg h-[80vh] shadow-2xl">
-		<div class="sticky top-3 flex justify-end pr-3" v-if="scrollTop !== 0">
-			<TopButton @click="$refs.list.scrollTop = 0" />
-		</div>
-		<div class="p-6">
-			<input type="text" v-model="searchText" autocomplete="off" class="shadow-xl rounded-lg bg-white" />
-			<button :class="searchButtonClasses" @click="search">OK</button>
-			<button v-if="!emptySearch" class="bg-red-500 text-white !w-30 shadow-lg rounded-lg shadow-red-500" @click="clear">Effacer</button>
+	<div @scroll="scrollToYouTube" ref="list" class="bg-zinc-100 !overflow-scroll rounded-lg h-[80vh] shadow-2xl">
+		<div class="sticky top-0 z-10 bg-zinc-100 p-4">
+			<div class="relative flex justify-center">
+				<div class="flex gap-2">
+					<input type="text" v-model="searchText" @keydown.enter="search" autocomplete="off" class="shadow-xl rounded-lg bg-white px-3 py-2" />
+					<button :class="searchButtonClasses" @click="search">OK</button>
+					<button v-if="!emptySearch" class="bg-red-500 text-white !w-30 shadow-lg rounded-lg shadow-red-500" @click="clear">Effacer</button>
+				</div>
+
+				<div v-if="scrollTop !== 0" class="absolute right-0 top-0">
+					<TopButton @click="$refs.list.scrollTop = 0" />
+				</div>
+			</div>
 		</div>
 		<YouTubeResultsList :results="results" />
 	</div>
@@ -52,7 +57,7 @@ export default {
 				return;
 			}
 
-			this.app.goTo('youtube');
+			this.scrollToYouTube();
 
 			fetch(import.meta.env.VITE_API + '/youtube?search=' + this.searchText)
 				.then(res => res.json())
@@ -64,8 +69,9 @@ export default {
 			this.searchText = '';
 			this.results = [];
 		},
-		onScroll() {
+		scrollToYouTube() {
 			this.scrollTop = this.$refs.list.scrollTop;
+			this.app.goTo('youtube');
 		}
 	}
 };
