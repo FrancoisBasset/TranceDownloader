@@ -7,8 +7,8 @@
 		<div class="flex flex-row justify-between">
 			<b class="py-1">{{ result.channel }}</b>
 			<div class="flex flex-row justify-right">
-				<b class="bg-teal-400 shadow-xl shadow-teal-400 text-white rounded-lg w-fit p-1">{{ result.views }}</b>
-				<DownloadButton class="bg-orange-400 shadow-xl shadow-orange-400 fill-white rounded-lg w-fit p-1" @click="add" />
+				<b class="green-button">{{ result.views }}</b>
+				<DownloadButton class="orange-button" @click="add" />
 			</div>
 		</div>
 	</div>

@@ -41,6 +41,7 @@ import Spinner from '@/components/Spinner.vue';
 import useApp from '@/stores/app';
 
 export default {
+	expose: ['downloadWish'],
 	props: ['wish'],
 	data: () => ({
 		app: useApp(),

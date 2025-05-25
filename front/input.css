@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 * {
 	font-family: monospace;
@@ -28,4 +26,12 @@ select {
 	border: none;
 	outline: none;
 	margin: 2px;
+}
+
+.green-button {
+	@apply bg-teal-400 shadow-xl shadow-teal-400 text-white rounded-lg w-fit p-1;
+}
+
+.orange-button {
+	@apply bg-orange-400 shadow-xl shadow-orange-400 fill-white rounded-lg w-fit p-1;
 }

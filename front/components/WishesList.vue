@@ -1,6 +1,9 @@
 <template>
 	<div>
 		<AddWishForm class="p-6" @wishAdded="this.setWishes" />
+
+		<button @click="downloadAll" class="!w-auto green-button">Télécharger tout ({{ wishes.length }})</button>
+
 		<table class="mx-auto text-start m-8">
 			<tr class="cursor-pointer">
 				<th @click="sortBy('artist')" class="text-start" :class="{ 'text-green-500': sortMode === 'artist' }">Artiste</th>
@@ -8,7 +11,7 @@
 				<th @click="sortBy('genre')" class="text-start" :class="{ 'text-green-500': sortMode === 'genre' }">Genre</th>
 				<th class="text-start">Lien</th>
 			</tr>
-			<WishRow v-for="wish of wishes" :key="wish" :wish="wish" @wishUpdated="setWishes" @wishDeleted="setWishes" @wishDownloaded="setWishes" />
+			<WishRow ref="wishRows" v-for="wish of wishes" :key="wish" :wish="wish" @wishUpdated="setWishes" @wishDeleted="setWishes" @wishDownloaded="setWishes" />
 		</table>
 	</div>
 </template>
@@ -42,6 +45,11 @@ export default {
 
 			this.wishes = this.wishes.sort((t1, t2) => {
 				return t1[type].localeCompare(t2[type]);
+			});
+		},
+		downloadAll() {
+			this.$refs.wishRows.forEach(wishRow => {
+				wishRow.downloadWish();
 			});
 		}
 	}
