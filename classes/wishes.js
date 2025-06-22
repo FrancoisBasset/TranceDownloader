@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+const wishesPath = process.env.MUSIC_DIR + '/wishes.csv';
+
 function writeWishes(wishes) {
 	let text = '';
 	for (const wish of wishes) {
@@ -8,18 +10,18 @@ function writeWishes(wishes) {
 
 	text = text.substring(0, text.length - 2);
 
-	fs.writeFileSync(process.env.MUSIC_DIR + '/wishes.csv', text);
+	fs.writeFileSync(wishesPath, text);
 }
 
 module.exports.getWishes = () => {
-	const csv = fs.readFileSync(process.env.MUSIC_DIR + '/wishes.csv').toString();
+	const csv = fs.readFileSync(wishesPath).toString();
 	if (csv === '') {
 		return [];
 	}
 
 	const lines = csv.split('\r\n');
 
-	const tracks = JSON.parse(fs.readFileSync(__dirname + '/../public/library.json').toString());
+	const tracks = JSON.parse(fs.readFileSync('public/library.json').toString());
 
 	return lines.reduce((wishes, line) => {
 		const done = tracks.find(track => track.artist === line.split(';')[1] && track.title === line.split(';')[2]) !== undefined;
@@ -51,7 +53,7 @@ module.exports.addWish = (artist, title, genre, url) => {
 		line = line.substring(2);
 	}
 
-	fs.appendFileSync(process.env.MUSIC_DIR + '/wishes.csv', line);
+	fs.appendFileSync(wishesPath, line);
 
 	return {
 		id: id,
@@ -73,24 +75,20 @@ module.exports.deleteWish = id => {
 module.exports.updateWish = (id, artist, title, genre, url) => {
 	const wishes = this.getWishes();
 
-	wishes
-		.filter(w => w.id === id)
-		.forEach(w => {
-			w.artist = artist;
-			w.title = title;
-			w.genre = genre;
-			w.url = url;
-			return w;
-		});
+	const wish = wishes.find(w => w.id === id);
+	wish.artist = artist;
+	wish.title = title;
+	wish.genre = genre;
+	wish.url = url;
 
 	writeWishes(wishes);
 
-	return wishes.filter(w => w.id === id)[0];
+	return wish;
 };
 
 module.exports.initWishes = () => {
 	const lines = fs
-		.readFileSync(process.env.MUSIC_DIR + '/wishes.csv')
+		.readFileSync(wishesPath)
 		.toString()
 		.split('\r\n');
 	let text = lines.reduce((acc, line, index) => {
@@ -98,5 +96,5 @@ module.exports.initWishes = () => {
 	}, '');
 	text = text.substring(0, text.length - 2);
 
-	fs.writeFileSync(process.env.MUSIC_DIR + '/wishes.csv', text);
+	fs.writeFileSync(wishesPath, text);
 };

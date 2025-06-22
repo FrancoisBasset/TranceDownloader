@@ -3,10 +3,6 @@ const NodeId3 = require('node-id3');
 
 module.exports = {
 	writeAllTracks: connection => {
-		if (fs.existsSync(__dirname + '/../public/library.json')) {
-			return;
-		}
-
 		let tracks = fs.readdirSync(process.env.MUSIC_DIR).filter(track => track.endsWith('.mp3'));
 
 		tracks = tracks.map((track, i) => {
@@ -22,12 +18,10 @@ module.exports = {
 		});
 
 		fs.writeFileSync('public/library.json', JSON.stringify(tracks));
-
-		console.log();
 	},
 
 	addTrack: (artist, title, genre) => {
-		let tracks = JSON.parse(fs.readFileSync(__dirname + '/../public/library.json').toString());
+		let tracks = JSON.parse(fs.readFileSync('public/library.json').toString());
 
 		tracks.push({
 			url: '/' + artist.split(' ').join('_') + '_' + title.split(' ').join('_') + '.mp3',
@@ -40,7 +34,7 @@ module.exports = {
 			return track1.artist.localeCompare(track2.artist) || track1.title.localeCompare(track2.title);
 		});
 
-		fs.writeFileSync(__dirname + '/../public/library.json', JSON.stringify(tracks));
+		fs.writeFileSync('public/library.json', JSON.stringify(tracks));
 	},
 
 	update: (url, artist, title, genre) => {
@@ -50,7 +44,7 @@ module.exports = {
 			genre: genre
 		};
 
-		let tracks = JSON.parse(fs.readFileSync(__dirname + '/../public/library.json').toString());
+		let tracks = JSON.parse(fs.readFileSync('public/library.json').toString());
 		tracks = tracks.filter(t => t.url !== url);
 
 		NodeId3.update(tags, process.env.MUSIC_DIR + `/${url}`);
@@ -66,7 +60,7 @@ module.exports = {
 			return track1.artist.localeCompare(track2.artist) || track1.title.localeCompare(track2.title);
 		});
 
-		fs.writeFileSync(__dirname + '/../public/library.json', JSON.stringify(tracks));
+		fs.writeFileSync('public/library.json', JSON.stringify(tracks));
 
 		return tags;
 	}

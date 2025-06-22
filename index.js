@@ -7,16 +7,15 @@ require('module-alias/register');
 const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
-const app = express();
-
-if (process.env.MUSIC_DIR && !fs.existsSync(process.env.MUSIC_DIR + '/wishes.csv')) {
-	fs.writeFileSync(process.env.MUSIC_DIR + '/wishes.csv', '');
-}
-
 const { exec } = require('child_process');
 
-app.disable('x-powered-by');
+const wishesPath = process.env.MUSIC_DIR + '/wishes.csv'
+if (process.env.MUSIC_DIR && !fs.existsSync(wishesPath)) {
+	fs.writeFileSync(wishesPath, '');
+}
 
+const app = express();
+app.disable('x-powered-by');
 app.use(cors());
 
 const distExists = fs.existsSync('./dist');
