@@ -1,66 +1,68 @@
 const fs = require('fs');
+const { promisify } = require('util');
 const NodeId3 = require('node-id3');
 
+const readTags = promisify(NodeId3.read);
+const updateTags = promisify(NodeId3.update);
+
 module.exports = {
-	writeAllTracks: connection => {
-		let tracks = fs.readdirSync(process.env.MUSIC_DIR).filter(track => track.endsWith('.mp3'));
+	async writeAllTracks(connection) {
+		const files = await fs.promises.readdir(process.env.MUSIC_DIR).then(list => list.filter(f => f.endsWith('.mp3')));
 
-		tracks = tracks.map((track, i) => {
-			const tags = NodeId3.read(process.env.MUSIC_DIR + `/${track}`, {
-				noRaw: true,
-				include: ['TPE1', 'TIT2', 'TCON']
-			});
-			tags.url = `/${track}`;
+		const tracks = await Promise.all(
+			files.map(async (track, i) => {
+				const tags = await readTags(process.env.MUSIC_DIR + `/${track}`, {
+					noRaw: true,
+					include: ['TPE1', 'TIT2', 'TCON']
+				});
+				tags.url = `/${track}`;
 
-			connection.send(`${i + 1}/${tracks.length}`);
+				connection.send(`${i + 1}/${files.length}`);
 
-			return tags;
-		});
+				return tags;
+			})
+		);
 
-		fs.writeFileSync('public/library.json', JSON.stringify(tracks));
+		await fs.promises.writeFile('public/library.json', JSON.stringify(tracks));
 	},
 
-	addTrack: (artist, title, genre) => {
-		let tracks = JSON.parse(fs.readFileSync('public/library.json').toString());
+	async addTrack(artist, title, genre) {
+		const tracks = JSON.parse(await fs.promises.readFile('public/library.json', 'utf8'));
 
 		tracks.push({
 			url: '/' + artist.split(' ').join('_') + '_' + title.split(' ').join('_') + '.mp3',
-			artist: artist,
-			title: title,
-			genre: genre
+			artist,
+			title,
+			genre
 		});
 
-		tracks = tracks.sort((track1, track2) => {
-			return track1.artist.localeCompare(track2.artist) || track1.title.localeCompare(track2.title);
-		});
+		tracks.sort((a, b) => a.artist.localeCompare(b.artist) || a.title.localeCompare(b.title));
 
-		fs.writeFileSync('public/library.json', JSON.stringify(tracks));
+		await fs.promises.writeFile('public/library.json', JSON.stringify(tracks));
 	},
 
-	update: (url, artist, title, genre) => {
+	async update(url, artist, title, genre) {
 		const tags = {
-			artist: artist,
-			title: title,
-			genre: genre
+			artist,
+			title,
+			genre
 		};
 
-		let tracks = JSON.parse(fs.readFileSync('public/library.json').toString());
+		let tracks = JSON.parse(await fs.promises.readFile('public/library.json', 'utf8'));
 		tracks = tracks.filter(t => t.url !== url);
 
-		NodeId3.update(tags, process.env.MUSIC_DIR + `/${url}`);
+		await updateTags(tags, process.env.MUSIC_DIR + `/${url}`);
 
 		tags.url = `${tags.artist.split(' ').join('_')}_${tags.title.split(' ').join('_')}.mp3`;
 
 		if (tags.url !== url) {
-			fs.renameSync(process.env.MUSIC_DIR + `/${url}`, process.env.MUSIC_DIR + `/${tags.url}`);
+			await fs.promises.rename(process.env.MUSIC_DIR + `/${url}`, process.env.MUSIC_DIR + `/${tags.url}`);
 		}
 
 		tracks.push(tags);
-		tracks = tracks.sort((track1, track2) => {
-			return track1.artist.localeCompare(track2.artist) || track1.title.localeCompare(track2.title);
-		});
+		tracks.sort((a, b) => a.artist.localeCompare(b.artist) || a.title.localeCompare(b.title));
 
-		fs.writeFileSync('public/library.json', JSON.stringify(tracks));
+		await fs.promises.writeFile('public/library.json', JSON.stringify(tracks));
 
 		return tags;
 	}

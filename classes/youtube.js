@@ -82,10 +82,11 @@ module.exports = {
 					filename
 				);
 
-				libraryService.addTrack(artist, title, genre);
-				wishesService.deleteWish(id);
+				libraryService.addTrack(artist, title, genre).then(() => {
+					wishesService.deleteWish(id);
 
-				callback();
+					callback();
+				});
 			});
 	}
 };

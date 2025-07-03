@@ -3,8 +3,8 @@ const router = express.Router();
 
 const libraryService = require('@/classes/library');
 
-router.put('/', (req, res) => {
-	const track = libraryService.update(req.body.url, req.body.artist, req.body.title, req.body.genre);
+router.put('/', async (req, res) => {
+	const track = await libraryService.update(req.body.url, req.body.artist, req.body.title, req.body.genre);
 
 	res.json({
 		success: true,
