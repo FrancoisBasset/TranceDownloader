@@ -1,21 +1,36 @@
 const fs = require('fs');
 const NodeId3 = require('node-id3');
+const path = require('path');
 
 module.exports = {
-	writeAllTracks: connection => {
-		let tracks = fs.readdirSync(process.env.MUSIC_DIR).filter(track => track.endsWith('.mp3'));
+	writeAllTracks: async connection => {
+		const files = fs.readdirSync(process.env.MUSIC_DIR).filter(track => track.endsWith('.mp3'));
 
-		tracks = tracks.map((track, i) => {
-			const tags = NodeId3.read(process.env.MUSIC_DIR + `/${track}`, {
-				noRaw: true,
-				include: ['TPE1', 'TIT2', 'TCON']
+		console.time('loading');
+
+		const tasks = files.map((track, i) => {
+			return new Promise((resolve, reject) => {
+				NodeId3.read(
+					path.join(process.env.MUSIC_DIR, track),
+					{
+						noRaw: true,
+						include: ['TPE1', 'TIT2', 'TCON']
+					},
+					(err, tags) => {
+						if (err) {
+							return reject(err);
+						}
+						tags.url = `/${track}`;
+						connection.send(`${i + 1}/${files.length}`);
+						resolve(tags);
+					}
+				);
 			});
-			tags.url = `/${track}`;
-
-			connection.send(`${i + 1}/${tracks.length}`);
-
-			return tags;
 		});
+
+		const tracks = await Promise.all(tasks);
+
+		console.timeEnd('loading');
 
 		fs.writeFileSync('public/library.json', JSON.stringify(tracks));
 	},
