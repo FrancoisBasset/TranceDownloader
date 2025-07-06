@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AddWishForm class="p-6" @wishAdded="this.setWishes" />
+		<AddWishForm class="p-6" @wishAdded="setWishes" />
 
 		<button @click="downloadAll" class="!w-auto green-button">Télécharger tout ({{ wishes.length }})</button>
 

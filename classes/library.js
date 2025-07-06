@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { parseFile } = require('music-metadata');
+const NodeID3 = require('node-id3');
 
 module.exports = {
 	writeAllTracks: async connection => {
@@ -50,7 +51,7 @@ module.exports = {
 		let tracks = JSON.parse(fs.readFileSync('public/library.json').toString());
 		tracks = tracks.filter(t => t.url !== url);
 
-		NodeId3.update(tags, process.env.MUSIC_DIR + `/${url}`);
+		NodeID3.update(tags, process.env.MUSIC_DIR + `/${url}`);
 
 		tags.url = `${tags.artist.split(' ').join('_')}_${tags.title.split(' ').join('_')}.mp3`;
 
