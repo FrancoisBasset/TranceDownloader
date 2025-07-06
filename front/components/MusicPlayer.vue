@@ -1,7 +1,7 @@
 <template>
 	<div v-if="app.currentTrack" class="fixed bottom-0 w-full text-start bg-white">
 		<text class="p-2">{{ app.currentTrack.artist }} - {{ app.currentTrack.title }}</text>
-		<audio ref="audio" class="w-full" :src="'http://localhost:3000' + app.currentTrack.url" controls autoplay @play="app.isPlaying = true" @pause="app.isPlaying = false" />
+		<audio ref="audio" class="w-full" :src="import.meta.env.VITE_AUDIO + app.currentTrack.url" controls autoplay @play="app.isPlaying = true" @pause="app.isPlaying = false" />
 	</div>
 </template>
 

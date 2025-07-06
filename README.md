@@ -21,7 +21,7 @@ npm install
 
 2. Assurez-vous que l'utilitaire `ffmpeg` est disponible sur votre machine.
 
-3. Définissez les variables d'environnement nécessaires dans un fichier `.env` (voir l'exemple fourni) : le port d'écoute (`PORT`) et le répertoire de musique (`MUSIC_DIR`).
+3. Définissez les variables d'environnement nécessaires dans un fichier `.env` (voir l'exemple fourni) : le port d'écoute (`PORT`), le répertoire de musique (`MUSIC_DIR`) ainsi que les URLs du serveur (`VITE_API` pour l'API et `VITE_AUDIO` pour la diffusion audio).
 
 ## Utilisation
 

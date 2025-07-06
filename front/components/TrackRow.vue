@@ -42,7 +42,7 @@ export default {
 	}),
 	async created() {
 		const audio = document.createElement('audio');
-		audio.src = 'http://localhost:3000' + this.track.url;
+		audio.src = import.meta.env.VITE_AUDIO + this.track.url;
 
 		while (isNaN(audio.duration)) {
 			await new Promise(r => setTimeout(r, 10));
