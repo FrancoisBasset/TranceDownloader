@@ -61,4 +61,4 @@ npm run clean
 npm run format
 ```
 
-Une fois l'application lancée, accédez à `http://localhost:<PORT>` pour gérer votre bibliothèque de musique.
+Une fois l'application lancée, accédez à `http://<HOST>:<PORT>` pour gérer votre bibliothèque de musique.

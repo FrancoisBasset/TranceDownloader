@@ -61,7 +61,7 @@ export default {
 					dir: this.dir
 				})
 			}).then(() => {
-				const socket = new WebSocket('ws://localhost:8080');
+				const socket = new WebSocket(import.meta.env.VITE_WS);
 
 				socket.onmessage = msg => {
 					this.loadingText = msg.data;

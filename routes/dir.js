@@ -17,7 +17,7 @@ router.put('/', (req, res) => {
 		process.env.MUSIC_DIR = req.body.dir;
 	}
 
-	const server = new WebSocket.Server({ port: 8080 });
+	const server = new WebSocket.Server({ port: process.env.WS_PORT });
 	server.on('connection', async connection => {
 		await libraryService.writeAllTracks(connection);
 		if (req.body.dir) {

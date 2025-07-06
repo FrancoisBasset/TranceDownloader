@@ -21,12 +21,12 @@ app.use(cors());
 const distExists = fs.existsSync('./dist');
 
 app.listen(process.env.PORT, () => {
-	console.log(`Go to http://localhost:${distExists ? process.env.PORT : 5173}`);
+	console.log(`Go to http://${process.env.HOST}:${distExists ? process.env.PORT : 5173}`);
 });
 
 app.use('/api', require('./routes'));
 if (process.env.MUSIC_DIR) {
-	app.use(express.static(process.env.MUSIC_DIR));
+	app.use('/audio', express.static(process.env.MUSIC_DIR));
 }
 
 if (distExists) {
