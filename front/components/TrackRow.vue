@@ -12,8 +12,8 @@
 		<td>{{ duration }}</td>
 
 		<td>
-			<PlayButton v-if="app.currentTrack !== track || !app.isPlaying" @click="selectTrack" />
-			<PauseButton v-else-if="app.currentTrack === track && app.isPlaying" @click="app.isPlaying = false" />
+			<PlayButton v-if="(app.currentTrack !== track || !app.isPlaying) && !editMode" @click="selectTrack" />
+			<PauseButton v-else-if="app.currentTrack === track && app.isPlaying && !editMode" @click="app.isPlaying = false" />
 		</td>
 		<td>
 			<EditButton v-if="!editMode" @click="editMode = true" />

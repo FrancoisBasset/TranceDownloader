@@ -1,6 +1,6 @@
 <template>
-	<svg class="cursor-pointer" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+	<svg class="cursor-pointer" width="20" viewBox="0 0 24 24">
 		<title>Lecture</title>
-		<path d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+		<path fill="#2dd4bf" d="M8,5.14V19.14L19,12.14L8,5.14Z" />
 	</svg>
 </template>
