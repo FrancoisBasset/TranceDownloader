@@ -87,10 +87,7 @@ module.exports.updateWish = (id, artist, title, genre, url) => {
 };
 
 module.exports.initWishes = () => {
-	const lines = fs
-		.readFileSync(wishesPath)
-		.toString()
-		.split('\r\n');
+	const lines = fs.readFileSync(wishesPath).toString().split('\r\n');
 	let text = lines.reduce((acc, line, index) => {
 		return acc + `${index + 1};${line.split(';')[1]};${line.split(';')[2]}\r\n`;
 	}, '');

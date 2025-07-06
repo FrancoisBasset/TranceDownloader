@@ -4,3 +4,4 @@ package-lock.json
 public/library.json
 dist
 front/assets/main.css
+.vscode

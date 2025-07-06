@@ -9,7 +9,7 @@ const fs = require('fs');
 const cors = require('cors');
 const { exec } = require('child_process');
 
-const wishesPath = process.env.MUSIC_DIR + '/wishes.csv'
+const wishesPath = process.env.MUSIC_DIR + '/wishes.csv';
 if (process.env.MUSIC_DIR && !fs.existsSync(wishesPath)) {
 	fs.writeFileSync(wishesPath, '');
 }

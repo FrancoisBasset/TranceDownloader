@@ -36,9 +36,11 @@ export default {
 	}),
 	async created() {
 		this.haveDir = await fetch(import.meta.env.VITE_API + '/dir').then(res => res.status !== 404);
-		this.haveJson = await fetch('/library.json').then(r => r.text()).then(text => {
-			return !text.includes('<html');
-		});
+		this.haveJson = await fetch('/library.json')
+			.then(r => r.text())
+			.then(text => {
+				return !text.includes('<html');
+			});
 
 		if (this.haveDir && !this.haveJson) {
 			this.sendDir();
