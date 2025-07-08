@@ -48,17 +48,15 @@ export default {
 			return 'https://www.youtube.com/embed/' + this.wish.url.split('v=')[1] + '?mute=0&autoplay=1';
 		},
 		inputClasses() {
-			const classes = ['shadow-xl', 'rounded-lg'];
-
 			if (this.wish.url === '') {
-				return classes;
+				return [];
 			}
 
 			if (this.videoFound === false) {
-				classes.push(['!border-[1px]', '!border-solid', '!border-red-500']);
+				return ['video-not-found'];
 			}
 
-			return classes;
+			return [];
 		},
 		formCompleted() {
 			return this.wish.url && this.wish.artist && this.wish.title && this.wish.genre;

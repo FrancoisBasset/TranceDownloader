@@ -10,21 +10,20 @@ button {
 	@apply shadow-xl rounded-xl w-fit px-3 cursor-pointer;
 }
 
+.view-container {
+	@apply bg-zinc-100 overflow-scroll rounded-xl h-[80vh] shadow-2xl;
+}
+
 input[type="text"], select {
 	@apply shadow-xl rounded-xl bg-white;
-}
-
-::-webkit-scrollbar {
-	width: 0;
-}
-
-input[type='text'],
-select {
 	width: 300px;
 	height: 30px;
 	border: none;
 	outline: none;
-	margin: 2px;
+}
+
+::-webkit-scrollbar {
+	width: 0;
 }
 
 .green-button {
@@ -33,4 +32,8 @@ select {
 
 .orange-button {
 	@apply !bg-orange-400 shadow-xl shadow-orange-400 fill-white;
+}
+
+.video-not-found {
+	@apply !border-[1px] !border-solid !border-red-500;
 }
