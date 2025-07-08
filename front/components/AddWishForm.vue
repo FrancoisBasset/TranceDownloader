@@ -5,8 +5,8 @@
 		<div>Url : <input type="text" v-model="wish.url" :class="inputClasses" /></div>
 
 		<div v-if="videoFound" class="flex flex-col gap-2">
-			<div>Artiste : <input type="text" v-model="wish.artist" /></div>
-			<div>Titre : <input type="text" v-model="wish.title" /></div>
+			<div>Artiste : <input type="text" v-model="wish.artist" class="input-field" /></div>
+			<div>Titre : <input type="text" v-model="wish.title" class="input-field" /></div>
 			<div>Genre : <GenreSelect @change="wish.genre = $event.target.value" :value="wish.genre" /></div>
 
 			<iframe class="mx-auto shadow-xl rounded-lg" width="350" height="200" :src="youtubeLink" frameborder="0"></iframe>
@@ -48,7 +48,7 @@ export default {
 			return 'https://www.youtube.com/embed/' + this.wish.url.split('v=')[1] + '?mute=0&autoplay=1';
 		},
 		inputClasses() {
-			const classes = ['shadow-xl', 'rounded-lg'];
+			const classes = ['input-field'];
 
 			if (this.wish.url === '') {
 				return classes;

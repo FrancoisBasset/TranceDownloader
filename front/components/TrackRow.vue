@@ -1,13 +1,13 @@
 <template>
 	<tr :class="trClasses">
 		<td v-if="!editMode">{{ track.artist }}</td>
-		<td v-else class="p-4"><input type="text" v-model="track.artist" class="rounded-lg shadow-xl" /></td>
+		<td v-else class="p-4"><input type="text" v-model="track.artist" class="input-field" /></td>
 
 		<td v-if="!editMode">{{ track.title }}</td>
-		<td v-else class="p-4"><input type="text" v-model="track.title" class="rounded-lg shadow-xl" /></td>
+		<td v-else class="p-4"><input type="text" v-model="track.title" class="input-field" /></td>
 
 		<td v-if="!editMode">{{ track.genre }}</td>
-		<td v-else class="p-4"><GenreSelect @change="track.genre = $event.target.value" :value="track.genre" class="rounded-lg shadow-xl" /></td>
+		<td v-else class="p-4"><GenreSelect @change="track.genre = $event.target.value" :value="track.genre" class="input-field" /></td>
 
 		<td>{{ duration }}</td>
 

@@ -1,16 +1,16 @@
 <template>
 	<tr :class="trClasses">
 		<td v-if="!editMode">{{ wish.artist }}</td>
-		<td v-else><input type="text" v-model="wish.artist" class="mb-4" /></td>
+		<td v-else><input type="text" v-model="wish.artist" class="input-field mb-4" /></td>
 
 		<td v-if="!editMode">{{ wish.title }}</td>
-		<td v-else><input type="text" v-model="wish.title" class="mb-4" /></td>
+		<td v-else><input type="text" v-model="wish.title" class="input-field mb-4" /></td>
 
 		<td v-if="!editMode">{{ wish.genre }}</td>
 		<td v-else><GenreSelect @change="wish.genre = $event.target.value" :value="wish.genre" class="my-4" /></td>
 
 		<td v-if="!editMode">{{ wish.url }}</td>
-		<td v-else><input type="text" v-model="wish.url" class="mb-4" /></td>
+		<td v-else><input type="text" v-model="wish.url" class="input-field mb-4" /></td>
 
 		<td class="flex space-x-1">
 			<EditButton v-if="!editMode" @click="editMode = true" />

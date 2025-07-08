@@ -1,9 +1,9 @@
 <template>
-	<div @scroll="scrollToYouTube" ref="list" class="bg-zinc-100 !overflow-scroll rounded-lg h-[80vh] shadow-2xl">
+	<div @scroll="scrollToYouTube" ref="list" class="view-container">
 		<div class="sticky top-0 z-10 bg-zinc-100 p-4">
 			<div class="relative flex justify-center">
 				<div class="flex gap-2">
-					<input type="text" v-model="searchText" @keydown.enter="search" autocomplete="off" class="px-3 py-2" />
+					<input type="text" v-model="searchText" @keydown.enter="search" autocomplete="off" class="input-field px-3 py-2" />
 					<button :class="searchButtonClasses" @click="search">OK</button>
 					<button v-if="!emptySearch" class="bg-red-500 text-white !w-30 shadow-lg rounded-lg shadow-red-500" @click="clear">Effacer</button>
 				</div>

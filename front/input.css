@@ -10,21 +10,24 @@ button {
 	@apply shadow-xl rounded-xl w-fit px-3 cursor-pointer;
 }
 
-input[type="text"], select {
-	@apply shadow-xl rounded-xl bg-white;
+.input-field {
+	@apply shadow-xl rounded-lg bg-white;
+	width: 300px;
+	height: 30px;
+	margin: 2px;
 }
 
-::-webkit-scrollbar {
-	width: 0;
+.view-container {
+	@apply bg-zinc-100 overflow-scroll rounded-lg h-[80vh] shadow-2xl;
 }
 
 input[type='text'],
 select {
-	width: 300px;
-	height: 30px;
-	border: none;
-	outline: none;
-	margin: 2px;
+	@apply input-field;
+}
+
+::-webkit-scrollbar {
+	width: 0;
 }
 
 .green-button {
