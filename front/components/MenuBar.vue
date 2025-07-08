@@ -3,7 +3,7 @@
 		<button @click="app.goTo('library')" :class="buttonClasses('library')">Bibliothèque</button>
 		<button @click="app.goTo('wishes')" :class="buttonClasses('wishes')">À ajouter</button>
 		<button @click="app.goTo('youtube')" :class="buttonClasses('youtube')">YouTube</button>
-		<button>EveryNoise</button>
+		<button @click="app.goTo('everynoise')" :class="buttonClasses('everynoise')">EveryNoise</button>
 	</div>
 </template>
 

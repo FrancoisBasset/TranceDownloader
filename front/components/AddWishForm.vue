@@ -5,9 +5,9 @@
 		<div>Url : <input type="text" v-model="wish.url" :class="inputClasses" /></div>
 
 		<div v-if="videoFound" class="flex flex-col gap-2">
-			<div>Artiste : <input type="text" v-model="wish.artist" class="shadow-xl rounded-lg" /></div>
-			<div>Titre : <input type="text" v-model="wish.title" class="shadow-xl rounded-lg" /></div>
-			<div>Genre : <GenreSelect @change="wish.genre = $event.target.value" :value="wish.genre" class="shadow-xl rounded-lg" /></div>
+			<div>Artiste : <input type="text" v-model="wish.artist" /></div>
+			<div>Titre : <input type="text" v-model="wish.title" /></div>
+			<div>Genre : <GenreSelect @change="wish.genre = $event.target.value" :value="wish.genre" /></div>
 
 			<iframe class="mx-auto shadow-xl rounded-lg" width="350" height="200" :src="youtubeLink" frameborder="0"></iframe>
 

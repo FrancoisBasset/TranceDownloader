@@ -3,7 +3,7 @@
 		<div class="sticky top-0 z-10 bg-zinc-100 p-4">
 			<div class="relative flex justify-center">
 				<div class="flex gap-2">
-					<input type="text" v-model="searchText" @keydown.enter="search" autocomplete="off" class="shadow-xl rounded-lg bg-white px-3 py-2" />
+					<input type="text" v-model="searchText" @keydown.enter="search" autocomplete="off" class="px-3 py-2" />
 					<button :class="searchButtonClasses" @click="search">OK</button>
 					<button v-if="!emptySearch" class="bg-red-500 text-white !w-30 shadow-lg rounded-lg shadow-red-500" @click="clear">Effacer</button>
 				</div>
@@ -72,6 +72,11 @@ export default {
 		scrollToYouTube() {
 			this.scrollTop = this.$refs.list.scrollTop;
 			this.app.goTo('youtube');
+		}
+	},
+	watch: {
+		'app.youtubeSearch'() {
+			this.searchText = this.app.youtubeSearch;
 		}
 	}
 };

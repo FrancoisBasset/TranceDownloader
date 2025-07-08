@@ -9,9 +9,9 @@
 	<div v-else class="h-screen flex items-center justify-center">
 		<div v-if="!loadingText && haveDir === false" class="flex flex-col p-2 bg-zinc-100 shadow-2xl rounded-lg">
 			<text>Le dossier Musique n'est pas renseigné.</text>
-			<input type="text" v-model="dir" class="!bg-gray-200 rounded" />
+			<input type="text" v-model="dir" />
 			<div class="text-center">
-				<button @click="sendDir" class="mx-auto bg-green-100 w-fit px-2">Envoyer</button>
+				<button @click="sendDir" class="green-button mx-auto">Envoyer</button>
 			</div>
 		</div>
 		<div v-else-if="haveJson === false" class="flex flex-col p-2 bg-zinc-100 shadow-2xl rounded-lg">

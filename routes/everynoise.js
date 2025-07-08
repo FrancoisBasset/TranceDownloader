@@ -3,21 +3,15 @@ const router = express.Router();
 
 const everyNoiseService = require('@/classes/everynoise');
 
-router.get('/genres', (_, res) => {
-	everyNoiseService.getGenres().then(genres => {
-		res.json({
-			success: true,
-			response: genres
-		});
+router.get('/genres', (req, res) => {
+	everyNoiseService.getGenres(req.query.name).then(genres => {
+		res.json(genres);
 	});
 });
 
-router.get('/genre/:genre', (req, res) => {
+router.get('/genres/:genre', (req, res) => {
 	everyNoiseService.getArtists(req.params.genre).then(artists => {
-		res.json({
-			success: true,
-			response: artists
-		});
+		res.json(artists);
 	});
 });
 

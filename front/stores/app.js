@@ -5,6 +5,7 @@ export default defineStore('app', {
 		currentTrack: null,
 		isPlaying: false,
 		wishUrl: '',
+		youtubeSearch: '',
 		mode: 'library',
 		direct: false
 	}),

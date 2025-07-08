@@ -3,7 +3,7 @@ const jsdom = require('jsdom').JSDOM;
 
 const wishesService = require('@/classes/wishes');
 
-module.exports.getGenres = () => {
+module.exports.getGenres = name => {
 	const genres = [];
 
 	return jsdom.fromURL('https://everynoise.com/').then(response => {
@@ -13,9 +13,7 @@ module.exports.getGenres = () => {
 			genres.push(item.textContent.replace('» ', ''));
 		});
 
-		genres.sort();
-
-		return genres;
+		return genres.filter(g => g.includes(name)).sort();
 	});
 };
 
@@ -33,26 +31,23 @@ module.exports.getArtists = genre => {
 		items.forEach(item => {
 			const text = item.title.replace('e.g. ', '');
 			const artist = text.split(' "')[0];
-			let track = text.split(' "')[1];
-			if (track === undefined) {
+			let title = text.split(' "')[1];
+			if (title === undefined) {
 				return;
 			}
 
-			track = track.substring(0, track.length - 1);
+			title = title.substring(0, title.length - 1);
 
-			let have = 0;
-			if (wishes.filter(wish => wish.artist === artist).length > 0) {
-				have = 1;
-			}
-			if (tracks.filter(t => t.artist === artist).length > 0) {
-				have = 2;
-			}
+			const haveInWishes = wishes.some(wish => wish.artist === artist && wish.title === title);
+			const haveInTracks = tracks.some(t => t.artist === artist);
 
-			artists.push({
-				artist: artist,
-				track: track,
-				have: have
-			});
+			if (!haveInWishes && !haveInTracks) {
+				artists.push({
+					artist: artist,
+					title: title,
+					preview_url: item.getAttribute('preview_url')
+				});
+			}
 		});
 
 		artists.sort((a, b) => {

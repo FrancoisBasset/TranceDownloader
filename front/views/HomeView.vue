@@ -3,6 +3,7 @@
 		<LibraryView id="library" class="w-10/12 mx-auto mt-[40px]" />
 		<WishesView id="wishes" class="w-10/12 mx-auto mt-[40px]" />
 		<YouTubeView id="youtube" class="w-10/12 mx-auto mt-[40px]" />
+		<EveryNoiseView id="everynoise" class="w-10/12 mx-auto mt-[40px]" />
 
 		<MusicPlayer />
 	</div>
@@ -12,6 +13,7 @@
 import LibraryView from '@/views/LibraryView.vue';
 import WishesView from '@/views/WishesView.vue';
 import YouTubeView from '@/views/YouTubeView.vue';
+import EveryNoiseView from '@/views/EveryNoiseView.vue';
 import MusicPlayer from '@/components/MusicPlayer.vue';
 </script>
 
