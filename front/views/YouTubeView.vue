@@ -1,5 +1,5 @@
 <template>
-	<div @scroll="scrollToYouTube" ref="list" class="view-container">
+	<BlockView @scroll="scrollToYouTube" ref="list">
 		<div class="sticky top-0 z-10 bg-zinc-100 p-4">
 			<div class="relative flex justify-center">
 				<div class="flex gap-2">
@@ -14,10 +14,11 @@
 			</div>
 		</div>
 		<YouTubeResultsList :results="results" />
-	</div>
+	</BlockView>
 </template>
 
 <script setup>
+import BlockView from '@/components/BlockView.vue';
 import YouTubeResultsList from '@/components/YouTubeResultsList.vue';
 import TopButton from '@/components/TopButton.vue';
 </script>

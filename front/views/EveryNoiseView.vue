@@ -1,5 +1,5 @@
 <template>
-	<div @scroll="scrollToEveryNoise" ref="list" class="view-container">
+	<BlockView @scroll="scrollToEveryNoise" ref="list">
 		<div class="sticky top-0 z-10 bg-zinc-100 p-4">
 			<div class="relative flex justify-center">
 				<div class="flex gap-2">
@@ -20,8 +20,12 @@
 				<button @click="searchOnYoutube(artist.artist + ' ' + artist.title)">Rechercher</button>
 			</div>
 		</div>
-	</div>
+	</BlockView>
 </template>
+
+<script setup>
+import BlockView from '@/components/BlockView.vue';
+</script>
 
 <script>
 import useApp from '@/stores/app';

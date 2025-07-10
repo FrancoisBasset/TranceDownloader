@@ -1,9 +1,10 @@
 <template>
-	<div class="view-container">
+	<BlockView>
 		<WishesList />
-	</div>
+	</BlockView>
 </template>
 
 <script setup>
+import BlockView from '@/components/BlockView.vue';
 import WishesList from '@/components/WishesList.vue';
 </script>
