@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<AddWishForm class="p-6" @wishAdded="setWishes" />
+		<WishForm class="p-6" @wishAdded="setWishes" />
 
 		<button @click="downloadAll" class="!w-auto green-button">Télécharger tout ({{ wishes.length }})</button>
 
@@ -18,7 +18,7 @@
 
 <script setup>
 import WishRow from '@/components/WishRow.vue';
-import AddWishForm from '@/components/AddWishForm.vue';
+import WishForm from '@/components/WishForm.vue';
 </script>
 
 <script>
