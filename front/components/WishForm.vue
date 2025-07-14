@@ -13,18 +13,16 @@
 
 			<div>
 				<button @click="addWish" :class="addButtonClasses">Ajouter</button>
-				<button @click="wish = getInitialWish()" class="bg-red-500 text-white w-20 rounded-lg shadow-xl shadow-red-500">Annuler</button>
+				<button @click="cancelWish" class="bg-red-500 text-white w-20 rounded-lg shadow-xl shadow-red-500">Annuler</button>
 			</div>
 		</div>
 	</div>
 </template>
 
-<script setup>
-import GenreSelect from '@/components/GenreSelect.vue';
-</script>
-
 <script>
+import GenreSelect from '@/components/GenreSelect.vue';
 import useApp from '@/stores/app';
+import useWishes from '@/stores/wishes';
 
 function getInitialWish() {
 	return {
@@ -36,13 +34,17 @@ function getInitialWish() {
 }
 
 export default {
+	components: { GenreSelect },
 	data() {
 		return {
-			app: useApp(),
 			videoFound: null,
 			wish: getInitialWish()
 		};
 	},
+	setup: () => ({
+		app: useApp(),
+		wishesStore: useWishes()
+	}),
 	computed: {
 		youtubeLink() {
 			return 'https://www.youtube.com/embed/' + this.wish.url.split('v=')[1] + '?mute=0&autoplay=1';
@@ -80,25 +82,13 @@ export default {
 				return;
 			}
 
-			fetch(import.meta.env.VITE_API + '/wishes', {
-				method: 'POST',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(this.wish)
-			}).then(response => {
-				response.json().then(() => {
-					this.wish = {
-						artist: '',
-						title: '',
-						genre: '',
-						url: ''
-					};
-					this.$emit('wishAdded');
-					this.app.goTo('youtube');
-				});
+			this.wishesStore.addWish(this.wish).then(() => {
+				this.wish = getInitialWish();
+				this.app.goTo('youtube');
 			});
+		},
+		cancelWish() {
+			this.wish = getInitialWish();
 		}
 	},
 	watch: {

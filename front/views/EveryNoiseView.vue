@@ -3,7 +3,7 @@
 		<div class="sticky top-0 z-10 bg-zinc-100 p-4">
 			<div class="relative flex justify-center">
 				<div class="flex gap-2">
-					<input type="text" v-model="search">
+					<input type="text" v-model="search" />
 					<button @click="findGenresByName">Rechercher</button>
 				</div>
 			</div>

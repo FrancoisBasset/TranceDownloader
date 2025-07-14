@@ -15,32 +15,34 @@
 		<td class="flex space-x-1">
 			<EditButton v-if="!editMode" @click="editMode = true" />
 			<SaveButton v-if="editMode" @click="saveWish" />
-			<DeleteButton @click="deleteWish" />
+			<DeleteButton @click="wishesStore.deleteWish(wish)" />
 			<DownloadButton v-if="!downloading" @click="downloadWish" />
 			<Spinner v-else />
 		</td>
 	</tr>
 </template>
 
-<script setup>
+<script>
 import GenreSelect from '@/components/GenreSelect.vue';
 import EditButton from '@/components/EditButton.vue';
 import SaveButton from '@/components/SaveButton.vue';
 import DeleteButton from '@/components/DeleteButton.vue';
 import DownloadButton from '@/components/DownloadButton.vue';
 import Spinner from '@/components/Spinner.vue';
-</script>
-
-<script>
 import useApp from '@/stores/app';
+import useWishes from '@/stores/wishes';
 
 export default {
+	components: { GenreSelect, EditButton, SaveButton, DeleteButton, DownloadButton, Spinner },
 	expose: ['downloadWish'],
 	props: ['wish'],
 	data: () => ({
-		app: useApp(),
 		editMode: false,
 		downloading: false
+	}),
+	setup: () => ({
+		app: useApp(),
+		wishesStore: useWishes()
 	}),
 	computed: {
 		trClasses() {
@@ -53,49 +55,14 @@ export default {
 	},
 	methods: {
 		saveWish() {
-			fetch(import.meta.env.VITE_API + '/wishes/' + this.wish.id, {
-				method: 'PUT',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					artist: this.wish.artist,
-					title: this.wish.title,
-					genre: this.wish.genre,
-					url: this.wish.url
-				})
-			}).then(() => {
+			this.wishesStore.saveWish(this.wish).then(() => {
 				this.editMode = false;
-				this.$emit('wishUpdated');
 			});
 		},
 		downloadWish() {
 			this.downloading = true;
 
-			fetch(import.meta.env.VITE_API + '/youtube', {
-				method: 'POST',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					id: this.wish.id,
-					url: this.wish.url,
-					artist: this.wish.artist,
-					title: this.wish.title,
-					genre: this.wish.genre
-				})
-			}).then(() => {
-				this.$emit('wishDownloaded');
-			});
-		},
-		deleteWish() {
-			fetch(import.meta.env.VITE_API + '/wishes/' + this.wish.id, {
-				method: 'DELETE'
-			}).then(() => {
-				this.$emit('wishDeleted');
-			});
+			this.wishesStore.downloadWish(this.wish);
 		}
 	}
 };
