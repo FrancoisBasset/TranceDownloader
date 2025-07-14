@@ -13,7 +13,7 @@
 
 			<div>
 				<button @click="addWish" :class="addButtonClasses">Ajouter</button>
-				<button @click="cancelWish" class="bg-red-500 text-white w-20 rounded-lg shadow-xl shadow-red-500">Annuler</button>
+				<button @click="cancelWish" class="red-button">Annuler</button>
 			</div>
 		</div>
 	</div>
@@ -65,14 +65,8 @@ export default {
 		},
 		addButtonClasses() {
 			return {
-				'bg-white': !this.formCompleted,
-				'bg-teal-400': this.formCompleted,
-				'text-white': this.formCompleted,
-				'w-20': true,
-				'cursor-not-allowed': !this.formCompleted,
-				'rounded-lg': true,
-				'shadow-xl': true,
-				'shadow-teal-400': this.formCompleted
+				'green-button': this.formCompleted,
+				'cursor-not-allowed': !this.formCompleted
 			};
 		}
 	},

@@ -7,7 +7,7 @@
 }
 
 button {
-	@apply shadow-xl rounded-xl w-fit px-3 cursor-pointer;
+	@apply bg-white shadow-xl rounded-xl w-fit px-3 py-2 cursor-pointer;
 }
 
 .view-container {
@@ -33,6 +33,10 @@ select {
 
 .orange-button {
 	@apply !bg-orange-400 shadow-xl shadow-orange-400 fill-white;
+}
+
+.red-button {
+	@apply !bg-red-400 shadow-xl shadow-red-400 text-white;
 }
 
 .video-not-found {

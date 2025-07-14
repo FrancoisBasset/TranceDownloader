@@ -9,7 +9,7 @@
 			</div>
 		</div>
 
-		<button v-for="genre in genres" @click="showArtists(genre)" class="rounded-xl m-1 bg-gray-300" :class="{ 'green-button': genre === selectedGenre }">{{ genre }}</button>
+		<button v-for="genre in genres" @click="showArtists(genre)" class="m-1 bg-gray-300" :class="{ 'green-button': genre === selectedGenre }">{{ genre }}</button>
 		<div v-for="artist in artists" class="rounded-xl w-auto m-1 p-2 flex flex-row bg-gray-200">
 			<div class="w-3/12 text-xl m-5">{{ artist.artist }}</div>
 			<div class="w-3/12 text-xl m-5">{{ artist.title }}</div>
@@ -56,15 +56,6 @@ export default {
 				.then(json => {
 					this.artists = json;
 				});
-		},
-		getRandomColor() {
-			const letters = '0123456789ABCDEF';
-			let color = '#';
-			for (let i = 0; i < 6; i++) {
-				color += letters[Math.floor(Math.random() * 16)];
-			}
-
-			return color;
 		},
 		scrollToEveryNoise() {
 			this.scrollTop = this.$refs.list.scrollTop;

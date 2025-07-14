@@ -5,7 +5,7 @@
 				<div class="flex gap-2">
 					<input type="text" v-model="searchText" @keydown.enter="search" autocomplete="off" class="px-3 py-2" />
 					<button :class="searchButtonClasses" @click="search">OK</button>
-					<button v-if="!emptySearch" class="bg-red-500 text-white !w-30 shadow-lg rounded-lg shadow-red-500" @click="clear">Effacer</button>
+					<button v-if="!emptySearch" class="red-button" @click="clear">Effacer</button>
 				</div>
 
 				<div v-if="scrollTop !== 0" class="absolute right-0 top-0">
@@ -41,14 +41,8 @@ export default {
 		},
 		searchButtonClasses() {
 			return {
-				'bg-white': this.emptySearch,
-				'bg-teal-400': !this.emptySearch,
-				'text-white': !this.emptySearch,
-				'!w-12': true,
-				'cursor-not-allowed': this.emptySearch,
-				'rounded-lg': true,
-				'shadow-xl': true,
-				'shadow-teal-400': !this.emptySearch
+				'green-button': !this.emptySearch,
+				'cursor-not-allowed': this.emptySearch
 			};
 		}
 	},
