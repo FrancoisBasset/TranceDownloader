@@ -1,9 +1,9 @@
 <template>
 	<table class="mx-auto text-start">
 		<tr class="cursor-pointer">
-			<th @click="sortBy('artist')" class="text-start" :class="{ 'text-green-500': sortMode === 'artist' }">Artiste</th>
-			<th @click="sortBy('title')" class="text-start" :class="{ 'text-green-500': sortMode === 'title' }">Titre</th>
-			<th @click="sortBy('genre')" class="text-start" :class="{ 'text-green-500': sortMode === 'genre' }">Genre</th>
+			<th @click="sort('artist')" class="text-start" :class="{ 'text-green-500': order === 'artist' }">Artiste</th>
+			<th @click="sort('title')" class="text-start" :class="{ 'text-green-500': order === 'title' }">Titre</th>
+			<th @click="sort('genre')" class="text-start" :class="{ 'text-green-500': order === 'genre' }">Genre</th>
 		</tr>
 		<TrackRow v-for="track of tracks" :key="track" :track="track" />
 	</table>
@@ -17,7 +17,7 @@ export default {
 	components: { TrackRow },
 	data: () => ({
 		tracks: [],
-		sortMode: 'artist'
+		order: 'artist'
 	}),
 	setup: () => ({
 		app: useApp()
@@ -29,11 +29,11 @@ export default {
 		async setTracks() {
 			this.tracks = await fetch('/library.json').then(res => res.json());
 		},
-		sortBy(type) {
-			this.sortMode = type;
+		sort(order) {
+			this.order = order;
 
 			this.tracks = this.tracks.sort((t1, t2) => {
-				return t1[type].localeCompare(t2[type]);
+				return t1[order].localeCompare(t2[order]);
 			});
 		}
 	}

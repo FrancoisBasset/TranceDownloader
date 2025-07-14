@@ -20,7 +20,7 @@
 <script>
 import BlockView from '@/components/BlockView.vue';
 import YouTubeResultsList from '@/components/YouTubeResultsList.vue';
-import TopButton from '@/components/TopButton.vue';
+import TopButton from '@/components/buttons/TopButton.vue';
 import useApp from '@/stores/app';
 
 export default {

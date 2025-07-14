@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import DownloadButton from '@/components/DownloadButton.vue';
+import DownloadButton from '@/components/buttons/DownloadButton.vue';
 import useApp from '@/stores/app';
 
 export default {

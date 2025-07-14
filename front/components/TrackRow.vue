@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import PlayButton from '@/components/PlayButton.vue';
-import PauseButton from '@/components/PauseButton.vue';
-import EditButton from '@/components/EditButton.vue';
-import SaveButton from '@/components/SaveButton.vue';
+import PlayButton from '@/components/buttons/PlayButton.vue';
+import PauseButton from '@/components/buttons/PauseButton.vue';
+import EditButton from '@/components/buttons/EditButton.vue';
+import SaveButton from '@/components/buttons/SaveButton.vue';
 import GenreSelect from '@/components/GenreSelect.vue';
 import useApp from '@/stores/app';
 

@@ -24,10 +24,10 @@
 
 <script>
 import GenreSelect from '@/components/GenreSelect.vue';
-import EditButton from '@/components/EditButton.vue';
-import SaveButton from '@/components/SaveButton.vue';
-import DeleteButton from '@/components/DeleteButton.vue';
-import DownloadButton from '@/components/DownloadButton.vue';
+import EditButton from '@/components/buttons/EditButton.vue';
+import SaveButton from '@/components/buttons/SaveButton.vue';
+import DeleteButton from '@/components/buttons/DeleteButton.vue';
+import DownloadButton from '@/components/buttons/DownloadButton.vue';
 import Spinner from '@/components/Spinner.vue';
 import useApp from '@/stores/app';
 import useWishes from '@/stores/wishes';
