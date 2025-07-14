@@ -22,23 +22,23 @@
 	</tr>
 </template>
 
-<script setup>
+<script>
 import PlayButton from '@/components/PlayButton.vue';
 import PauseButton from '@/components/PauseButton.vue';
 import EditButton from '@/components/EditButton.vue';
 import SaveButton from '@/components/SaveButton.vue';
 import GenreSelect from '@/components/GenreSelect.vue';
-</script>
-
-<script>
 import useApp from '@/stores/app';
 
 export default {
+	components: { PlayButton, PauseButton, EditButton, SaveButton, GenreSelect },
 	props: ['track'],
 	data: () => ({
-		app: useApp(),
 		editMode: false,
 		duration: '↻'
+	}),
+	setup: () => ({
+		app: useApp()
 	}),
 	async created() {
 		const audio = document.createElement('audio');

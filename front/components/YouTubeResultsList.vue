@@ -4,12 +4,11 @@
 	</div>
 </template>
 
-<script setup>
-import YouTubeResult from '@/components/YouTubeResult.vue';
-</script>
-
 <script>
+import YouTubeResult from '@/components/YouTubeResult.vue';
+
 export default {
+	components: { YouTubeResult },
 	props: ['results']
 };
 </script>

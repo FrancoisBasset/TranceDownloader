@@ -11,7 +11,7 @@
 import useApp from '@/stores/app';
 
 export default {
-	data: () => ({
+	setup: () => ({
 		app: useApp()
 	}),
 	methods: {

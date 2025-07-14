@@ -9,18 +9,18 @@
 	</table>
 </template>
 
-<script setup>
-import TrackRow from '@/components/TrackRow.vue';
-</script>
-
 <script>
+import TrackRow from '@/components/TrackRow.vue';
 import useApp from '@/stores/app';
 
 export default {
+	components: { TrackRow },
 	data: () => ({
-		app: useApp(),
 		tracks: [],
 		sortMode: 'artist'
+	}),
+	setup: () => ({
+		app: useApp()
 	}),
 	created() {
 		this.setTracks();

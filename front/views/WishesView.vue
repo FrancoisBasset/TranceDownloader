@@ -2,7 +2,7 @@
 	<BlockView>
 		<WishForm class="p-6" />
 
-		<button @click="wishesStore.downloadAll" class="!w-auto green-button">Télécharger tout ({{ wishesStore.wishes.length }})</button>
+		<button v-if="wishesStore.wishes.length > 0" @click="wishesStore.downloadAll" class="!w-auto green-button">Télécharger tout ({{ wishesStore.wishes.length }})</button>
 
 		<WishesList />
 	</BlockView>

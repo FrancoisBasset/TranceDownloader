@@ -7,18 +7,19 @@
 	</BlockView>
 </template>
 
-<script setup>
+<script>
 import BlockView from '@/components/BlockView.vue';
 import TrackList from '@/components/TrackList.vue';
 import TopButton from '@/components/TopButton.vue';
-</script>
-
-<script>
 import useApp from '@/stores/app';
+
 export default {
+	components: { BlockView, TrackList, TopButton },
 	data: () => ({
-		app: useApp(),
 		scrollTop: 0
+	}),
+	setup: () => ({
+		app: useApp()
 	}),
 	mounted() {
 		this.$refs.list.scrollTop = 0;

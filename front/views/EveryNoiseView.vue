@@ -23,23 +23,23 @@
 	</BlockView>
 </template>
 
-<script setup>
-import BlockView from '@/components/BlockView.vue';
-</script>
-
 <script>
+import BlockView from '@/components/BlockView.vue';
 import useApp from '@/stores/app';
 
 export default {
+	components: { BlockView },
 	data() {
 		return {
-			app: useApp(),
 			search: '',
 			genres: [],
 			selectedGenre: '',
 			artists: []
 		};
 	},
+	setup: () => ({
+		app: useApp()
+	}),
 	methods: {
 		findGenresByName() {
 			fetch(import.meta.env.VITE_API + '/everynoise/genres?name=' + this.search)

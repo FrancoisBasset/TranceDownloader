@@ -21,13 +21,12 @@
 	</div>
 </template>
 
-<script setup>
+<script>
 import MenuBar from '@/components/MenuBar.vue';
 import Spinner from '@/components/Spinner.vue';
-</script>
 
-<script>
 export default {
+	components: { MenuBar, Spinner },
 	data: () => ({
 		haveDir: null,
 		haveJson: null,

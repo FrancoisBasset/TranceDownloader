@@ -17,24 +17,24 @@
 	</BlockView>
 </template>
 
-<script setup>
+<script>
 import BlockView from '@/components/BlockView.vue';
 import YouTubeResultsList from '@/components/YouTubeResultsList.vue';
 import TopButton from '@/components/TopButton.vue';
-</script>
-
-<script>
 import useApp from '@/stores/app';
 
 export default {
+	components: { BlockView, YouTubeResultsList, TopButton },
 	data() {
 		return {
-			app: useApp(),
 			searchText: '',
 			results: [],
 			scrollTop: 0
 		};
 	},
+	setup: () => ({
+		app: useApp()
+	}),
 	computed: {
 		emptySearch() {
 			return this.searchText.trim() === '';

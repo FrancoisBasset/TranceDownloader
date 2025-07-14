@@ -14,16 +14,14 @@
 	</div>
 </template>
 
-<script setup>
-import DownloadButton from '@/components/DownloadButton.vue';
-</script>
-
 <script>
+import DownloadButton from '@/components/DownloadButton.vue';
 import useApp from '@/stores/app';
 
 export default {
+	components: { DownloadButton },
 	props: ['result'],
-	data: () => ({
+	setup: () => ({
 		app: useApp()
 	}),
 	methods: {

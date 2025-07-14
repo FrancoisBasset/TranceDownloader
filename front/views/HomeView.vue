@@ -9,21 +9,21 @@
 	</div>
 </template>
 
-<script setup>
+<script>
 import LibraryView from '@/views/LibraryView.vue';
 import WishesView from '@/views/WishesView.vue';
 import YouTubeView from '@/views/YouTubeView.vue';
 import EveryNoiseView from '@/views/EveryNoiseView.vue';
 import MusicPlayer from '@/components/MusicPlayer.vue';
-</script>
-
-<script>
 import useApp from '@/stores/app';
 
 export default {
+	components: { LibraryView, WishesView, YouTubeView, EveryNoiseView, MusicPlayer },
 	data: () => ({
-		app: useApp(),
-		views: ['library', 'wishes', 'youtube']
+		views: ['library', 'wishes', 'youtube', 'everynoise']
+	}),
+	setup: () => ({
+		app: useApp()
 	}),
 	mounted() {
 		const observer = new IntersectionObserver(this.handleIntersection, {
