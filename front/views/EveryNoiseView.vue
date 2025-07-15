@@ -5,6 +5,7 @@
 				<div class="flex gap-2">
 					<input type="text" v-model="search" placeholder="Rechercher un genre musical" />
 					<button @click="findGenresByName" :class="{ 'green-button': search.trim() !== '' }">Rechercher</button>
+					<button v-if="search.trim() !== ''" @click="resetForm" class="red-button">Effacer</button>
 				</div>
 			</div>
 		</div>
@@ -43,6 +44,12 @@ export default {
 					this.artists = [];
 					this.selectedGenre = null;
 				});
+		},
+		resetForm() {
+			this.search = '';
+			this.genres = [];
+			this.selectedGenre = null;
+			this.artists = [];
 		},
 		showArtists(genre) {
 			this.selectedGenre = genre;
