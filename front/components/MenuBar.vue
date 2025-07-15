@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-zinc-100 w-fit mx-auto m-4 rounded-lg shadow-2xl p-3">
+	<div class="menu-bar">
 		<label @click="app.goTo('library')" :class="buttonClasses('library')">Bibliothèque</label>
 		<label @click="app.goTo('wishes')" :class="buttonClasses('wishes')">À ajouter</label>
 		<label @click="app.goTo('youtube')" :class="buttonClasses('youtube')">YouTube</label>
@@ -16,10 +16,10 @@ export default {
 	}),
 	methods: {
 		buttonClasses(mode) {
-			const classes = ['cursor-pointer', 'text-lg', 'm-5'];
+			const classes = ['cursor-pointer', 'text-lg', 'm-5', 'menu-bar-button'];
 
 			if (this.app.mode === mode) {
-				classes.push('font-bold');
+				classes.push('font-bold', 'menu-bar-button-active');
 			}
 
 			return classes;

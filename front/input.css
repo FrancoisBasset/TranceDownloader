@@ -6,21 +6,66 @@
 	outline: none;
 }
 
+.menu-bar {
+	@apply bg-zinc-100 w-fit mx-auto m-4 rounded-lg p-3;
+	box-shadow:
+		-8px -8px 16px rgba(255, 255, 255, 0.6),
+		8px 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.menu-bar-button {
+	@apply cursor-pointer bg-zinc-100 text-gray-800 rounded-xl px-4 py-2 transition-all duration-200;
+}
+
+.menu-bar-button-active {
+	@apply bg-zinc-200 font-bold;
+	box-shadow:
+		inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+		inset -4px -4px 8px rgba(255, 255, 255, 0.6);
+}
+
 button {
-	@apply bg-white shadow-xl rounded-xl w-fit px-3 py-2 cursor-pointer;
+	@apply bg-zinc-100 rounded-xl w-fit px-3 py-2 cursor-pointer text-gray-800;
+	box-shadow:
+		4px 4px 8px #d1d5db,
+		-4px -4px 8px #ffffff;
+}
+
+button:active {
+	box-shadow:
+		inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+		inset -4px -4px 8px rgba(255, 255, 255, 0.7);
 }
 
 .view-container {
-	@apply bg-zinc-100 overflow-scroll rounded-xl h-[80vh] shadow-2xl;
+	@apply bg-zinc-100 overflow-scroll rounded-xl h-[80vh];
+	background: linear-gradient(145deg, #ffffff, #e3e3e3);
+	box-shadow:
+		-8px -8px 16px rgba(255, 255, 255, 0.7),
+		8px 8px 16px rgba(0, 0, 0, 0.1),
+		-2px -2px 4px rgba(255, 255, 255, 0.5),
+		2px 2px 4px rgba(0, 0, 0, 0.06);
 }
+
+.view-container:hover {
+	box-shadow:
+		-12px -12px 24px rgba(255, 255, 255, 0.8),
+		12px 12px 24px rgba(0, 0, 0, 0.12),
+		-3px -3px 6px rgba(255, 255, 255, 0.5),
+		3px 3px 6px rgba(0, 0, 0, 0.08);
+}
+
 
 input[type='text'],
 select {
-	@apply shadow-xl rounded-xl bg-white;
+	@apply shadow-xl rounded-xl bg-white px-3;
 	width: 300px;
 	height: 30px;
 	border: none;
 	outline: none;
+	box-shadow:
+		inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+		inset -4px -4px 8px rgba(255, 255, 255, 0.7);
 }
 
 ::-webkit-scrollbar {
@@ -28,17 +73,17 @@ select {
 }
 
 .green-button {
-	@apply !bg-teal-400 shadow-xl shadow-teal-400 text-white;
+	@apply !bg-teal-400 text-white;
 }
 
 .orange-button {
-	@apply !bg-orange-400 shadow-xl shadow-orange-400 text-white;
+	@apply !bg-orange-400 text-white;
 }
 
 .red-button {
-	@apply !bg-red-400 shadow-xl shadow-red-400 text-white;
+	@apply !bg-red-400 text-white;
 }
 
 .video-not-found {
-	@apply !border-[1px] !border-solid !border-red-500;
+	@apply !bg-red-50 !text-red-700 !shadow-[0_0_10px_rgba(239,68,68,0.5)];
 }
