@@ -1,6 +1,6 @@
 <template>
 	<div v-if="haveDir && haveJson" class="h-screen flex flex-col text-center">
-		<MenuBar class="bg-zinc-100 w-fit mx-auto m-4 rounded-lg shadow-2xl" />
+		<MenuBar />
 
 		<div id="view" class="flex-1 overflow-y-auto">
 			<RouterView />

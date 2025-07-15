@@ -4,7 +4,7 @@
 
 		<button v-if="wishesStore.wishes.length > 0" @click="wishesStore.downloadAll" class="!w-auto green-button">Télécharger tout ({{ wishesStore.wishes.length }})</button>
 
-		<WishesList />
+		<WishesList v-if="wishesStore.wishes.length > 0" />
 	</BlockView>
 </template>
 

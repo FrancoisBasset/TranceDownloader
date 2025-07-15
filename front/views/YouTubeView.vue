@@ -3,8 +3,8 @@
 		<div class="sticky top-0 z-10 bg-zinc-100 p-4">
 			<div class="relative flex justify-center">
 				<div class="flex gap-2">
-					<input type="text" v-model="searchText" @keydown.enter="search" autocomplete="off" class="px-3 py-2" />
-					<button :class="searchButtonClasses" @click="search">OK</button>
+					<input type="text" v-model="searchText" @keydown.enter="search" placeholder="Rechercher sur YouTube" autocomplete="off" class="px-3 py-2" />
+					<button :class="searchButtonClasses" @click="search">Rechercher</button>
 					<button v-if="!emptySearch" class="red-button" @click="clear">Effacer</button>
 				</div>
 
@@ -42,7 +42,7 @@ export default {
 		searchButtonClasses() {
 			return {
 				'green-button': !this.emptySearch,
-				'cursor-not-allowed': this.emptySearch
+				'!cursor-not-allowed': this.emptySearch
 			};
 		}
 	},

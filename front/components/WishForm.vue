@@ -1,6 +1,6 @@
 <template>
 	<div class="flex flex-col gap-2">
-		<b>Ajouter une vidéo</b>
+		<b>Ajouter une vidéo à partir d'un lien YouTube</b>
 
 		<div>Url : <input type="text" v-model="wish.url" :class="inputClasses" /></div>
 
@@ -66,7 +66,7 @@ export default {
 		addButtonClasses() {
 			return {
 				'green-button': this.formCompleted,
-				'cursor-not-allowed': !this.formCompleted
+				'!cursor-not-allowed': !this.formCompleted
 			};
 		}
 	},

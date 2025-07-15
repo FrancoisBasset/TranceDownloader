@@ -1,20 +1,19 @@
 <template>
-	<BlockView @scroll="scrollToLibrary" ref="list" class="py-8">
+	<div class="view-container py-8" @scroll="scrollToLibrary" ref="list">
 		<div class="sticky top-0 flex justify-end pr-7" v-if="scrollTop !== 0">
 			<TopButton @click="$refs.list.scrollTop = 0" />
 		</div>
 		<TrackList />
-	</BlockView>
+	</div>
 </template>
 
 <script>
-import BlockView from '@/components/BlockView.vue';
 import TrackList from '@/components/TrackList.vue';
 import TopButton from '@/components/buttons/TopButton.vue';
 import useApp from '@/stores/app';
 
 export default {
-	components: { BlockView, TrackList, TopButton },
+	components: { TrackList, TopButton },
 	data: () => ({
 		scrollTop: 0
 	}),
