@@ -32,7 +32,7 @@ select {
 }
 
 .orange-button {
-	@apply !bg-orange-400 shadow-xl shadow-orange-400 fill-white;
+	@apply !bg-orange-400 shadow-xl shadow-orange-400 text-white;
 }
 
 .red-button {

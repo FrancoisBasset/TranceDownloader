@@ -10,30 +10,24 @@
 		</div>
 
 		<button v-for="genre in genres" @click="showArtists(genre)" class="m-1 bg-gray-300" :class="{ 'green-button': genre === selectedGenre }">{{ genre }}</button>
-		<div v-for="artist in artists" class="rounded-xl w-auto m-1 p-2 flex flex-row bg-gray-200">
-			<div class="w-3/12 text-xl m-5">{{ artist.artist }}</div>
-			<div class="w-3/12 text-xl m-5">{{ artist.title }}</div>
-			<div class="w-3/12">
-				<audio class="rounded-full text-black opacity-20" style="background-color: lightblue; width: 300px" controls :src="artist.preview_url"></audio>
-			</div>
-			<div class="w-1/12">
-				<button @click="searchOnYoutube(artist.artist + ' ' + artist.title)">Rechercher</button>
-			</div>
+		<div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center my-4">
+			<EveryNoiseArtist v-for="artist in artists" :key="artist" :artist="artist" />
 		</div>
 	</BlockView>
 </template>
 
 <script>
 import BlockView from '@/components/BlockView.vue';
+import EveryNoiseArtist from '@/components/EveryNoiseArtist.vue';
 import useApp from '@/stores/app';
 
 export default {
-	components: { BlockView },
+	components: { BlockView, EveryNoiseArtist },
 	data() {
 		return {
 			search: '',
 			genres: [],
-			selectedGenre: '',
+			selectedGenre: null,
 			artists: []
 		};
 	},
@@ -46,6 +40,8 @@ export default {
 				.then(res => res.json())
 				.then(json => {
 					this.genres = json;
+					this.artists = [];
+					this.selectedGenre = null;
 				});
 		},
 		showArtists(genre) {
@@ -60,10 +56,6 @@ export default {
 		scrollToEveryNoise() {
 			this.scrollTop = this.$refs.list.scrollTop;
 			this.app.goTo('everynoise');
-		},
-		searchOnYoutube(search) {
-			this.app.goTo('youtube');
-			this.app.youtubeSearch = search;
 		}
 	}
 };

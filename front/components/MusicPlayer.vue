@@ -1,14 +1,19 @@
 <template>
-	<div v-if="app.currentTrack" class="fixed bottom-0 w-full text-start bg-white">
-		<text class="p-2">{{ app.currentTrack.artist }} - {{ app.currentTrack.title }}</text>
+	<div v-if="app.currentTrack" class="fixed bottom-0 w-full text-start bg-teal-100">
+		<div class="flex flex-row justify-between">
+			<text class="p-2">{{ app.currentTrack.artist }} - {{ app.currentTrack.title }}</text>
+			<StopAudioButton @click="app.currentTrack = null" />
+		</div>
 		<audio ref="audio" class="w-full" :src="currentUrl" controls autoplay @play="app.isPlaying = true" @pause="app.isPlaying = false" />
 	</div>
 </template>
 
 <script>
+import StopAudioButton from '@/components/buttons/StopAudioButton.vue';
 import useApp from '@/stores/app';
 
 export default {
+	components: { StopAudioButton },
 	setup: () => ({
 		app: useApp()
 	}),

@@ -1,9 +1,9 @@
 <template>
 	<table class="mx-auto text-start">
 		<tr class="cursor-pointer">
-			<th @click="sort('artist')" class="text-start" :class="{ 'text-green-500': order === 'artist' }">Artiste</th>
-			<th @click="sort('title')" class="text-start" :class="{ 'text-green-500': order === 'title' }">Titre</th>
-			<th @click="sort('genre')" class="text-start" :class="{ 'text-green-500': order === 'genre' }">Genre</th>
+			<th @click="sort('artist')" class="text-start" :class="{ 'text-teal-400': order === 'artist' }">Artiste</th>
+			<th @click="sort('title')" class="text-start" :class="{ 'text-teal-400': order === 'title' }">Titre</th>
+			<th @click="sort('genre')" class="text-start" :class="{ 'text-teal-400': order === 'genre' }">Genre</th>
 		</tr>
 		<TrackRow v-for="track of tracks" :key="track" :track="track" />
 	</table>
