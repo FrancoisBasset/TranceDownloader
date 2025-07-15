@@ -18,7 +18,7 @@ module.exports.getGenres = name => {
 };
 
 module.exports.getArtists = genre => {
-	genre = genre.split(' ').join('');
+	genre = genre.split(' ').join('').split('-').join('');
 
 	const artists = [];
 
