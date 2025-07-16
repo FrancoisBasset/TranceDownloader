@@ -3,19 +3,23 @@
 		<div class="sticky top-0 flex justify-end pr-7" v-if="scrollTop !== 0">
 			<TopButton @click="$refs.list.scrollTop = 0" />
 		</div>
-		<TrackList />
+		<TrackList @onEdit="track => editingTrack = track" />
+
+		<TrackForm v-if="editingTrack" :key="editingTrack" :track="editingTrack" @onSave="editingTrack = null" />
 	</div>
 </template>
 
 <script>
-import TrackList from '@/components/TrackList.vue';
 import TopButton from '@/components/buttons/TopButton.vue';
+import TrackList from '@/components/TrackList.vue';
+import TrackForm from '@/components/TrackForm.vue';
 import useApp from '@/stores/app';
 
 export default {
-	components: { TrackList, TopButton },
+	components: { TrackList, TrackForm, TopButton },
 	data: () => ({
-		scrollTop: 0
+		scrollTop: 0,
+		editingTrack: null
 	}),
 	setup: () => ({
 		app: useApp()

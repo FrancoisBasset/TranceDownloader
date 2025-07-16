@@ -1,23 +1,15 @@
 <template>
 	<tr :class="trClasses">
-		<td v-if="!editMode">{{ track.artist }}</td>
-		<td v-else class="p-4"><input type="text" v-model="track.artist" /></td>
-
-		<td v-if="!editMode">{{ track.title }}</td>
-		<td v-else class="p-4"><input type="text" v-model="track.title" /></td>
-
-		<td v-if="!editMode">{{ track.genre }}</td>
-		<td v-else class="p-4"><GenreSelect @change="track.genre = $event.target.value" :value="track.genre" /></td>
-
+		<td>{{ track.artist }}</td>
+		<td>{{ track.title }}</td>
+		<td>{{ track.genre }}</td>
 		<td>{{ duration }}</td>
-
 		<td>
 			<PlayButton v-if="(app.currentTrack !== track || !app.isPlaying) && !editMode" @click="selectTrack" />
 			<PauseButton v-else-if="app.currentTrack === track && app.isPlaying && !editMode" @click="app.isPlaying = false" />
 		</td>
 		<td>
-			<EditButton v-if="!editMode" @click="editMode = true" />
-			<SaveButton v-if="editMode" @click="save" />
+			<EditButton @click="$emit('onEdit', track)" />
 		</td>
 	</tr>
 </template>
@@ -32,6 +24,7 @@ import useApp from '@/stores/app';
 
 export default {
 	components: { PlayButton, PauseButton, EditButton, SaveButton, GenreSelect },
+	emits: ['onEdit'],
 	props: ['track'],
 	data: () => ({
 		editMode: false,
@@ -74,23 +67,6 @@ export default {
 		selectTrack() {
 			this.app.currentTrack = this.track;
 			this.app.isPlaying = true;
-		},
-		save() {
-			fetch(import.meta.env.VITE_API + '/library', {
-				method: 'PUT',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					url: this.track.url,
-					artist: this.track.artist,
-					title: this.track.title,
-					genre: this.track.genre
-				})
-			}).then(() => {
-				this.editMode = false;
-			});
 		}
 	}
 };

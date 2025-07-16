@@ -85,5 +85,12 @@ select {
 }
 
 .video-not-found {
-	@apply !bg-red-50 !text-red-700 !shadow-[0_0_10px_rgba(239,68,68,0.5)];
+	@apply !bg-red-50 !text-red-700 !shadow-[0_0_10px_rgba(239, 68, 68, 0.5)];
+}
+
+.alert {
+	@apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-zinc-100 rounded-lg px-8 py-6 text-gray-700 text-center text-lg;
+	box-shadow:
+		-8px -8px 16px rgba(255, 255, 255, 0.6),
+		8px 8px 16px rgba(0, 0, 0, 0.1);
 }
