@@ -5,7 +5,7 @@
 		</div>
 		<TrackList @onEdit="track => editingTrack = track" />
 
-		<TrackForm v-if="editingTrack" :key="editingTrack" :track="editingTrack" @onSave="editingTrack = null" />
+		<TrackForm v-if="editingTrack" :key="editingTrack" :track="editingTrack" @onClose="editingTrack = null" />
 	</div>
 </template>
 

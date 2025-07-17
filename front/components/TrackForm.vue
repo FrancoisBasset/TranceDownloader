@@ -1,16 +1,18 @@
 <template>
-    <div class="alert flex flex-col !p-5">
+	<Modal>
 		<input type="text" v-model="track.artist" />
 		<input type="text" v-model="track.title" />
 		<GenreSelect @change="track.genre = $event.target.value" :value="track.genre" />
-	</div>
+		<button @click="save" class="mx-auto">Enregistrer</button>
+	</Modal>
 </template>
 
 <script>
+import Modal from '@/components/Modal.vue';
 import GenreSelect from '@/components/GenreSelect.vue';
 
 export default {
-    components: { GenreSelect },
+    components: { Modal, GenreSelect },
     props: ['track'],
     methods: {
         save() {
@@ -27,7 +29,7 @@ export default {
 					genre: this.track.genre
 				})
 			}).then(() => {
-				this.$emit('onSave');
+				this.$emit('onClose');
 			});
 		}
     }
