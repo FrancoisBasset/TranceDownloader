@@ -18,12 +18,11 @@
 import PlayButton from '@/components/buttons/PlayButton.vue';
 import PauseButton from '@/components/buttons/PauseButton.vue';
 import EditButton from '@/components/buttons/EditButton.vue';
-import SaveButton from '@/components/buttons/SaveButton.vue';
 import GenreSelect from '@/components/GenreSelect.vue';
 import useApp from '@/stores/app';
 
 export default {
-	components: { PlayButton, PauseButton, EditButton, SaveButton, GenreSelect },
+	components: { PlayButton, PauseButton, EditButton, GenreSelect },
 	emits: ['onEdit'],
 	props: ['track'],
 	data: () => ({

@@ -5,18 +5,18 @@
 		</div>
 		<TrackList @onEdit="track => editingTrack = track" />
 
-		<TrackForm v-if="editingTrack" :key="editingTrack" :track="editingTrack" @onClose="editingTrack = null" />
+		<TrackModal v-if="editingTrack" :key="editingTrack" :track="editingTrack" @onClose="editingTrack = null" />
 	</div>
 </template>
 
 <script>
 import TopButton from '@/components/buttons/TopButton.vue';
 import TrackList from '@/components/TrackList.vue';
-import TrackForm from '@/components/TrackForm.vue';
+import TrackModal from '@/components/TrackModal.vue';
 import useApp from '@/stores/app';
 
 export default {
-	components: { TrackList, TrackForm, TopButton },
+	components: { TrackList, TrackModal, TopButton },
 	data: () => ({
 		scrollTop: 0,
 		editingTrack: null
