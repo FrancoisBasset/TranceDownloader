@@ -7,7 +7,7 @@
 				<th @click="sort('genre')" class="text-start" :class="{ 'text-teal-400': order === 'genre' }">Genre</th>
 				<th class="text-start">Lien</th>
 			</tr>
-			<WishRow ref="wishRows" v-for="wish of wishesStore.wishes" :key="wish" :wish="wish" />
+			<WishRow v-for="wish of wishes" :key="wish" :wish="wish" @onEdit="$emit('onEdit', wish)" />
 		</table>
 	</div>
 </template>
@@ -18,15 +18,14 @@ import useWishes from '@/stores/wishes';
 
 export default {
 	components: { WishRow },
+	emits: ['onEdit'],
+	props: ['wishes'],
 	data: () => ({
 		order: null
 	}),
 	setup: () => ({
 		wishesStore: useWishes()
 	}),
-	created() {
-		this.wishesStore.setWishes();
-	},
 	methods: {
 		sort(order) {
 			this.order = order;
