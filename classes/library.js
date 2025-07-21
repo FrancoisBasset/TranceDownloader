@@ -13,11 +13,17 @@ module.exports = {
 
 			const metadata = await parseFile(process.env.MUSIC_DIR + `/${track}`);
 
+			let duration = Math.round(metadata.format.duration);
+			const minutes = String(Math.floor(duration / 60)).padStart(2, '0');
+			const seconds = String(duration % 60).padStart(2, '0');
+			duration = `${minutes}:${seconds}`;
+
 			const trackObject = {
 				artist: metadata.common.artist || '',
 				title: metadata.common.title || '',
 				genre: Array.isArray(metadata.common.genre) ? metadata.common.genre[0] : metadata.common.genre || '',
-				url: `/${track}`
+				url: `/${track}`,
+				duration: duration
 			};
 			if (metadata.common.picture) {
 				const buffer = Buffer.from(metadata.common.picture[0].data);
