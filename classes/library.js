@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { parseFile } = require('music-metadata');
 const NodeID3 = require('node-id3');
+const sharp = require('sharp');
 
 module.exports = {
 	writeAllTracks: async connection => {
@@ -11,12 +12,19 @@ module.exports = {
 			const track = files[i];
 
 			const metadata = await parseFile(process.env.MUSIC_DIR + `/${track}`);
-			tracks.push({
+
+			const trackObject = {
 				artist: metadata.common.artist || '',
 				title: metadata.common.title || '',
 				genre: Array.isArray(metadata.common.genre) ? metadata.common.genre[0] : metadata.common.genre || '',
 				url: `/${track}`
-			});
+			}
+			if (metadata.common.picture) {
+				const buffer = Buffer.from(metadata.common.picture[0].data);
+				trackObject.cover = (await sharp(buffer).resize(100).toBuffer()).toString('base64');
+			}
+
+			tracks.push(trackObject);
 
 			connection.send(`${i + 1}/${files.length}`);
 		}

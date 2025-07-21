@@ -1,6 +1,7 @@
 <template>
 	<table class="mx-auto text-start">
 		<tr class="cursor-pointer">
+			<th></th>
 			<th @click="sort('artist')" class="text-start" :class="{ 'text-teal-400': order === 'artist' }">Artiste</th>
 			<th @click="sort('title')" class="text-start" :class="{ 'text-teal-400': order === 'title' }">Titre</th>
 			<th @click="sort('genre')" class="text-start" :class="{ 'text-teal-400': order === 'genre' }">Genre</th>
