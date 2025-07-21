@@ -1,7 +1,10 @@
 <template>
 	<div v-if="app.currentTrack" class="fixed bottom-0 w-full text-start bg-teal-100">
 		<div class="flex flex-row justify-between">
-			<text class="p-2">{{ app.currentTrack.artist }} - {{ app.currentTrack.title }}</text>
+			<div class="flex flex-row">
+				<img v-if="app.currentTrack.cover" :src="'data:image/jpeg;charset=utf-8;base64,' + app.currentTrack.cover" class="h-10" />
+				<text class="p-2">{{ app.currentTrack.artist }} - {{ app.currentTrack.title }}</text>
+			</div>
 			<StopAudioButton @click="app.currentTrack = null" />
 		</div>
 		<audio ref="audio" class="w-full" :src="currentUrl" controls autoplay @play="app.isPlaying = true" @pause="app.isPlaying = false" />

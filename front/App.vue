@@ -2,7 +2,7 @@
 	<div v-if="haveDir && haveJson" class="h-screen flex flex-col text-center">
 		<MenuBar />
 
-		<div id="view" class="flex-1 overflow-y-auto">
+		<div id="view" class="flex-1 overflow-y-auto" style="scrollbar-width: none">
 			<RouterView />
 		</div>
 	</div>

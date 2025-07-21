@@ -25,7 +25,7 @@ npm install
 
 ## Utilisation
 
-### Lancer le back‑end
+### Lancer le back-end
 
 ```bash
 npm start

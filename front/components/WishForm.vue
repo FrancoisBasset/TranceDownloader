@@ -2,7 +2,7 @@
 	<div class="flex flex-col gap-2">
 		<b>Ajouter une vidéo à partir d'un lien YouTube</b>
 
-		<div>Url : <input type="text" v-model="wish.url" :class="inputClasses" /></div>
+		<div>URL : <input type="text" v-model="wish.url" :class="inputClasses" /></div>
 
 		<div v-if="videoFound" class="flex flex-col gap-2">
 			<div>Artiste : <input type="text" v-model="wish.artist" /></div>
