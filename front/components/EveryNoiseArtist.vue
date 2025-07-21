@@ -4,7 +4,7 @@
 		<div class="text-center mb-2">{{ artist.title }}</div>
 		<div class="px-5">
 			<button class="orange-button me-2" @click="read">Lire</button>
-			<button class="orange-button ml-2" @click="searchOnYoutube">Rechercher</button>
+			<button class="orange-button ml-2" @click="searchOnYouTube">Rechercher</button>
 		</div>
 	</div>
 </template>
@@ -29,7 +29,7 @@ export default {
 			};
 			this.isPlaying = true;
 		},
-		searchOnYoutube() {
+		searchOnYouTube() {
 			this.app.goTo('youtube');
 			this.app.youtubeSearch = this.artist.artist + ' ' + this.artist.title;
 		}

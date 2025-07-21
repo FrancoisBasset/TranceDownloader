@@ -55,7 +55,7 @@ npm run preview
 npm run clean
 ```
 
-### Formattage du code
+### Formatage du code
 
 ```bash
 npm run format
