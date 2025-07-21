@@ -11,7 +11,7 @@ module.exports = {
 		for (let i = 0; i < files.length; i++) {
 			const track = files[i];
 
-			const metadata = await parseFile(process.env.MUSIC_DIR + `/${track}`);
+			const metadata = await parseFile(process.env.MUSIC_DIR + `/${track}`, { duration: true });
 
 			let duration = Math.round(metadata.format.duration);
 			const minutes = String(Math.floor(duration / 60)).padStart(2, '0');

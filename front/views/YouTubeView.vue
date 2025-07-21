@@ -63,6 +63,7 @@ export default {
 		clear() {
 			this.searchText = '';
 			this.results = [];
+			this.scrollTop = 0;
 		},
 		scrollToYouTube() {
 			this.scrollTop = this.$refs.list.scrollTop;

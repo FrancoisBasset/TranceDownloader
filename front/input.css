@@ -39,7 +39,7 @@ button:active {
 
 .view-container {
 	@apply bg-zinc-100 overflow-scroll rounded-xl h-[80vh];
-	background: linear-gradient(145deg, #ffffff, #e3e3e3);
+	background: linear-gradient(145deg, #eeffee, #ffeeff);
 	box-shadow:
 		-8px -8px 16px rgba(255, 255, 255, 0.7),
 		8px 8px 16px rgba(0, 0, 0, 0.1),
