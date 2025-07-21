@@ -50,6 +50,10 @@ export default {
 			this.genres = [];
 			this.selectedGenre = null;
 			this.artists = [];
+
+			if (this.app.currentTrack.url.includes('mp3-preview')) {
+				this.app.currentTrack = null;
+			}
 		},
 		showArtists(genre) {
 			this.selectedGenre = genre;

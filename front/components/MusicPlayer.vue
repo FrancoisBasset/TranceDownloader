@@ -19,6 +19,9 @@ export default {
 	}),
 	computed: {
 		currentUrl() {
+			if (this.app.currentTrack.url.includes('http')) {
+				return this.app.currentTrack.url;
+			}
 			return import.meta.env.VITE_AUDIO + this.app.currentTrack.url;
 		}
 	},
