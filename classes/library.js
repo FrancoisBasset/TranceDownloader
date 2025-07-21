@@ -18,7 +18,7 @@ module.exports = {
 				title: metadata.common.title || '',
 				genre: Array.isArray(metadata.common.genre) ? metadata.common.genre[0] : metadata.common.genre || '',
 				url: `/${track}`
-			}
+			};
 			if (metadata.common.picture) {
 				const buffer = Buffer.from(metadata.common.picture[0].data);
 				trackObject.cover = (await sharp(buffer).resize(100).toBuffer()).toString('base64');

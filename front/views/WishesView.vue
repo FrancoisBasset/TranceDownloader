@@ -4,7 +4,7 @@
 
 		<button v-if="wishesStore.wishes.length > 0" @click="wishesStore.downloadAll" class="!w-auto green-button">Télécharger tout ({{ wishesStore.wishes.length }})</button>
 
-		<WishesList v-if="wishesStore.wishes.length > 0" :wishes="wishesStore.wishes" @onEdit="wish => editingWish = wish" />
+		<WishesList v-if="wishesStore.wishes.length > 0" :wishes="wishesStore.wishes" @onEdit="wish => (editingWish = wish)" />
 
 		<WishModal v-if="editingWish" :key="editingWish" :wish="editingWish" @onClose="editingWish = null" />
 	</BlockView>
@@ -27,6 +27,6 @@ export default {
 	}),
 	created() {
 		this.wishesStore.setWishes();
-	},
+	}
 };
 </script>

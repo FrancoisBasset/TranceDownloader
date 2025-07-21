@@ -12,10 +12,10 @@ import Modal from '@/components/Modal.vue';
 import GenreSelect from '@/components/GenreSelect.vue';
 
 export default {
-    components: { Modal, GenreSelect },
-    props: ['track'],
-    methods: {
-        save() {
+	components: { Modal, GenreSelect },
+	props: ['track'],
+	methods: {
+		save() {
 			fetch(import.meta.env.VITE_API + '/library', {
 				method: 'PUT',
 				headers: {
@@ -32,6 +32,6 @@ export default {
 				this.$emit('onClose');
 			});
 		}
-    }
-}
+	}
+};
 </script>

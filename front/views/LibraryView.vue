@@ -3,7 +3,7 @@
 		<div class="sticky top-0 flex justify-end pr-7" v-if="scrollTop !== 0">
 			<TopButton @click="$refs.list.scrollTop = 0" />
 		</div>
-		<TrackList @onEdit="track => editingTrack = track" />
+		<TrackList @onEdit="track => (editingTrack = track)" />
 
 		<TrackModal v-if="editingTrack" :key="editingTrack" :track="editingTrack" @onClose="editingTrack = null" />
 	</div>
