@@ -18,10 +18,10 @@ const app = express();
 app.disable('x-powered-by');
 app.use(cors());
 
-const distExists = fs.existsSync('./dist');
-
 app.listen(process.env.PORT, () => {
-	console.log(`Go to http://${process.env.HOST}:${distExists ? process.env.PORT : 5173}`);
+	if (fs.existsSync('./dist')) {
+		console.log(`Go to http://${process.env.HOST}:${process.env.PORT}`);
+	}
 });
 
 app.use('/api', require('./routes'));
@@ -29,14 +29,10 @@ if (process.env.MUSIC_DIR) {
 	app.use('/audio', express.static(process.env.MUSIC_DIR));
 }
 
-if (distExists) {
+if (fs.existsSync('./dist')) {
 	app.use(
 		express.static('./dist', {
 			index: 'index.html'
 		})
 	);
-} else {
-	exec('npm run dev');
-	exec('npm run buildcss -- --watch');
-	console.log('Starting front');
 }

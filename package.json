@@ -6,7 +6,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "node index.js",
-		"dev": "vite",
+		"dev": "concurrently 'npm run buildcss -- --watch' 'node index.js' 'vite'",
 		"build": "vite build",
 		"buildcss": "tailwindcss -i front/input.css -o front/assets/main.css",
 		"preview": "vite preview",
@@ -55,8 +55,10 @@
 		"@types/jsdom": "^21.1.7",
 		"@types/node": "^24.0.10",
 		"@vitejs/plugin-vue": "^6.0.0",
+		"concurrently": "^9.2.0",
 		"prettier": "^3.6.2",
 		"tailwindcss": "^4.1.11",
-		"vite": "^7.0.2"
+		"vite": "^7.0.2",
+		"vite-plugin-vue-devtools": "^7.7.7"
 	}
 }
