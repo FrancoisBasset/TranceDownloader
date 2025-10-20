@@ -57,7 +57,7 @@ export default {
 			fetch(import.meta.env.VITE_API + '/youtube?search=' + this.searchText)
 				.then(res => res.json())
 				.then(json => {
-					this.results = json.response;
+					this.results = json;
 				});
 		},
 		clear() {

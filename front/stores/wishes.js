@@ -6,9 +6,7 @@ export default defineStore('wishes', {
 	}),
 	actions: {
 		async setWishes() {
-			this.wishes = await fetch(import.meta.env.VITE_API + '/wishes')
-				.then(res => res.json())
-				.then(json => json.response);
+			this.wishes = await fetch(import.meta.env.VITE_API + '/wishes').then(res => res.json());
 
 			this.wishes = this.wishes.sort((wish1, wish2) => {
 				return wish1.artist.localeCompare(wish2.artist) || wish1.title.localeCompare(wish2.title);

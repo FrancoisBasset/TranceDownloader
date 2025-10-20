@@ -1,42 +1,47 @@
 const fs = require('fs');
-const jsdom = require('jsdom').JSDOM;
+const { JSDOM } = require('jsdom');
 
 const wishesService = require('@/classes/wishes');
 
-module.exports.getGenres = name => {
-	const genres = [];
+module.exports.getGenres = search => {
+	return JSDOM.fromURL('https://everynoise.com/').then(response => {
+		const items = Array.from(response.window.document.querySelectorAll('[id*=item]'));
 
-	return jsdom.fromURL('https://everynoise.com/').then(response => {
-		const items = response.window.document.querySelectorAll('[id*=item]');
+		return items.reduce((genres, item) => {
+			const name = item.textContent.replace('» ', '');
 
-		items.forEach(item => {
-			genres.push(item.textContent.replace('» ', ''));
-		});
+			if (name.includes(search)) {
+				genres.push(name);
+			}
 
-		return genres.filter(g => g.includes(name)).sort();
+			return genres;
+		}, []).sort();
 	});
 };
 
+/**
+ * @param {string} genre
+ */
 module.exports.getArtists = genre => {
-	genre = genre.split(' ').join('').split('-').join('');
-
-	const artists = [];
+	genre = genre.replace(/[\s-]+/g, '');
 
 	const wishes = wishesService.getWishes();
 	const tracks = JSON.parse(fs.readFileSync('public/library.json'));
 
-	return jsdom.fromURL('https://everynoise.com/engenremap-' + genre + '.html').then(response => {
-		const items = response.window.document.querySelectorAll('[id*=item]');
+	return JSDOM.fromURL('https://everynoise.com/engenremap-' + genre + '.html').then(response => {
+		const items = Array.from(response.window.document.querySelectorAll('[id*=item]'));
 
-		items.forEach(item => {
+		const artists = items.reduce((artists, item) => {
 			const text = item.title.replace('e.g. ', '');
-			const artist = text.split(' "')[0];
-			let title = text.split(' "')[1];
+
+			/** @type [string, string] */
+			let [artist, title] = text.split(' "');
+
 			if (title === undefined) {
-				return;
+				return artists;
 			}
 
-			title = title.substring(0, title.length - 1);
+			title = title.slice(0, -1);
 
 			const haveInWishes = wishes.some(wish => wish.artist === artist && wish.title === title);
 			const haveInTracks = tracks.some(t => t.artist === artist);
@@ -48,7 +53,9 @@ module.exports.getArtists = genre => {
 					preview_url: item.getAttribute('preview_url')
 				});
 			}
-		});
+
+			return artists;
+		}, []);
 
 		artists.sort((a, b) => {
 			return a.artist.localeCompare(b.artist);

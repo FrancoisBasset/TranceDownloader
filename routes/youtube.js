@@ -1,16 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
 
 const youtubeService = require('@/classes/youtube');
-const MUSIC_DIR = process.env.MUSIC_DIR + '/';
 
 router.get('/', (req, res) => {
 	youtubeService.getResults(req.query.search).then(videos => {
-		res.json({
-			success: true,
-			response: videos
-		});
+		res.json(videos);
 	});
 });
 

@@ -6,10 +6,7 @@ const libraryService = require('@/classes/library');
 router.put('/', (req, res) => {
 	const track = libraryService.update(req.body.url, req.body.artist, req.body.title, req.body.genre);
 
-	res.json({
-		success: true,
-		response: track
-	});
+	res.json(track);
 });
 
 module.exports = router;

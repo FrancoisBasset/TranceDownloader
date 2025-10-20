@@ -6,44 +6,31 @@ const wishesService = require('@/classes/wishes');
 router.get('/', (_, res) => {
 	const wishes = wishesService.getWishes();
 
-	res.json({
-		success: true,
-		response: wishes
-	});
+	res.json(wishes);
 });
 
 router.post('/', (req, res) => {
 	const wish = wishesService.addWish(req.body.artist, req.body.title, req.body.genre, req.body.url);
 
-	res.json({
-		success: true,
-		response: wish
-	});
+	res.json(wish);
 });
 
 router.delete('/:id', (req, res) => {
 	wishesService.deleteWish(req.params.id);
 
-	res.json({
-		success: true
-	});
+	res.json();
 });
 
 router.put('/:id', (req, res) => {
 	const wish = wishesService.updateWish(req.params.id, req.body.artist, req.body.title, req.body.genre, req.body.url);
 
-	res.json({
-		success: true,
-		response: wish
-	});
+	res.json(wish);
 });
 
 router.patch('/', (_, res) => {
 	wishesService.initWishes();
 
-	res.json({
-		success: true
-	});
+	res.json();
 });
 
 module.exports = router;
