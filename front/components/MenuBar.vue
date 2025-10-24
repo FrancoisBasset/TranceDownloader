@@ -7,29 +7,18 @@
 	</div>
 </template>
 
-<script>
+<script setup>
 import useApp from '@/stores/app';
 
-export default {
-	setup: () => ({
-		app: useApp()
-	}),
-	methods: {
-		buttonClasses(mode) {
-			const classes = ['cursor-pointer', 'text-lg', 'm-5', 'menu-bar-button'];
+const app = useApp();
 
-			if (this.app.mode === mode) {
-				classes.push('font-bold', 'menu-bar-button-active');
-			}
+function buttonClasses(mode) {
+	const classes = ['cursor-pointer', 'text-lg', 'm-5', 'menu-bar-button'];
 
-			return classes;
-		}
+	if (app.mode === mode) {
+		classes.push('font-bold', 'menu-bar-button-active');
 	}
-};
-</script>
 
-<style scoped>
-img {
-	height: 100%;
+	return classes;
 }
-</style>
+</script>

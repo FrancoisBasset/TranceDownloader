@@ -11,35 +11,32 @@
 	</div>
 </template>
 
-<script>
+<script setup>
+import { computed, useTemplateRef, watch } from 'vue';
 import StopAudioButton from '@/components/buttons/StopAudioButton.vue';
+
 import useApp from '@/stores/app';
+const app = useApp();
 
-export default {
-	components: { StopAudioButton },
-	setup: () => ({
-		app: useApp()
-	}),
-	computed: {
-		currentUrl() {
-			if (this.app.currentTrack.url.includes('http')) {
-				return this.app.currentTrack.url;
-			}
-			return import.meta.env.VITE_AUDIO + this.app.currentTrack.url;
-		}
-	},
-	watch: {
-		'app.isPlaying'() {
-			if (!this.$refs.audio) {
-				return;
-			}
+const audio = useTemplateRef('audio');
 
-			if (this.app.isPlaying) {
-				this.$refs.audio.play();
-			} else {
-				this.$refs.audio.pause();
-			}
-		}
+const currentUrl = computed(() => {
+	if (app.currentTrack.url.includes('http')) {
+		return app.currentTrack.url;
 	}
-};
+
+	return import.meta.env.VITE_AUDIO + app.currentTrack.url;
+});
+
+watch(() => app.isPlaying, () => {
+	if (!audio.value) {
+		return;
+	}
+
+	if (app.isPlaying) {
+		audio.value.play();
+	} else {
+		audio.value.pause();
+	}
+});
 </script>

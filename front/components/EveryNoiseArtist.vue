@@ -9,37 +9,32 @@
 	</div>
 </template>
 
-<script>
+<script setup>
+import { ref, watch } from 'vue';
 import useApp from '@/stores/app';
 
-export default {
-	props: ['artist'],
-	data: () => ({
-		isPlaying: false
-	}),
-	setup: () => ({
-		app: useApp()
-	}),
-	methods: {
-		read() {
-			this.app.currentTrack = {
-				artist: this.artist.artist,
-				title: this.artist.title,
-				url: this.artist.preview_url
-			};
-			this.isPlaying = true;
-		},
-		searchOnYouTube() {
-			this.app.goTo('youtube');
-			this.app.youtubeSearch = this.artist.artist + ' ' + this.artist.title;
-		}
-	},
-	watch: {
-		'app.currentTrack'() {
-			if (this.app.currentTrack === null || this.artist.preview_url !== this.app.currentTrack.url) {
-				this.isPlaying = false;
-			}
-		}
+const app = useApp();
+
+const { artist } = defineProps(['artist']);
+const isPlaying = ref(false);
+
+function read() {
+	app.currentTrack = {
+		artist: artist.artist,
+		title: artist.title,
+		url: artist.preview_url
+	};
+	isPlaying.value = true;
+}
+
+function searchOnYouTube() {
+	app.goTo('youtube');
+	app.youtubeSearch = artist.artist + ' ' + artist.title;
+}
+
+watch(() => app.currentTrack, () => {
+	if (app.currentTrack === null || artist.preview_url !== app.currentTrack.url) {
+		isPlaying.value = false;
 	}
-};
+});
 </script>

@@ -16,7 +16,7 @@
 		<td>{{ track.genre }}</td>
 		<td>{{ track.duration }}</td>
 		<td>
-			<PlayButton v-if="app.currentTrack !== track || !app.isPlaying" @click="selectTrack" />
+			<PlayButton v-if="app.currentTrack !== track || !app.isPlaying" @click="playTrack" />
 			<PauseButton v-else-if="app.currentTrack === track && app.isPlaying" @click="app.isPlaying = false" />
 		</td>
 		<td>
@@ -25,32 +25,20 @@
 	</tr>
 </template>
 
-<script>
+<script setup>
 import PlayButton from '@/components/buttons/PlayButton.vue';
 import PauseButton from '@/components/buttons/PauseButton.vue';
 import EditButton from '@/components/buttons/EditButton.vue';
-import GenreSelect from '@/components/GenreSelect.vue';
 import useApp from '@/stores/app';
 
-export default {
-	components: { PlayButton, PauseButton, EditButton, GenreSelect },
-	emits: ['onEdit'],
-	props: ['track'],
-	setup: () => ({
-		app: useApp()
-	}),
-	async created() {
-		const audio = document.createElement('audio');
-		audio.src = import.meta.env.VITE_AUDIO + '/' + this.track.url;
-		audio.preload = 'none';
-	},
-	methods: {
-		selectTrack() {
-			this.app.currentTrack = this.track;
-			this.app.isPlaying = true;
-		}
-	}
-};
+const app = useApp();
+
+const { track } = defineProps(['track']);
+
+function playTrack() {
+	app.currentTrack = track;
+	app.isPlaying = true;
+}
 </script>
 
 <style scoped>

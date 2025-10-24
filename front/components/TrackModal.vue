@@ -7,31 +7,28 @@
 	</Modal>
 </template>
 
-<script>
+<script setup>
 import Modal from '@/components/Modal.vue';
 import GenreSelect from '@/components/GenreSelect.vue';
 
-export default {
-	components: { Modal, GenreSelect },
-	props: ['track'],
-	methods: {
-		save() {
-			fetch(import.meta.env.VITE_API + '/library', {
-				method: 'PUT',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					url: this.track.url,
-					artist: this.track.artist,
-					title: this.track.title,
-					genre: this.track.genre
-				})
-			}).then(() => {
-				this.$emit('onClose');
-			});
-		}
-	}
-};
+const { track } = defineProps(['track']);
+const emit = defineEmits(['onClose']);
+
+function save() {
+	fetch(import.meta.env.VITE_API + '/library', {
+		method: 'PUT',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			url: track.url,
+			artist: track.artist,
+			title: track.title,
+			genre: track.genre
+		})
+	}).then(() => {
+		emit('onClose');
+	});
+}
 </script>

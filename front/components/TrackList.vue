@@ -10,30 +10,22 @@
 	</table>
 </template>
 
-<script>
+<script setup>
 import TrackRow from '@/components/TrackRow.vue';
+import { onMounted, ref } from 'vue';
 
-export default {
-	components: { TrackRow },
-	emits: ['onEdit'],
-	data: () => ({
-		tracks: [],
-		order: 'artist'
-	}),
-	created() {
-		this.setTracks();
-	},
-	methods: {
-		async setTracks() {
-			this.tracks = await fetch('/library.json').then(res => res.json());
-		},
-		sort(order) {
-			this.order = order;
+const tracks = ref([]);
+const order = ref('artist');
 
-			this.tracks = this.tracks.sort((t1, t2) => {
-				return t1[order].localeCompare(t2[order]);
-			});
-		}
-	}
-};
+onMounted(async () => {
+	tracks.value = await fetch('/library.json').then(res => res.json());
+});
+
+function sort(_order) {
+	order.value = _order;
+
+	tracks.value = tracks.value.sort((t1, t2) => {
+		return t1[_order].localeCompare(t2[_order]);
+	});
+}
 </script>
