@@ -28,15 +28,18 @@ const currentUrl = computed(() => {
 	return import.meta.env.VITE_AUDIO + app.currentTrack.url;
 });
 
-watch(() => app.isPlaying, () => {
-	if (!audio.value) {
-		return;
-	}
+watch(
+	() => app.isPlaying,
+	() => {
+		if (!audio.value) {
+			return;
+		}
 
-	if (app.isPlaying) {
-		audio.value.play();
-	} else {
-		audio.value.pause();
+		if (app.isPlaying) {
+			audio.value.play();
+		} else {
+			audio.value.pause();
+		}
 	}
-});
+);
 </script>

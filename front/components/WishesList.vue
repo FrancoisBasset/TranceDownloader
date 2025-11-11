@@ -12,25 +12,19 @@
 	</div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue';
 import WishRow from '@/components/WishRow.vue';
 import useWishes from '@/stores/wishes';
 
-export default {
-	components: { WishRow },
-	emits: ['onEdit'],
-	props: ['wishes'],
-	data: () => ({
-		order: null
-	}),
-	setup: () => ({
-		wishesStore: useWishes()
-	}),
-	methods: {
-		sort(order) {
-			this.order = order;
-			this.wishesStore.sort(order);
-		}
-	}
-};
+const { wishes } = defineProps(['wishes']);
+
+const wishesStore = useWishes();
+
+const order = ref(null);
+
+function sort(_order) {
+	order.value = _order;
+	wishesStore.sort(order.value);
+}
 </script>

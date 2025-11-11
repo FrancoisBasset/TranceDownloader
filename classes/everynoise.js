@@ -7,15 +7,17 @@ module.exports.getGenres = search => {
 	return JSDOM.fromURL('https://everynoise.com/').then(response => {
 		const items = Array.from(response.window.document.querySelectorAll('[id*=item]'));
 
-		return items.reduce((genres, item) => {
-			const name = item.textContent.replace('» ', '');
+		return items
+			.reduce((genres, item) => {
+				const name = item.textContent.replace('» ', '');
 
-			if (name.includes(search)) {
-				genres.push(name);
-			}
+				if (name.includes(search)) {
+					genres.push(name);
+				}
 
-			return genres;
-		}, []).sort();
+				return genres;
+			}, [])
+			.sort();
 	});
 };
 

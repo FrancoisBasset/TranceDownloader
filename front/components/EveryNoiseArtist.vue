@@ -32,9 +32,12 @@ function searchOnYouTube() {
 	app.youtubeSearch = artist.artist + ' ' + artist.title;
 }
 
-watch(() => app.currentTrack, () => {
-	if (app.currentTrack === null || artist.preview_url !== app.currentTrack.url) {
-		isPlaying.value = false;
+watch(
+	() => app.currentTrack,
+	() => {
+		if (app.currentTrack === null || artist.preview_url !== app.currentTrack.url) {
+			isPlaying.value = false;
+		}
 	}
-});
+);
 </script>

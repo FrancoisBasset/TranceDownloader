@@ -10,23 +10,19 @@
 	</BlockView>
 </template>
 
-<script>
+<script setup>
+import { onMounted, ref } from 'vue';
 import BlockView from '@/components/BlockView.vue';
 import WishForm from '@/components/WishForm.vue';
 import WishesList from '@/components/WishesList.vue';
 import WishModal from '@/components/WishModal.vue';
 import useWishes from '@/stores/wishes';
 
-export default {
-	components: { BlockView, WishForm, WishesList, WishModal },
-	data: () => ({
-		editingWish: null
-	}),
-	setup: () => ({
-		wishesStore: useWishes()
-	}),
-	created() {
-		this.wishesStore.setWishes();
-	}
-};
+const wishesStore = useWishes();
+
+const editingWish = ref(null);
+
+onMounted(() => {
+	wishesStore.setWishes();
+});
 </script>

@@ -1,5 +1,5 @@
 <template>
-	<BlockView @scroll="scrollToYouTube" ref="list">
+	<div class="view-container pb-8" @scroll="scrollToYouTube" ref="list">
 		<div class="sticky top-0 z-10 bg-zinc-100 p-4">
 			<div class="relative flex justify-center">
 				<div class="flex gap-2">
@@ -9,71 +9,72 @@
 				</div>
 
 				<div v-if="scrollTop !== 0" class="absolute right-0 top-0">
-					<TopButton @click="$refs.list.scrollTop = 0" />
+					<TopButton @click="list.scrollTop = 0" />
 				</div>
 			</div>
 		</div>
 		<YouTubeResultsList :results="results" />
-	</BlockView>
+	</div>
 </template>
 
-<script>
-import BlockView from '@/components/BlockView.vue';
+<script setup>
+import { computed, onMounted, ref, useTemplateRef, watch } from 'vue';
 import YouTubeResultsList from '@/components/YouTubeResultsList.vue';
 import TopButton from '@/components/buttons/TopButton.vue';
 import useApp from '@/stores/app';
 
-export default {
-	components: { BlockView, YouTubeResultsList, TopButton },
-	data() {
-		return {
-			searchText: '',
-			results: [],
-			scrollTop: 0
-		};
-	},
-	setup: () => ({
-		app: useApp()
-	}),
-	computed: {
-		emptySearch() {
-			return this.searchText.trim() === '';
-		},
-		searchButtonClasses() {
-			return {
-				'green-button': !this.emptySearch,
-				'!cursor-not-allowed': this.emptySearch
-			};
-		}
-	},
-	methods: {
-		search() {
-			if (this.emptySearch) {
-				return;
-			}
+const app = useApp();
 
-			this.scrollToYouTube();
+const list = useTemplateRef('list');
 
-			fetch(import.meta.env.VITE_API + '/youtube?search=' + this.searchText)
-				.then(res => res.json())
-				.then(json => {
-					this.results = json;
-				});
-		},
-		clear() {
-			this.searchText = '';
-			this.results = [];
-			this.scrollTop = 0;
-		},
-		scrollToYouTube() {
-			this.scrollTop = this.$refs.list.scrollTop;
-			this.app.goTo('youtube');
-		}
-	},
-	watch: {
-		'app.youtubeSearch'() {
-			this.searchText = this.app.youtubeSearch;
-		}
+const searchText = ref('');
+const results = ref([]);
+const scrollTop = ref(0);
+
+const emptySearch = computed(() => {
+	return searchText.value.trim() === '';
+});
+
+const searchButtonClasses = computed(() => {
+	return {
+		'green-button': !emptySearch.value,
+		'!cursor-not-allowed': emptySearch.value
+	};
+});
+
+onMounted(() => {
+	list.value.scrollTop = 0;
+});
+
+function search() {
+	if (emptySearch.value) {
+		return;
 	}
-};
+
+	scrollToYouTube();
+
+	fetch(import.meta.env.VITE_API + '/youtube?search=' + searchText.value)
+		.then(res => res.json())
+		.then(json => {
+			results.value = json;
+		});
+}
+
+function clear() {
+	searchText.value = '';
+	results.value = [];
+	scrollTop.value = 0;
+}
+
+function scrollToYouTube() {
+	app.goTo('youtube');
+	scrollTop.value = list.value.scrollTop;
+}
+
+watch(
+	() => app.youtubeSearch,
+	() => {
+		searchText.value = app.youtubeSearch;
+	}
+);
 </script>

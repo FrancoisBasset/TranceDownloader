@@ -14,24 +14,20 @@
 	</div>
 </template>
 
-<script>
+<script setup>
 import DownloadButton from '@/components/buttons/DownloadButton.vue';
 import useApp from '@/stores/app';
 
-export default {
-	components: { DownloadButton },
-	props: ['result'],
-	setup: () => ({
-		app: useApp()
-	}),
-	methods: {
-		transformToIframe() {
-			this.$refs.image.outerHTML = `<iframe src="https://www.youtube.com/embed/${this.result.url.split('v=')[1]}" width="355" height="266" />`;
-		},
-		addWish() {
-			this.app.goTo('wishes');
-			this.app.wishUrl = this.result.url;
-		}
-	}
-};
+const app = useApp();
+
+const { result } = defineProps(['result']);
+
+function transformToIframe() {
+	$refs.image.outerHTML = `<iframe src="https://www.youtube.com/embed/${result.url.split('v=')[1]}" width="355" height="266" />`;
+}
+
+function addWish() {
+	app.goTo('wishes');
+	app.wishUrl = result.url;
+}
 </script>

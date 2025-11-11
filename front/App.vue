@@ -21,57 +21,51 @@
 	</div>
 </template>
 
-<script>
+<script setup>
+import { onMounted, ref } from 'vue';
 import MenuBar from '@/components/MenuBar.vue';
 import Spinner from '@/components/Spinner.vue';
 
-export default {
-	components: { MenuBar, Spinner },
-	data: () => ({
-		haveDir: null,
-		haveJson: null,
-		dir: '',
-		loadingText: null
-	}),
-	async created() {
-		this.haveDir = await fetch(import.meta.env.VITE_API + '/dir').then(res => res.status !== 404);
-		this.haveJson = await fetch('/library.json')
-			.then(r => r.text())
-			.then(text => {
-				return !text.includes('<html');
-			});
+const haveDir = ref(null);
+const haveJson = ref(null);
+const dir = ref('');
+const loadingText = ref(null);
 
-		if (this.haveDir && !this.haveJson) {
-			this.sendDir();
-		}
-	},
-	methods: {
-		sendDir() {
-			if (this.dir.endsWith('/')) {
-				this.dir = this.dir.slice(0, -1);
-			}
+onMounted(async () => {
+	haveDir.value = await fetch(import.meta.env.VITE_API + '/dir').then(res => res.status !== 404);
+	haveJson.value = await fetch('/library.json')
+		.then(r => r.text())
+		.then(text => !text.includes('<html'));
 
-			fetch(import.meta.env.VITE_API + '/dir', {
-				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					dir: this.dir
-				})
-			}).then(() => {
-				const socket = new WebSocket(import.meta.env.VITE_WS);
-
-				socket.onmessage = msg => {
-					this.loadingText = msg.data;
-				};
-
-				socket.onclose = () => {
-					this.haveDir = true;
-					this.haveJson = true;
-				};
-			});
-		}
+	if (haveDir.value && !haveJson.value) {
+		sendDir();
 	}
-};
+});
+
+function sendDir() {
+	if (dir.value.endsWith('/')) {
+		dir.value = dir.value.slice(0, -1);
+	}
+
+	fetch(import.meta.env.VITE_API + '/dir', {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			dir: dir.value
+		})
+	}).then(() => {
+		const socket = new WebSocket(import.meta.env.VITE_WS);
+
+		socket.onmessage = msg => {
+			loadingText.value = msg.data;
+		};
+
+		socket.onclose = () => {
+			haveDir.value = true;
+			haveJson.value = true;
+		};
+	});
+}
 </script>

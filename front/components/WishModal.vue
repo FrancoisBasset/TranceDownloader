@@ -9,23 +9,20 @@
 	</Modal>
 </template>
 
-<script>
+<script setup>
 import Modal from '@/components/Modal.vue';
 import GenreSelect from '@/components/GenreSelect.vue';
 import useWishes from '@/stores/wishes';
 
-export default {
-	components: { Modal, GenreSelect },
-	props: ['wish'],
-	setup: () => ({
-		wishesStore: useWishes()
-	}),
-	methods: {
-		saveWish() {
-			this.wishesStore.saveWish(this.wish).then(() => {
-				this.$emit('onClose');
-			});
-		}
-	}
-};
+const emit = defineEmits(['onClose']);
+
+const wishesStore = useWishes();
+
+const { wish } = defineProps(['wish']);
+
+function saveWish() {
+	wishesStore.saveWish(wish).then(() => {
+		emit('onClose');
+	});
+}
 </script>

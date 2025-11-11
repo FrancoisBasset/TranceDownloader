@@ -17,57 +17,53 @@
 	</BlockView>
 </template>
 
-<script>
+<script setup>
+import { ref, useTemplateRef } from 'vue';
 import BlockView from '@/components/BlockView.vue';
 import EveryNoiseArtist from '@/components/EveryNoiseArtist.vue';
 import useApp from '@/stores/app';
 
-export default {
-	components: { BlockView, EveryNoiseArtist },
-	data() {
-		return {
-			search: '',
-			genres: [],
-			selectedGenre: null,
-			artists: []
-		};
-	},
-	setup: () => ({
-		app: useApp()
-	}),
-	methods: {
-		findGenresByName() {
-			fetch(import.meta.env.VITE_API + '/everynoise/genres?name=' + this.search)
-				.then(res => res.json())
-				.then(json => {
-					this.genres = json;
-					this.artists = [];
-					this.selectedGenre = null;
-				});
-		},
-		resetForm() {
-			this.search = '';
-			this.genres = [];
-			this.selectedGenre = null;
-			this.artists = [];
+const app = useApp();
 
-			if (this.app.currentTrack.url.includes('mp3-preview')) {
-				this.app.currentTrack = null;
-			}
-		},
-		showArtists(genre) {
-			this.selectedGenre = genre;
+const list = useTemplateRef('list');
 
-			fetch(import.meta.env.VITE_API + '/everynoise/genres/' + genre)
-				.then(res => res.json())
-				.then(json => {
-					this.artists = json;
-				});
-		},
-		scrollToEveryNoise() {
-			this.scrollTop = this.$refs.list.scrollTop;
-			this.app.goTo('everynoise');
-		}
+const search = ref('');
+const genres = ref([]);
+const selectedGenre = ref(null);
+const artists = ref([]);
+
+function findGenresByName() {
+	fetch(import.meta.env.VITE_API + '/everynoise/genres?name=' + search.value)
+		.then(res => res.json())
+		.then(json => {
+			genres.value = json;
+			artists.value = [];
+			selectedGenre.value = null;
+		});
+}
+
+function resetForm() {
+	search.value = '';
+	genres.value = [];
+	selectedGenre.value = null;
+	artists.value = [];
+
+	if (app.currentTrack.url.includes('mp3-preview')) {
+		app.currentTrack = null;
 	}
-};
+}
+
+function showArtists(genre) {
+	selectedGenre.value = genre;
+
+	fetch(import.meta.env.VITE_API + '/everynoise/genres/' + genre)
+		.then(res => res.json())
+		.then(json => {
+			artists.value = json;
+		});
+}
+
+function scrollToEveryNoise() {
+	app.goTo('everynoise');
+}
 </script>

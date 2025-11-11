@@ -6,6 +6,7 @@ const vm = require('vm');
 
 const libraryService = require('@/classes/library');
 const wishesService = require('@/classes/wishes');
+const { execSync } = require('node:child_process');
 
 const MUSIC_DIR = process.env.MUSIC_DIR + '/';
 
@@ -63,26 +64,19 @@ module.exports.getResults = search => {
 module.exports.download = (id, url, artist, title, genre, callback) => {
 	const filename = MUSIC_DIR + '/' + artist.split(' ').join('_') + '_' + title.split(' ').join('_') + '.mp3';
 
-	const stream = ytdl(url, {
-		filter: 'audioandvideo'
-	});
+	execSync('yt-dlp ' + url + ' -t mp3 -o ' + filename);
 
-	ffmpeg(stream)
-		.noVideo()
-		.saveToFile(filename)
-		.on('end', () => {
-			NodeID3.write(
-				{
-					artist: artist,
-					title: title,
-					genre: genre
-				},
-				filename
-			);
+	NodeID3.write(
+		{
+			artist: artist,
+			title: title,
+			genre: genre
+		},
+		filename
+	);
 
-			libraryService.addTrack(artist, title, genre);
-			wishesService.deleteWish(id);
+	libraryService.addTrack(artist, title, genre);
+	wishesService.deleteWish(id);
 
-			callback();
-		});
+	callback();
 };

@@ -14,31 +14,25 @@
 	</tr>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue';
+
 import EditButton from '@/components/buttons/EditButton.vue';
 import DeleteButton from '@/components/buttons/DeleteButton.vue';
 import DownloadButton from '@/components/buttons/DownloadButton.vue';
 import Spinner from '@/components/Spinner.vue';
-import useApp from '@/stores/app';
+
 import useWishes from '@/stores/wishes';
 
-export default {
-	components: { EditButton, DeleteButton, DownloadButton, Spinner },
-	expose: ['downloadWish'],
-	props: ['wish'],
-	data: () => ({
-		downloading: false
-	}),
-	setup: () => ({
-		app: useApp(),
-		wishesStore: useWishes()
-	}),
-	methods: {
-		downloadWish() {
-			this.downloading = true;
+const wishesStore = useWishes();
 
-			this.wishesStore.downloadWish(this.wish);
-		}
-	}
-};
+const { wish } = defineProps(['wish']);
+
+const downloading = ref(false);
+
+function downloadWish() {
+	downloading.value = true;
+
+	wishesStore.downloadWish(wish);
+}
 </script>

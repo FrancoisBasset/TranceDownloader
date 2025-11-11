@@ -13,16 +13,17 @@
 
 			<div>
 				<button @click="addWish" :class="addButtonClasses">Ajouter</button>
-				<button @click="cancelWish" class="red-button">Annuler</button>
+				<button @click="resetWish" class="red-button">Annuler</button>
 			</div>
 		</div>
 	</div>
 </template>
 
-<script>
+<script setup>
 import GenreSelect from '@/components/GenreSelect.vue';
 import useApp from '@/stores/app';
 import useWishes from '@/stores/wishes';
+import { computed, reactive, ref, watch } from 'vue';
 
 function getInitialWish() {
 	return {
@@ -33,88 +34,82 @@ function getInitialWish() {
 	};
 }
 
-export default {
-	components: { GenreSelect },
-	data() {
-		return {
-			videoFound: null,
-			wish: getInitialWish()
-		};
-	},
-	setup: () => ({
-		app: useApp(),
-		wishesStore: useWishes()
-	}),
-	computed: {
-		youtubeLink() {
-			return 'https://www.youtube.com/embed/' + this.wish.url.split('v=')[1] + '?mute=0&autoplay=1';
-		},
-		inputClasses() {
-			if (this.wish.url === '') {
-				return [];
-			}
+const app = useApp();
+const wishesStore = useWishes();
 
-			if (this.videoFound === false) {
-				return ['video-not-found'];
-			}
+const videoFound = ref(null);
+let wish = reactive(getInitialWish());
 
-			return [];
-		},
-		formCompleted() {
-			return this.wish.url && this.wish.artist && this.wish.title && this.wish.genre;
-		},
-		addButtonClasses() {
-			return {
-				'green-button': this.formCompleted,
-				'!cursor-not-allowed': !this.formCompleted
-			};
-		}
-	},
-	methods: {
-		addWish() {
-			if (!this.formCompleted) {
-				return;
-			}
+const youtubeLink = computed(() => {
+	return 'https://www.youtube.com/embed/' + wish.url.split('v=')[1] + '?mute=0&autoplay=1';
+});
 
-			this.wishesStore.addWish(this.wish).then(() => {
-				this.wish = getInitialWish();
-				this.app.goTo('youtube');
-			});
-		},
-		cancelWish() {
-			this.wish = getInitialWish();
-		}
-	},
-	watch: {
-		'wish.url'() {
-			fetch('https://www.youtube.com/oembed?url=' + this.wish.url)
-				.then(res => {
-					if (res.status !== 200) {
-						this.videoFound = false;
-						return Promise.reject();
-					}
+const inputClasses = computed(() => {
+	const notFound = wish.url !== '' && videoFound.value === false;
 
-					return res.json();
-				})
-				.then(json => {
-					if (json.title.includes(' - ')) {
-						this.wish.artist = json.title.split(' - ')[0];
-						this.wish.title = json.title.split(' - ')[1];
-					} else {
-						this.wish.artist = json.author_name.replace(' - Topic', '');
+	return notFound ? ['video-not-found'] : [];
+});
 
-						this.wish.title = json.title;
-					}
+const formCompleted = computed(() => {
+	return wish.url && wish.artist && wish.title && wish.genre;
+});
 
-					this.wish.title = this.wish.title.replace(' (Original Mix)', '');
-					this.wish.title = this.wish.title.replace(' (Extended Mix)', '');
+const addButtonClasses = computed(() => {
+	return {
+		'green-button': formCompleted,
+		'!cursor-not-allowed': !formCompleted
+	};
+});
 
-					this.videoFound = true;
-				});
-		},
-		'app.wishUrl'() {
-			this.wish.url = this.app.wishUrl;
-		}
+function addWish() {
+	if (!formCompleted.value) {
+		return;
 	}
-};
+
+	wishesStore.addWish(wish).then(() => {
+		resetWish();
+		app.goTo('youtube');
+	});
+}
+
+function resetWish() {
+	Object.assign(wish, getInitialWish());
+}
+
+watch(
+	() => wish.url,
+	() => {
+		fetch('https://www.youtube.com/oembed?url=' + wish.url)
+			.then(res => {
+				if (res.status !== 200) {
+					videoFound.value = false;
+					return Promise.reject();
+				}
+
+				return res.json();
+			})
+			.then(json => {
+				if (json.title.includes(' - ')) {
+					wish.artist = json.title.split(' - ')[0];
+					wish.title = json.title.split(' - ')[1];
+				} else {
+					wish.artist = json.author_name.replace(' - Topic', '');
+
+					wish.title = json.title;
+				}
+
+				wish.title = wish.title.replace(' (Original Mix)', '');
+				wish.title = wish.title.replace(' (Extended Mix)', '');
+
+				videoFound.value = true;
+			});
+	}
+);
+
+watch(
+	() => app.wishUrl,
+	() => {
+		wish.url = app.wishUrl;
+	}
+);
 </script>
