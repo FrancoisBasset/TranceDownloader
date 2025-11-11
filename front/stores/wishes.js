@@ -75,7 +75,7 @@ export default defineStore('wishes', {
 			});
 		},
 		hideWish(wish) {
-			this.wishes = this.wishes.filter(w => w.id != wish.id);
+			this.wishes = this.wishes.filter(w => w.id !== wish.id);
 		}
 	}
 });

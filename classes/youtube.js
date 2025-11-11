@@ -1,6 +1,4 @@
 const { CookieJar, JSDOM } = require('jsdom');
-const ytdl = require('@distube/ytdl-core');
-const ffmpeg = require('fluent-ffmpeg');
 const NodeID3 = require('node-id3');
 const vm = require('vm');
 

@@ -6,7 +6,7 @@
 			<th @click="sort('title')" class="text-start" :class="{ 'text-teal-400': order === 'title' }">Titre</th>
 			<th @click="sort('genre')" class="text-start" :class="{ 'text-teal-400': order === 'genre' }">Genre</th>
 		</tr>
-		<TrackRow v-for="track of tracks" :key="track" :track="track" @onEdit="track => $emit('onEdit', track)" />
+		<TrackRow v-for="track of tracks" :key="track" :track="track" @onEdit="$emit('onEdit', track)" />
 	</table>
 </template>
 

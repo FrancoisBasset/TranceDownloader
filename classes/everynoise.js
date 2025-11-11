@@ -36,7 +36,7 @@ module.exports.getArtists = genre => {
 		const artists = items.reduce((artists, item) => {
 			const text = item.title.replace('e.g. ', '');
 
-			/** @type [string, string] */
+			/** @type {[string, string]} */
 			let [artist, title] = text.split(' "');
 
 			if (title === undefined) {
