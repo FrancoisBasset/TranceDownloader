@@ -62,7 +62,7 @@ module.exports.getResults = search => {
 module.exports.download = (id, url, artist, title, genre, callback) => {
 	const filename = MUSIC_DIR + '/' + artist.split(' ').join('_') + '_' + title.split(' ').join('_') + '.mp3';
 
-	execSync('yt-dlp ' + url + ' -t mp3 -o ' + filename);
+	execSync('yt-dlp ' + url + ' -t mp3 -o "' + filename + '"');
 
 	NodeID3.write(
 		{
